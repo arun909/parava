@@ -66,6 +66,7 @@ const rgb = (hex: string) =>
 export class GlobeController {
 	readonly map: maplibregl.Map;
 	private overlay = new MapboxOverlay({ interleaved: true, layers: [] });
+	private away: Report[] = [];
 	private index = new Supercluster<{ c: Rgb }>({
 		radius: 45,
 		maxZoom: 8,
@@ -112,6 +113,16 @@ export class GlobeController {
 		this.map.on("moveend", () => this.draw());
 	}
 
+	/** Fly the camera to a position (longitudes may be unwrapped past 180). */
+	flyTo([lon, lat]: LonLat, zoom = 4) {
+		this.map.flyTo({
+			center: [((((lon + 180) % 360) + 360) % 360) - 180, lat],
+			zoom,
+			duration: 1800,
+			essential: true,
+		});
+	}
+
 	/** Calls back once the map has painted (or after 4 s, whichever is first). */
 	whenPainted(fn: () => void) {
 		let done = false;
@@ -147,7 +158,8 @@ export class GlobeController {
 	}
 
 	/** Replace the sightings shown (flyway-filtered, already coloured per species). */
-	setReports(reports: Report[]) {
+	setReports(reports: Report[], away: Report[] = []) {
+		this.away = away;
 		this.index.load(
 			reports.map((r) => ({
 				type: "Feature" as const,
@@ -244,6 +256,20 @@ export class GlobeController {
 					highlightColor: [255, 255, 255, 140],
 					capRounded: true,
 					jointRounded: true,
+				}),
+				// birds seen away from their expected range: hollow rings in the species colour
+				new ScatterplotLayer<Report>({
+					...GP,
+					id: "away",
+					data: this.away,
+					getPosition: (r) => r.pos,
+					getRadius: 5,
+					radiusUnits: "pixels",
+					filled: false,
+					stroked: true,
+					getLineColor: (r): [number, number, number, number] => [...r.c, 230],
+					lineWidthUnits: "pixels",
+					getLineWidth: 1.6,
 				}),
 				new ScatterplotLayer<{ pos: LonLat; n: number; c: Rgb }>({
 					...GP,

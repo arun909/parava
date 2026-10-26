@@ -4,6 +4,7 @@ import { onMount } from "svelte";
 import { persist } from "@/lib/data/client";
 import { GlobeController, type Hover } from "@/lib/globe/GlobeController";
 import { GlobeState } from "@/lib/globe/state.svelte";
+import { PREPARED, speciesState } from "@/lib/model";
 import MobileSheet from "./MobileSheet.svelte";
 import PathsPanel from "./PathsPanel.svelte";
 import SpeciesCard from "./SpeciesCard.svelte";
@@ -32,17 +33,39 @@ onMount(() => {
 		},
 	});
 	ctl.whenPainted(() => (globe.ready = true));
+	// arriving from a species page (?species=id): focus it and fly to where it is today
+	const id = new URLSearchParams(location.search).get("species");
+	const sp = PREPARED.find((x) => x.id === id);
+	if (sp) {
+		globe.focus = sp.id;
+		globe.card = sp.id;
+		globe.pathMode = "focus";
+		ctl.flyTo(speciesState(sp, globe.day).pos);
+	}
 	return () => ctl?.destroy();
 });
 $effect(() => ctl?.update(globe.shown, globe.day, globe.paths));
 $effect(() => {
+	const on = globe.shown.map((s) => ({
+		s,
+		c: globe.classified.get(s.id),
+		col: rgb(s.color),
+	}));
 	ctl?.setReports(
-		globe.shown.flatMap((s) =>
-			(globe.classified.get(s.id)?.items ?? []).map((r) => ({
+		on.flatMap(({ c, col }) =>
+			(c?.items ?? []).map((r) => ({
 				pos: [r.lon, r.lat] as [number, number],
-				c: rgb(s.color),
+				c: col,
 			})),
 		),
+		globe.showAway
+			? on.flatMap(({ c, col }) =>
+					(c?.away ?? []).map((r) => ({
+						pos: [r.lon, r.lat] as [number, number],
+						c: col,
+					})),
+				)
+			: [],
 	);
 });
 </script>
@@ -55,14 +78,16 @@ $effect(() => {
 			<strong>{tip.title}</strong><br />{tip.sub}<br /><em>Click for details</em>
 		</div>
 	{/if}
+	{#if !globe.card}
 	<aside class="panel left">
 		<h2>Species</h2>
 		<SpeciesList {globe} />
 	</aside>
+	{/if}
 	{#if globe.card}
 		<div class="panel card"><SpeciesCard {globe} /></div>
 	{/if}
-	<div class="panel paths"><PathsPanel {globe} /></div>
+	<div class="panel paths"><PathsPanel {globe} compact={!!globe.card} /></div>
 	<div class="bar">
 		<span class="mono" aria-live="polite">{#if globe.loading}Loading {globe.loading}…{/if}</span>
 		<Timeline {globe} />
@@ -81,7 +106,7 @@ $effect(() => {
 	.left { top: 12px; left: 12px; bottom: 150px; width: 260px; }
 	.left h2 { font-size: 1rem; }
 	.paths { top: 12px; right: 12px; overflow: visible; }
-	.card { top: 310px; right: 12px; bottom: 12px; width: 320px; padding: var(--s4); z-index: 5; }
+	.card { top: 12px; left: 12px; bottom: 150px; width: 300px; padding: var(--s4); z-index: 5; }
 	.bar { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; flex-direction: column; gap: var(--s2); background: color-mix(in srgb, var(--surface) 92%, transparent); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s3) var(--s4); }
 	.sheet-btn { display: none; }
 	@media (max-width: 700px) {

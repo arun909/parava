@@ -3,10 +3,12 @@ import type { GlobeState } from "@/lib/globe/state.svelte";
 import {
 	dayOfYear,
 	formatDay,
+	legStats,
 	nextEvent,
 	PHASE_LABEL,
 	PREPARED,
 	popState,
+	visitWindow,
 } from "@/lib/model";
 
 let { globe }: { globe: GlobeState } = $props();
@@ -14,92 +16,116 @@ let { globe }: { globe: GlobeState } = $props();
 const s = $derived(PREPARED.find((x) => x.id === globe.card));
 const c = $derived(s ? globe.classified.get(s.id) : undefined);
 const m = $derived(s ? globe.match(s.id) : undefined);
-// recent reports with an open-licensed photo, newest first
-const photos = $derived(
-	(c?.items ?? [])
-		.filter((r) => r.img)
-		.sort((a, b) => b.t - a.t)
-		.slice(0, 12),
-);
 const code = $derived(s ? globe.codeOf(s.id) : undefined);
+// one photo: the newest open-licensed report that has one
+const photo = $derived(
+	(c?.items ?? []).filter((r) => r.img).sort((a, b) => b.t - a.t)[0],
+);
 const today = dayOfYear();
+const away = $derived([...(c?.away ?? [])].sort((a, b) => b.t - a.t));
 const ago = (t: number) => {
 	const d = Math.max(0, Math.round((Date.now() - t) / 864e5));
 	return d === 0 ? "today" : `${d}d ago`;
 };
+const km = (n: number) => `${Math.round(n).toLocaleString()} km`;
+const range = (a: number, b: number) => `${formatDay(a)} – ${formatDay(b)}`;
+const here = $derived(
+	s && globe.home.current
+		? visitWindow(s, globe.home.current.lon, globe.home.current.lat)
+		: null,
+);
+const HERE_VERB = {
+	wintering: "Winters near you",
+	breeding: "Breeds near you",
+	spring: "Passes near you",
+	autumn: "Passes near you",
+} as const;
 </script>
 
 {#if s}
 	<section class="card-panel" aria-label="{s.name} details">
-		<button type="button" class="x" aria-label="Close" onclick={() => (globe.card = undefined)}>×</button>
-		<p class="mono"><span class="dot" style:background={s.color}></span>{s.sci}</p>
-		<h2>{s.name}</h2>
-		<p class="fact">{s.fact}</p>
+		<button type="button" class="x" aria-label="Close" onclick={() => { globe.card = undefined; globe.focus = undefined; }}>×</button>
 
-		{#if m}
-			<p class="mono">
-				{m.level} agreement · {m.n} reports on the flyway{m.dropped ? `, ${m.dropped} off it` : ""}
-			</p>
-		{:else}
-			<p class="mono">Loading sightings…</p>
+		{#if photo}
+			<a class="hero" href={photo.link} target="_blank" rel="noreferrer" title="{photo.place} · {photo.attr ?? photo.src}">
+				<img src={photo.img} alt="{s.name}, {photo.place}" />
+				<span>{photo.attr ?? photo.src}</span>
+			</a>
 		{/if}
 
-		{#if photos.length}
-			<div class="photos">
-				{#each photos as r}
-					<a href={r.link} target="_blank" rel="noreferrer" title="{r.place} · {ago(r.t)} · {r.attr ?? r.src}">
-						<img src={r.img} alt="{s.name}, {r.place}" loading="lazy" />
-					</a>
+		<h2><span class="dot" style:background={s.color}></span>{s.name}</h2>
+		<p class="mono sci">{s.sci}
+			{#if m}· <span class="lvl {m.level}">{m.level} agreement</span> · {m.n} reports{:else}· loading sightings…{/if}
+		</p>
+
+		<dl>
+			{#each s.pops as p (p.name)}
+				{@const st = popState(p, globe.day)}
+				{@const t = legStats(p)}
+				{@const n = nextEvent(p, today)}
+				<dt>{p.name}<small>{PHASE_LABEL[st.phase]}</small></dt>
+				<dd>
+					<span><b>Spring</b> {range(t.spring.from, t.spring.to)} · {t.spring.days} d · {km(t.spring.km)} · {Math.round(t.spring.kmPerDay)} km/d</span>
+					<span><b>Autumn</b> {range(t.autumn.from, t.autumn.to)} · {t.autumn.days} d · {km(t.autumn.km)} · {Math.round(t.autumn.kmPerDay)} km/d</span>
+					<span><b>Round trip</b> {km(t.roundTripKm)} · <b>Next</b> {n.what.toLowerCase()}, {formatDay(n.day)}</span>
+				</dd>
+			{/each}
+		</dl>
+
+		{#if away.length}
+			<div class="near">
+				<b>{away.length} seen away from its usual range</b>
+				{#each away.slice(0, 3) as r}
+					<div class="mono">{r.place || "Unnamed place"} · {ago(r.t)} · {r.src}</div>
 				{/each}
 			</div>
-			<p class="mono small">Photos from iNaturalist observers, open licences. Tap for the original.</p>
 		{/if}
 
-		<h3>Populations</h3>
-		<ul>
-			{#each s.pops as p}
-				{@const st = popState(p, globe.day)}
-				{@const n = nextEvent(p, today)}
-				<li>
-					<strong>{p.name}</strong> · {PHASE_LABEL[st.phase]}
-					<div class="mono small">Next: {n.what.toLowerCase()}, {formatDay(n.day)}</div>
-				</li>
-			{/each}
-		</ul>
-
-		<h3>Latest reports</h3>
-		<ul>
-			{#each (c?.items ?? []).slice().sort((a, b) => b.t - a.t).slice(0, 5) as r}
-				<li>
-					{#if r.link}<a href={r.link} target="_blank" rel="noreferrer">{r.place || "Unnamed place"}</a>{:else}{r.place || "Unnamed place"}{/if}
-					<span class="mono small">{ago(r.t)} · {r.src}</span>
-				</li>
+		<div class="near">
+			{#if globe.home.current}
+				{#if here}
+					<b>{HERE_VERB[here.phase]}</b>
+					{here.ranges.map(([a, b]) => range(a, b)).join(", ")}
+					<span class="mono">· closest {km(here.closestKm)}, {formatDay(here.closestDay)}</span>
+				{:else}
+					<b>Not expected near you</b> <span class="mono">(none within 700 km)</span>
+				{/if}
+				<button type="button" class="link" onclick={() => (globe.home.current = null)}>clear</button>
 			{:else}
-				<li class="mono small">None on the flyway in the last 30 days.</li>
-			{/each}
-		</ul>
-				<h3>More</h3>
-		<ul class="links">
-			{#if code}
-				<li><a href="https://ebird.org/species/{code}" target="_blank" rel="noreferrer">eBird species page</a></li>
-				<li><a href="https://media.ebird.org/catalog?taxonCode={code}" target="_blank" rel="noreferrer">Photos and sounds (Macaulay Library)</a></li>
+				<button type="button" class="link" onclick={() => globe.locate()}>Use my location</button> to see when it is near you.
+				{#if globe.homeError}<span class="err">{globe.homeError}</span>{/if}
 			{/if}
-			<li><a href="https://merlin.allaboutbirds.org/" target="_blank" rel="noreferrer">Identify it in the field with Merlin</a></li>
-		</ul>
-		<p class="mono small">Merlin has no public data feed. Birds you save from Merlin to eBird show up here once eBird is on.</p>
-		<a class="btn" href="/species/{s.id}/">Full species page</a>
+		</div>
+
+		<p class="links">
+			{#if code}<a href="https://ebird.org/species/{code}" target="_blank" rel="noreferrer">eBird</a> ·
+				<a href="https://media.ebird.org/catalog?taxonCode={code}" target="_blank" rel="noreferrer">Photos &amp; sounds</a> · {/if}
+			<a href="https://merlin.allaboutbirds.org/" target="_blank" rel="noreferrer">Merlin</a> ·
+			<a href="/species/{s.id}/">Full page</a>
+		</p>
 	</section>
 {/if}
 
 <style>
-	.card-panel { position: relative; }
-	h2 { font-size: 1.5rem; margin-bottom: var(--s2); }
-	h3 { font-size: 0.8rem; margin: var(--s4) 0 var(--s2); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-	.fact { color: var(--muted); font-size: 0.9rem; }
-	.x { position: absolute; top: 8px; right: 10px; background: none; border: 0; color: var(--muted); font-size: 1.4rem; cursor: pointer; }
-	.photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: var(--s3) 0 var(--s1); }
-	.photos img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; display: block; }
-	ul { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s2); font-size: 0.9rem; }
-	.small { font-size: 0.7rem; }
-	.btn { margin-top: var(--s4); }
+	.card-panel { position: relative; font-size: 0.8rem; line-height: 1.4; }
+	.x { position: absolute; top: 6px; right: 6px; z-index: 1; width: 26px; height: 26px; border-radius: 50%; border: 0; background: #000a; color: #fff; font-size: 1.1rem; cursor: pointer; }
+	.hero { position: relative; display: block; margin: calc(-1 * var(--s4)) calc(-1 * var(--s4)) var(--s3); }
+	.hero img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--r) var(--r) 0 0; }
+	.hero span { position: absolute; left: 8px; bottom: 6px; font: 0.65rem var(--mono); color: #fff; text-shadow: 0 1px 3px #000; max-width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	h2 { font-size: 1.25rem; margin: 0; display: flex; align-items: center; }
+	.sci { margin: 2px 0 var(--s3); text-transform: none; font-size: 0.7rem; }
+	.lvl.high { color: var(--ok); }
+	.lvl.medium { color: #eab308; }
+	.lvl.low { color: var(--rose); }
+	dl { margin: 0; display: grid; gap: var(--s2); }
+	dt { font-weight: 600; display: flex; gap: var(--s2); align-items: baseline; }
+	dt small { font: 0.65rem var(--mono); color: var(--muted); text-transform: uppercase; }
+	dd { margin: 0 0 var(--s2); display: grid; gap: 1px; color: var(--muted); padding-left: var(--s2); border-left: 2px solid var(--line); }
+	dd b { color: var(--text); font-weight: 500; }
+	.near + .near { margin-top: var(--s2); }
+	.near { background: var(--surface-2); border-radius: 10px; padding: var(--s2) var(--s3); margin-top: var(--s2); }
+	.near b { color: var(--text); }
+	.err { color: var(--rose); }
+	.link { background: none; border: 0; padding: 0; color: var(--link); font: inherit; cursor: pointer; text-decoration: underline; }
+	.links { margin: var(--s3) 0 0; color: var(--muted); }
 </style>

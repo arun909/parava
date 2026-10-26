@@ -121,8 +121,9 @@ describe("combined fetch", () => {
 			since: 0,
 			queues: makeQueues(false),
 		});
+		// every flyway box, plus one worldwide request for birds far off their route
 		expect(seen.filter((s) => s === "inat").length).toBe(
-			flywayBoxes(sp.pops[0]!).length,
+			flywayBoxes(sp.pops[0]!).length + 1,
 		);
 		expect(out.some((o) => o.src === "GBIF")).toBe(true);
 		expect(out.some((o) => o.src === "iNaturalist")).toBe(true);

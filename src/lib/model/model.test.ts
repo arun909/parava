@@ -7,6 +7,7 @@ import {
 	fits,
 	hitsFor,
 	isMoving,
+	legStats,
 	PREPARED,
 	popState,
 	prepareRoute,
@@ -14,6 +15,7 @@ import {
 	speciesById,
 	speciesState,
 	upcoming,
+	visitWindow,
 } from "./index";
 
 const sp = (id: string) => speciesById(id)!;
@@ -130,5 +132,32 @@ describe("calendar helpers", () => {
 	test("the season audit covers most grounds and most of those are clear", () => {
 		const e = evidenceStats();
 		expect(e).toEqual({ checked: 69, good: 63, total: 78 });
+	});
+});
+
+describe("travel", () => {
+	test("leg stats are consistent with the route lengths", () => {
+		for (const s of PREPARED)
+			for (const p of s.pops) {
+				const t = legStats(p);
+				expect(t.roundTripKm).toBeCloseTo(p.sp.len + p.au.len, 5);
+				expect(t.spring.days).toBeGreaterThan(0);
+				expect(t.spring.days).toBeLessThanOrEqual(365);
+			}
+	});
+	test("Trivandrum: Rosy Starling winters nearby, an Arctic Tern is never near", () => {
+		const rosy = visitWindow(sp("rosy-starling"), 76.95, 8.52);
+		expect(rosy).not.toBeNull();
+		expect(rosy!.ranges.length).toBeGreaterThan(0);
+		expect(visitWindow(sp("arctic-tern"), 76.95, 8.52)).toBeNull();
+	});
+});
+
+describe("off-path sightings", () => {
+	test("a Rosy Starling far from its flyway is kept as away, not lost", () => {
+		const c = classify(sp("rosy-starling"), [report(77, 14), report(-20, 64)]);
+		expect(c.items.length).toBe(1);
+		expect(c.away.length).toBe(1);
+		expect(c.dropped).toBe(1);
 	});
 });

@@ -1,6 +1,9 @@
 import PQueue from "p-queue";
 import type { PreparedSpecies, Sighting } from "@/lib/model";
-import { flywayBoxes } from "./boxes";
+import { type Box, flywayBoxes } from "./boxes";
+
+const WORLD: Box = [-180, 180, -90, 90];
+
 import { ebirdRecent } from "./ebird";
 import { gbifOccurrences } from "./gbif";
 import type { Fetch } from "./http";
@@ -27,6 +30,8 @@ export interface SyncOptions {
 	/** Epoch ms: only reports since then. */
 	since: number;
 	queues?: Queues;
+	/** Higher goes first in the shared queues (the species being looked at). */
+	priority?: number;
 }
 
 /**
@@ -35,22 +40,23 @@ export interface SyncOptions {
  */
 export async function fetchSightings(
 	sp: PreparedSpecies,
-	{ fetch, since, queues = defaultQueues }: SyncOptions,
+	{ fetch, since, queues = defaultQueues, priority = 0 }: SyncOptions,
 ): Promise<Sighting[]> {
 	const jobs: Promise<Sighting[]>[] = [];
-	for (const pop of sp.pops)
-		for (const box of flywayBoxes(pop)) {
-			jobs.push(
-				queues.inat.add(() =>
-					inatObservations(fetch, sp.sci, box, since),
-				) as Promise<Sighting[]>,
-			);
-			jobs.push(
-				queues.gbif.add(() =>
-					gbifOccurrences(fetch, sp.sci, box, since),
-				) as Promise<Sighting[]>,
-			);
-		}
+	// the flyway boxes, plus the latest reports anywhere, so birds far off their route still show up
+	const boxes: Box[] = [...sp.pops.flatMap((p) => flywayBoxes(p)), WORLD];
+	for (const box of boxes) {
+		jobs.push(
+			queues.inat.add(() => inatObservations(fetch, sp.sci, box, since), {
+				priority,
+			}) as Promise<Sighting[]>,
+		);
+		jobs.push(
+			queues.gbif.add(() => gbifOccurrences(fetch, sp.sci, box, since), {
+				priority,
+			}) as Promise<Sighting[]>,
+		);
+	}
 	const settled = await Promise.allSettled(jobs);
 	const ok = settled.filter(
 		(r): r is PromiseFulfilledResult<Sighting[]> => r.status === "fulfilled",

@@ -27,20 +27,48 @@ export class GlobeState {
 		key: import.meta.env.DEV_EBIRD_KEY ?? "",
 		regions: "IN",
 	});
+	/** Your location, only for "near you" estimates; kept in this browser and never sent anywhere. */
+	home = new PersistedState<{ lon: number; lat: number } | null>(
+		"flyway-home",
+		null,
+	);
+	homeError = $state("");
+	locate() {
+		this.homeError = "";
+		navigator.geolocation.getCurrentPosition(
+			(p) =>
+				(this.home.current = {
+					lon: p.coords.longitude,
+					lat: p.coords.latitude,
+				}),
+			(e) => (this.homeError = e.message || "Location unavailable"),
+			{ maximumAge: 864e5 },
+		);
+	}
+	/** Draw birds seen far from their expected range as hollow rings. */
+	showAway = $state(true);
 	card = $state<string | undefined>();
 	/** Sightings wait for the map's first paint so tiles get the bandwidth first. */
 	ready = $state(false);
-	shown = $derived(PREPARED.filter((s) => this.on.has(s.id)));
+	/** Enabled species; in Focus mode only the focused one, so the view is uncluttered. */
+	shown = $derived(
+		PREPARED.filter((s) =>
+			this.pathMode === "focus" && this.focus
+				? s.id === this.focus
+				: this.on.has(s.id),
+		),
+	);
 
 	private results = createQueries(
 		() => ({
 			queries: PREPARED.map((s) => ({
-				queryKey: ["sightings", s.id],
+				queryKey: ["sightings", s.id, "v2"],
 				enabled: this.ready && this.on.has(s.id),
 				queryFn: (): Promise<Sighting[]> =>
 					fetchSightings(s, {
 						fetch: globalThis.fetch.bind(globalThis),
 						since: Date.now() - WINDOW_DAYS * 864e5,
+						priority: this.focus === s.id ? 1 : 0,
 					}),
 			})),
 		}),

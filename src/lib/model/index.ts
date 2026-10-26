@@ -10,4 +10,5 @@ export * from "./geo";
 export * from "./motion";
 export * from "./season";
 export * from "./sightings";
+export * from "./travel";
 export * from "./types";

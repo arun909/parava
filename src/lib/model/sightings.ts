@@ -42,6 +42,8 @@ export interface Classified {
 	total: number;
 	/** Reports outside every flyway (other populations, feral or vagrant birds). */
 	dropped: number;
+	/** Those reports themselves: birds seen away from the expected range. */
+	away: Sighting[];
 }
 
 /** Reports within this distance of a route count as being on the flyway. */
@@ -124,10 +126,11 @@ export function hitsFor(sp: PreparedSpecies, lon: number, lat: number): Hit[] {
 	return hits;
 }
 
-/** Drop duplicates (prefer the copy with a photo) and keep reports along a flyway. */
+/** Drop duplicates (prefer the copy with a photo); reports along a flyway are `items`, the rest are kept as `away`. */
 export function classify(sp: PreparedSpecies, raw: Sighting[]): Classified {
 	const seen = new Set<string>();
 	const items: InFlyway[] = [];
+	const away: Sighting[] = [];
 	let total = 0;
 	for (const o of [...raw].sort((a, b) => Number(!!b.img) - Number(!!a.img))) {
 		if (
@@ -142,6 +145,7 @@ export function classify(sp: PreparedSpecies, raw: Sighting[]): Classified {
 		total++;
 		const hits = hitsFor(sp, o.lon, o.lat);
 		if (hits.length) items.push({ ...o, hits });
+		else away.push(o);
 	}
-	return { items, total, dropped: total - items.length };
+	return { items, total, dropped: away.length, away };
 }
