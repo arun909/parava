@@ -1,0 +1,28 @@
+---
+import Base from "@/layouts/Base.astro";
+import { dayOfYear, formatDay, PREPARED, upcoming } from "@/lib/model";
+
+const today = dayOfYear();
+const soon = upcoming(PREPARED, today, 30).slice(0, 8);
+---
+
+<Base title="Bird migration, live">
+	<p class="mono">Today · {formatDay(today)}</p>
+	<h1>Where the world's<br />migratory birds are.</h1>
+	<p style="max-width:55ch;color:var(--muted)">
+		{PREPARED.length} species, {PREPARED.reduce((n, s) => n + s.pops.length, 0)} flyway populations, placed
+		on a globe by today's date and checked against live sightings.
+	</p>
+	<p><a class="btn" href="/globe/">Open the globe</a></p>
+	<h2 style="margin-top:48px">Next 30 days</h2>
+	<ul class="grid" style="list-style:none;padding:0">
+		{soon.map((e) => (
+			<li class="card">
+				<span class="dot" style={`background:${e.species.color}`}></span>
+				<a href={`/species/${e.species.id}/`}>{e.species.name}</a>
+				<div>{e.what}</div>
+				<div class="mono">{e.pop.name} · {e.in === 0 ? "today" : `in ${e.in} days`}</div>
+			</li>
+		))}
+	</ul>
+</Base>

@@ -1,0 +1,60 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+	title: string;
+	description?: string;
+	bare?: boolean;
+}
+const {
+	title,
+	description = "Where the world's migratory birds are, today.",
+	bare,
+} = Astro.props;
+const nav = [
+	["/globe/", "Globe"],
+	["/species/", "Species"],
+	["/calendar/", "Calendar"],
+	["/about/", "About"],
+];
+const path = Astro.url.pathname;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<title>{title} · Flyway</title>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta name="theme-color" content="#09090b" />
+		<style>
+			header { border-bottom: 1px solid var(--line); }
+			header .wrap { display: flex; align-items: center; gap: var(--s5); height: 60px; }
+			.brand { font-weight: 800; color: var(--text); text-decoration: none; margin-right: auto; }
+			nav { display: flex; gap: var(--s4); }
+			nav a { color: var(--muted); text-decoration: none; padding: var(--s1) 0; }
+			nav a[aria-current="page"], nav a:hover { color: var(--text); }
+			.skip { position: absolute; left: -999px; top: 8px; background: var(--violet); color: #fff; padding: 8px 12px; border-radius: 8px; z-index: 100; }
+			.skip:focus { left: 8px; }
+			main { padding: var(--s6) 0 64px; }
+			footer { border-top: 1px solid var(--line); padding: var(--s5) 0; color: var(--muted); font-size: 0.9rem; }
+		</style>
+	</head>
+	<body>
+		<a class="skip" href="#main">Skip to content</a>
+		<header>
+			<div class="wrap">
+				<a class="brand" href="/">Flyway</a>
+				<nav aria-label="Main">
+					{nav.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? "page" : undefined}>{label}</a>)}
+				</nav>
+			</div>
+		</header>
+		{bare ? <main id="main"><slot /></main> : <main id="main" class="wrap"><slot /></main>}
+		{!bare && <footer><div class="wrap">Sightings from iNaturalist, GBIF and eBird. Imagery NASA GIBS. Basemap OpenFreeMap © OpenStreetMap contributors.</div></footer>}
+	</body>
+</html>

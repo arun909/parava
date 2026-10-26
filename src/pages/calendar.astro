@@ -1,0 +1,44 @@
+---
+import Base from "@/layouts/Base.astro";
+import { dayOfYear, MONTHS, MSTART, PREPARED, popState } from "@/lib/model";
+
+const today = dayOfYear();
+// per species: which month cells have the main population moving
+const rows = PREPARED.map((s) => ({
+	s,
+	months: MONTHS.map((_, m) => {
+		const d = MSTART[m]! + 15;
+		return s.pops.some((p) =>
+			["spring", "autumn"].includes(popState(p, d).phase),
+		);
+	}),
+}));
+---
+
+<Base title="Calendar" description="Which months each species is on the move.">
+	<h1>Calendar</h1>
+	<p style="color:var(--muted)">Months with at least one population in flight. Today is highlighted.</p>
+	<div style="overflow-x:auto">
+		<table>
+			<thead>
+				<tr><th><span class="sr">Species</span></th>{MONTHS.map((m, i) => <th class:list={[{ now: today >= MSTART[i]! && today < (MSTART[i + 1] ?? 366) }]}>{m.slice(0, 3)}</th>)}</tr>
+			</thead>
+			<tbody>
+				{rows.map(({ s, months }) => (
+					<tr>
+						<th scope="row" style="text-align:left"><a href={`/species/${s.id}/`}>{s.name}</a></th>
+						{months.map((on) => <td style={on ? `background:${s.color}` : ""}>{on ? <span class="sr">migrating</span> : null}</td>)}
+					</tr>
+				))}
+			</tbody>
+		</table>
+	</div>
+	<style>
+		.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+		table { border-collapse: separate; border-spacing: 2px; width: 100%; min-width: 640px; }
+		td { height: 22px; border-radius: 4px; background: var(--surface); }
+		th { font-weight: 500; font-size: 0.85rem; color: var(--muted); }
+		th.now { color: var(--violet); }
+		th a { color: var(--text); text-decoration: none; white-space: nowrap; padding-right: 12px; }
+	</style>
+</Base>

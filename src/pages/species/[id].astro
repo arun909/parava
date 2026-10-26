@@ -1,0 +1,41 @@
+---
+import Base from "@/layouts/Base.astro";
+import {
+	dayOfYear,
+	formatDay,
+	nextEvent,
+	PHASE_LABEL,
+	PREPARED,
+	popState,
+} from "@/lib/model";
+
+export function getStaticPaths() {
+	return PREPARED.map((s) => ({ params: { id: s.id }, props: { s } }));
+}
+const { s } = Astro.props;
+const today = dayOfYear();
+---
+
+<Base title={s.name} description={s.fact}>
+	<p class="mono"><span class="dot" style={`background:${s.color}`}></span>{s.sci}</p>
+	<h1>{s.name}</h1>
+	<p style="max-width:60ch;color:var(--muted)">{s.fact}</p>
+	<p><a class="btn" href={`/globe/?species=${s.id}`}>Show on globe</a></p>
+	<h2 style="margin-top:40px">Populations</h2>
+	<div class="grid">
+		{s.pops.map((p) => {
+			const st = popState(p, today);
+			const n = nextEvent(p, today);
+			return (
+				<div class="card">
+					<strong>{p.name}</strong>
+					<div>{PHASE_LABEL[st.phase]}</div>
+					<div class="mono">Next: {n.what.toLowerCase()} · {formatDay(n.day)}</div>
+					<div class="mono">
+						{["Leaves winter", "Reaches breeding", "Leaves breeding", "Reaches winter"].map((l, k) => `${l} ${formatDay(p.dep[k]!)}`).join(" · ")}
+					</div>
+				</div>
+			);
+		})}
+	</div>
+</Base>

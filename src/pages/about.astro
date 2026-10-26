@@ -1,0 +1,20 @@
+---
+import Base from "@/layouts/Base.astro";
+import { evidenceStats, PREPARED } from "@/lib/model";
+
+const e = evidenceStats();
+---
+
+<Base title="About & method" description="How the flyway model works and how it is checked.">
+	<h1>About</h1>
+	<p style="max-width:60ch">
+		Each species has one or more populations with a wintering ground, a breeding ground and a route. Positions follow
+		the calendar; live sightings from iNaturalist, GBIF and (with your own key) eBird are filtered to the matching flyway
+		and compared with where the model says birds should be.
+	</p>
+	<h2>Audit</h2>
+	<p>
+		{PREPARED.length} species, {e.total} grounds. {e.checked} had enough GBIF records to check; {e.good} show clear
+		seasonality matching the model. Re-run with <code>bun run audit</code>.
+	</p>
+</Base>

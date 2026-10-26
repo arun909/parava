@@ -1,0 +1,149 @@
+{
+	"arctic-tern/Atlantic": {
+		"w": [89, 40, 214],
+		"b": [75, 22, 37320]
+	},
+	"arctic-tern/Baltic": {
+		"b": [55, 21, 148862]
+	},
+	"arctic-tern/Pacific": {
+		"b": [63, 23, 34554]
+	},
+	"bar-headed-goose/Tibet–India": {
+		"w": [90, 37, 14354],
+		"b": [83, 45, 501]
+	},
+	"bar-headed-goose/Qinghai": {
+		"w": [77, 34, 9379],
+		"b": [90, 48, 1561]
+	},
+	"amur-falcon/Siberia–Africa": {
+		"w": [98, 42, 31401],
+		"b": [58, 29, 797]
+	},
+	"demoiselle-crane/Central Asia–India": {
+		"w": [87, 41, 8056],
+		"b": [97, 34, 2460]
+	},
+	"demoiselle-crane/Black Sea–Africa": {
+		"b": [65, 38, 762]
+	},
+	"bar-tailed-godwit/Alaska–NZ": {
+		"w": [58, 37, 26610],
+		"b": [85, 27, 5570]
+	},
+	"bar-tailed-godwit/Siberia–Australia": {
+		"w": [65, 45, 1709]
+	},
+	"bar-tailed-godwit/Europe–W Africa": {
+		"w": [87, 56, 2213]
+	},
+	"barn-swallow/Europe–S Africa": {
+		"w": [54, 34, 184729],
+		"b": [62, 30, 1680558]
+	},
+	"barn-swallow/Asia–India": {
+		"w": [81, 41, 217655],
+		"b": [84, 30, 2541]
+	},
+	"barn-swallow/Americas": {
+		"w": [65, 34, 6537],
+		"b": [72, 29, 1082976]
+	},
+	"ruby-hummingbird/Eastern N. America": {
+		"w": [88, 44, 35185],
+		"b": [57, 25, 1158970]
+	},
+	"siberian-crane/Eastern": {
+		"w": [90, 38, 2390]
+	},
+	"siberian-crane/Western": {
+		"w": [94, 38, 159]
+	},
+	"white-stork/Eastern flyway": {
+		"b": [66, 29, 132946]
+	},
+	"white-stork/Western flyway": {
+		"b": [47, 32, 844011]
+	},
+	"northern-pintail/Siberia–S Asia": {
+		"w": [94, 37, 10938],
+		"b": [88, 30, 41]
+	},
+	"northern-pintail/Europe–W Africa": {
+		"w": [91, 33, 411],
+		"b": [57, 37, 237]
+	},
+	"northern-pintail/N. America": {
+		"w": [68, 26, 129068],
+		"b": [64, 42, 19717]
+	},
+	"rosy-starling/Central Asia–India": {
+		"w": [89, 49, 63041],
+		"b": [72, 25, 178]
+	},
+	"blackpoll-warbler/Canada–Amazon": {
+		"w": [98, 47, 29],
+		"b": [97, 25, 1824]
+	},
+	"osprey/Europe–W Africa": {
+		"w": [89, 48, 17201],
+		"b": [49, 26, 356411]
+	},
+	"osprey/N. America": {
+		"w": [39, 44, 2853],
+		"b": [54, 29, 1570840]
+	},
+	"osprey/Siberia–SE Asia": {
+		"w": [80, 44, 5238],
+		"b": [34, 26, 61]
+	},
+	"greater-flamingo/India": {
+		"w": [78, 56, 26035],
+		"b": [13, 27, 24409]
+	},
+	"greater-flamingo/Mediterranean": {
+		"w": [58, 56, 153956],
+		"b": [20, 23, 176419]
+	},
+	"common-crane/Siberia–India": {
+		"w": [80, 29, 19961],
+		"b": [90, 45, 1092]
+	},
+	"common-crane/Europe–Iberia": {
+		"w": [62, 25, 122503],
+		"b": [70, 45, 694348]
+	},
+	"common-crane/E Europe–Ethiopia": {
+		"w": [87, 29, 32681],
+		"b": [74, 42, 7122]
+	},
+	"black-necked-crane/Tibet–Bhutan/Arunachal": {
+		"w": [67, 30, 964],
+		"b": [76, 51, 537]
+	},
+	"black-necked-crane/Qinghai–Yunnan": {
+		"w": [59, 29, 349],
+		"b": [94, 52, 1591]
+	},
+	"ruddy-shelduck/Tibet–India": {
+		"w": [86, 38, 33229],
+		"b": [25, 41, 1139]
+	},
+	"steppe-eagle/Kazakhstan–India": {
+		"w": [79, 33, 20253],
+		"b": [96, 42, 1302]
+	},
+	"steppe-eagle/Kazakhstan–E Africa": {
+		"w": [76, 33, 5373],
+		"b": [92, 42, 2332]
+	},
+	"pied-cuckoo/Africa–India": {
+		"w": [71, 51, 5588],
+		"b": [68, 27, 23420]
+	},
+	"spoon-billed-sandpiper/Chukotka–Myanmar": {
+		"w": [93, 44, 3499],
+		"b": [95, 16, 51]
+	}
+}
