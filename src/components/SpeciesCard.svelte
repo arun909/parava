@@ -21,6 +21,7 @@ const photos = $derived(
 		.sort((a, b) => b.t - a.t)
 		.slice(0, 12),
 );
+const code = $derived(s ? globe.codeOf(s.id) : undefined);
 const today = dayOfYear();
 const ago = (t: number) => {
 	const d = Math.max(0, Math.round((Date.now() - t) / 864e5));
@@ -77,6 +78,15 @@ const ago = (t: number) => {
 				<li class="mono small">None on the flyway in the last 30 days.</li>
 			{/each}
 		</ul>
+				<h3>More</h3>
+		<ul class="links">
+			{#if code}
+				<li><a href="https://ebird.org/species/{code}" target="_blank" rel="noreferrer">eBird species page</a></li>
+				<li><a href="https://media.ebird.org/catalog?taxonCode={code}" target="_blank" rel="noreferrer">Photos and sounds (Macaulay Library)</a></li>
+			{/if}
+			<li><a href="https://merlin.allaboutbirds.org/" target="_blank" rel="noreferrer">Identify it in the field with Merlin</a></li>
+		</ul>
+		<p class="mono small">Merlin has no public data feed. Birds you save from Merlin to eBird show up here once eBird is on.</p>
 		<a class="btn" href="/species/{s.id}/">Full species page</a>
 	</section>
 {/if}

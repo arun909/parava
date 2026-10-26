@@ -5,12 +5,24 @@ interface Props {
 	title: string;
 	description?: string;
 	bare?: boolean;
+	/** Open connections to the data hosts early (globe page). */
+	preconnect?: boolean;
+	/** Use the full window width instead of the reading column. */
+	wide?: boolean;
 }
 const {
 	title,
 	description = "Where the world's migratory birds are, today.",
 	bare,
+	preconnect,
+	wide,
 } = Astro.props;
+const hosts = [
+	"https://tiles.openfreemap.org",
+	"https://s3.amazonaws.com",
+	"https://api.inaturalist.org",
+	"https://api.gbif.org",
+];
 const nav = [
 	["/globe/", "Globe"],
 	["/species/", "Species"],
@@ -25,6 +37,7 @@ const path = Astro.url.pathname;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		{preconnect && hosts.map((h) => <link rel="preconnect" href={h} crossorigin />)}
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<title>{title} · Flyway</title>
 		<meta name="description" content={description} />
@@ -40,6 +53,7 @@ const path = Astro.url.pathname;
 			nav a[aria-current="page"], nav a:hover { color: var(--text); }
 			.skip { position: absolute; left: -999px; top: 8px; background: var(--violet); color: #fff; padding: 8px 12px; border-radius: 8px; z-index: 100; }
 			.skip:focus { left: 8px; }
+			main.wide { max-width: none; padding-inline: var(--s5); }
 			main { padding: var(--s6) 0 64px; }
 			footer { border-top: 1px solid var(--line); padding: var(--s5) 0; color: var(--muted); font-size: 0.9rem; }
 		</style>
@@ -54,7 +68,7 @@ const path = Astro.url.pathname;
 				</nav>
 			</div>
 		</header>
-		{bare ? <main id="main"><slot /></main> : <main id="main" class="wrap"><slot /></main>}
-		{!bare && <footer><div class="wrap">Sightings from iNaturalist, GBIF and eBird. Imagery NASA GIBS. Basemap OpenFreeMap © OpenStreetMap contributors.</div></footer>}
+		{bare ? <main id="main"><slot /></main> : <main id="main" class:list={["wrap", { wide }]}><slot /></main>}
+		{!bare && <footer><div class="wrap">Sightings from iNaturalist, GBIF and eBird. Basemap OpenFreeMap © OpenStreetMap contributors.</div></footer>}
 	</body>
 </html>

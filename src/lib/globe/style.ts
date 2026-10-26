@@ -1,22 +1,12 @@
 import type { StyleSpecification } from "maplibre-gl";
 
 const OFM = "https://tiles.openfreemap.org";
-const GIBS =
-	"https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_ShadedRelief_Bathymetry/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg";
-
-/** NASA imagery with OpenFreeMap borders and labels on top, rendered as a globe. */
+/** Clean flat dark map: land, water, country borders and labels only, rendered as a globe. */
 export const globeStyle: StyleSpecification = {
 	version: 8,
 	projection: { type: "globe" },
 	glyphs: `${OFM}/fonts/{fontstack}/{range}.pbf`,
 	sources: {
-		gibs: {
-			type: "raster",
-			tiles: [GIBS],
-			tileSize: 256,
-			maxzoom: 8,
-			attribution: "NASA GIBS",
-		},
 		omt: { type: "vector", url: `${OFM}/planet` },
 	},
 	sky: {
@@ -26,12 +16,13 @@ export const globeStyle: StyleSpecification = {
 		"sky-horizon-blend": 0.4,
 	},
 	layers: [
-		{ id: "bg", type: "background", paint: { "background-color": "#09090b" } },
+		{ id: "bg", type: "background", paint: { "background-color": "#20202a" } },
 		{
-			id: "imagery",
-			type: "raster",
-			source: "gibs",
-			paint: { "raster-brightness-max": 0.8, "raster-saturation": -0.2 },
+			id: "water",
+			type: "fill",
+			source: "omt",
+			"source-layer": "water",
+			paint: { "fill-color": "#06060a" },
 		},
 		{
 			id: "borders",
@@ -54,13 +45,13 @@ export const globeStyle: StyleSpecification = {
 			layout: {
 				"text-field": ["get", "name:latin"],
 				"text-font": ["Noto Sans Regular"],
-				"text-size": 11,
+				"text-size": 10,
 				"text-transform": "uppercase",
 				"text-letter-spacing": 0.1,
 			},
 			paint: {
 				"text-color": "#f4f4f5",
-				"text-opacity": 0.8,
+				"text-opacity": 0.55,
 				"text-halo-color": "#09090b",
 				"text-halo-width": 1.2,
 			},
@@ -70,7 +61,7 @@ export const globeStyle: StyleSpecification = {
 			type: "symbol",
 			source: "omt",
 			"source-layer": "place",
-			minzoom: 4,
+			minzoom: 5,
 			filter: ["==", ["get", "class"], "city"],
 			layout: {
 				"text-field": ["get", "name:latin"],

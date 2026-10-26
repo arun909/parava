@@ -1,4 +1,4 @@
-import { createQueries } from "@tanstack/svelte-query";
+import { createQueries, createQuery } from "@tanstack/svelte-query";
 import { PersistedState } from "runed";
 import { queryClient } from "@/lib/data/client";
 import {
@@ -23,15 +23,20 @@ export class GlobeState {
 	expanded = $state(false);
 	paths = $derived<PathOptions>({ mode: this.pathMode, focus: this.focus });
 	/** Your eBird key lives only in this browser and is sent only to api.ebird.org. */
-	ebird = new PersistedState("flyway-ebird", { key: "", regions: "IN" });
+	ebird = new PersistedState("flyway-ebird", {
+		key: import.meta.env.DEV_EBIRD_KEY ?? "",
+		regions: "IN",
+	});
 	card = $state<string | undefined>();
+	/** Sightings wait for the map's first paint so tiles get the bandwidth first. */
+	ready = $state(false);
 	shown = $derived(PREPARED.filter((s) => this.on.has(s.id)));
 
 	private results = createQueries(
 		() => ({
 			queries: PREPARED.map((s) => ({
 				queryKey: ["sightings", s.id],
-				enabled: this.on.has(s.id),
+				enabled: this.ready && this.on.has(s.id),
 				queryFn: (): Promise<Sighting[]> =>
 					fetchSightings(s, {
 						fetch: globalThis.fetch.bind(globalThis),
@@ -47,7 +52,7 @@ export class GlobeState {
 			queries: PREPARED.map((s) => ({
 				// the key is deliberately not in the query key: keys are persisted to IndexedDB
 				queryKey: ["ebird", s.id, this.ebird.current.regions],
-				enabled: this.on.has(s.id) && !!this.ebird.current.key,
+				enabled: this.ready && this.on.has(s.id) && !!this.ebird.current.key,
 				queryFn: async (): Promise<Sighting[]> => {
 					const { key, regions } = this.ebird.current;
 					const f = globalThis.fetch.bind(globalThis);
@@ -77,6 +82,26 @@ export class GlobeState {
 		}),
 		() => queryClient,
 	);
+
+	private codes = createQuery(
+		() => ({
+			queryKey: ["ebird-codes"],
+			enabled: this.ready && !!this.ebird.current.key,
+			staleTime: 7 * 864e5,
+			queryFn: () =>
+				ebirdCodes(
+					globalThis.fetch.bind(globalThis),
+					this.ebird.current.key,
+					PREPARED.map((p) => p.sci),
+				),
+		}),
+		() => queryClient,
+	);
+	/** eBird species code (for links), known once a key is set. */
+	codeOf = (id: string) => {
+		const s = PREPARED.find((x) => x.id === id);
+		return s ? this.codes.data?.[s.sci] : undefined;
+	};
 
 	/** Flyway-filtered recent reports per species id. */
 	classified = $derived.by(() => {

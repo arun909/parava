@@ -1,6 +1,6 @@
 # Flyway
 
-Bird migration on a 3D globe: Astro + Svelte 5, MapLibre + deck.gl, NASA GIBS imagery, OpenFreeMap labels. Bun only.
+Bird migration on a 3D globe: Astro + Svelte 5, MapLibre + deck.gl, a clean dark OpenFreeMap basemap. Bun only.
 
 ```bash
 bun install
