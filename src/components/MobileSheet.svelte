@@ -3,7 +3,7 @@ import { Dialog, Tabs } from "bits-ui";
 import type { GlobeState } from "@/lib/globe/state.svelte";
 import PathsPanel from "./PathsPanel.svelte";
 import SpeciesCard from "./SpeciesCard.svelte";
-import SpeciesList from "./SpeciesList.svelte";
+import SpeciesPicker from "./SpeciesPicker.svelte";
 
 let { globe }: { globe: GlobeState } = $props();
 let open = $state(false);
@@ -28,7 +28,7 @@ let sheet = $state<HTMLElement | null>(null);
 						<Tabs.Trigger value="species">Species</Tabs.Trigger>
 						<Tabs.Trigger value="paths">Paths</Tabs.Trigger>
 					</Tabs.List>
-					<Tabs.Content value="species"><SpeciesList {globe} onpick={() => sheet?.scrollTo({ top: 0 })} /></Tabs.Content>
+					<Tabs.Content value="species"><SpeciesPicker {globe} onpick={() => sheet?.scrollTo({ top: 0 })} /></Tabs.Content>
 					<Tabs.Content value="paths"><PathsPanel {globe} /></Tabs.Content>
 				</Tabs.Root>
 			{/if}

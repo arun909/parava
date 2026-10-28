@@ -3,6 +3,7 @@ import Base from "@/layouts/Base.astro";
 import { dayOfYear, formatDay, PREPARED, upcoming } from "@/lib/model";
 
 const today = dayOfYear();
+const hand = PREPARED.filter((s) => s.source !== "estimated").length;
 const soon = upcoming(PREPARED, today, 30).slice(0, 8);
 ---
 
@@ -10,7 +11,7 @@ const soon = upcoming(PREPARED, today, 30).slice(0, 8);
 	<p class="mono">Today · {formatDay(today)}</p>
 	<h1>Where the world's<br />migratory birds are.</h1>
 	<p style="max-width:55ch;color:var(--muted)">
-		{PREPARED.length} species, {PREPARED.reduce((n, s) => n + s.pops.length, 0)} flyway populations, placed
+		{PREPARED.length} migratory species ({hand} hand-modelled, {PREPARED.length - hand} estimated migrants of India), placed
 		on a globe by today's date and checked against live sightings.
 	</p>
 	<p><a class="btn" href="/globe/">Open the globe</a></p>

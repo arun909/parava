@@ -6,11 +6,15 @@ const today = dayOfYear();
 // per species: which month cells have the main population moving
 const rows = PREPARED.map((s) => ({
 	s,
+	// moving on any sampled day of the month (a short trip can fall between two mid-month samples)
 	months: MONTHS.map((_, m) => {
-		const d = MSTART[m]! + 15;
-		return s.pops.some((p) =>
-			["spring", "autumn"].includes(popState(p, d).phase),
-		);
+		const end = MSTART[m + 1] ?? 366;
+		for (let d = MSTART[m]!; d < end; d += 4)
+			if (
+				s.pops.some((p) => ["spring", "autumn"].includes(popState(p, d).phase))
+			)
+				return true;
+		return false;
 	}),
 }));
 ---
@@ -24,11 +28,14 @@ const rows = PREPARED.map((s) => ({
 				<tr><th><span class="sr">Species</span></th>{MONTHS.map((m, i) => <th class:list={[{ now: today >= MSTART[i]! && today < (MSTART[i + 1] ?? 366) }]}>{m.slice(0, 3)}</th>)}</tr>
 			</thead>
 			<tbody>
-				{rows.map(({ s, months }) => (
+				{rows.map(({ s, months }, i) => (
+					<>
+					{(i === 0 || s.source !== rows[i - 1]?.s.source) && <tr class="group"><th colspan="13">{s.source === "estimated" ? "Estimated migrants of India" : "Hand-modelled flyways"}</th></tr>}
 					<tr>
 						<th scope="row" style="text-align:left"><a href={`/species/${s.id}/`}>{s.name}</a></th>
 						{months.map((on) => <td style={on ? `background:${s.color}` : ""}>{on ? <span class="sr">migrating</span> : null}</td>)}
 					</tr>
+					</>
 				))}
 			</tbody>
 		</table>
@@ -37,7 +44,9 @@ const rows = PREPARED.map((s) => ({
 		.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 		.cal { overflow: auto; height: calc(100vh - 250px); min-height: 560px; }
 		table { border-collapse: separate; border-spacing: 2px; width: 100%; height: 100%; min-width: 720px; }
-		td { height: auto; border-radius: 4px; background: var(--surface); }
+		.group th { text-align: left; padding: 14px 0 4px; color: var(--text); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+		thead th { position: sticky; top: 0; background: var(--bg); z-index: 1; }
+		td { height: auto; min-height: 20px; border-radius: 4px; background: var(--surface); }
 		th { font-weight: 500; font-size: 0.85rem; color: var(--muted); }
 		th.now { color: var(--violet); }
 		th a { color: var(--text); text-decoration: none; white-space: nowrap; padding-right: 12px; }

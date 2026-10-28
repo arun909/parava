@@ -58,6 +58,7 @@ const HERE_VERB = {
 			{#if m}· <span class="lvl {m.level}">{m.level} agreement</span> · {m.n} reports{:else}· loading sightings…{/if}
 		</p>
 
+		{#if s.source === "estimated"}<p class="est">{s.confidence === "low" ? `Low-confidence estimate: ${s.flags?.join("; ")}.` : "Estimated from sightings, so dates and path are approximate."}</p>{/if}
 		<dl>
 			{#each s.pops as p (p.name)}
 				{@const st = popState(p, globe.day)}
@@ -117,6 +118,7 @@ const HERE_VERB = {
 	.lvl.high { color: var(--ok); }
 	.lvl.medium { color: #eab308; }
 	.lvl.low { color: var(--rose); }
+	.est { margin: 0 0 var(--s2); color: var(--muted); font-style: italic; }
 	dl { margin: 0; display: grid; gap: var(--s2); }
 	dt { font-weight: 600; display: flex; gap: var(--s2); align-items: baseline; }
 	dt small { font: 0.65rem var(--mono); color: var(--muted); text-transform: uppercase; }

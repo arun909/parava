@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import distance from "@turf/distance";
 import {
 	assess,
 	classify,
@@ -44,7 +45,10 @@ describe("routes", () => {
 			for (const p of s.pops)
 				for (const r of [p.sp, p.au])
 					for (let i = 1; i < r.pts.length; i++)
-						expect(Math.abs(r.pts[i]![0] - r.pts[i - 1]![0])).toBeLessThan(30);
+						// a wrap error would be a jump of thousands of km between neighbouring points
+						expect(
+							distance(r.pts[i]!, r.pts[i - 1]!, { units: "kilometers" }),
+						).toBeLessThan(1500);
 	});
 	test("autumn defaults to the spring route reversed", () => {
 		const p = sp("rosy-starling").pops[0]!;

@@ -106,7 +106,8 @@ export function evidenceStats() {
 	let checked = 0;
 	let good = 0;
 	let total = 0;
-	for (const s of SPECIES)
+	// the audit covers the hand-modelled species; estimated ones are derived from the same records
+	for (const s of SPECIES.filter((x) => x.source === "curated"))
 		for (const p of s.pops)
 			for (const k of ["w", "b"] as const) {
 				total++;

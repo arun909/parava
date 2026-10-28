@@ -1,0 +1,6914 @@
+[
+	{
+		"id": "bar-headed-goose",
+		"name": "Bar-headed Goose",
+		"sci": "Anser indicus",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 2327,
+		"where": ["SE", "BE", "NL"],
+		"pop": {
+			"dep": [79, 85, 317, 323],
+			"spring": [[78.1, 24], [81.5, 28.2], [85.3, 32.3]],
+			"wr": 1020,
+			"br": 574
+		},
+		"spread": 15,
+		"years": 11,
+		"anchor": [79, 323],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "graylag-goose",
+		"name": "Graylag Goose",
+		"sci": "Anser anser",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 12374,
+		"where": ["SE", "NL", "GB"],
+		"pop": {
+			"dep": [56, 90, 277, 311],
+			"spring": [[77.3, 26.7], [51.8, 45.8], [9.8, 54.8]],
+			"wr": 981,
+			"br": 734
+		},
+		"spread": 19,
+		"years": 11,
+		"anchor": [56, 311],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "greater-white-fronted-goose",
+		"name": "Greater White-fronted Goose",
+		"sci": "Anser albifrons",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 10152,
+		"where": ["US", "RU", "NL"],
+		"pop": {
+			"dep": [39, 67, 294, 322],
+			"spring": [[78.3, 28], [81.1, 50.7], [89.7, 73.2]],
+			"wr": 1125,
+			"br": 507
+		},
+		"spread": 310,
+		"years": 6,
+		"anchor": [39, 322],
+		"confidence": "low",
+		"flags": ["timing varies 310 days between years"]
+	},
+	{
+		"id": "tundra-bean-goose",
+		"name": "Tundra Bean-Goose",
+		"sci": "Anser serrirostris",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 9536,
+		"where": ["NO", "US", "NL"],
+		"pop": {
+			"dep": [57, 83, 308, 334],
+			"spring": [[88.6, 26.7], [74.3, 44.8], [48.4, 59.7]],
+			"wr": 1117,
+			"br": 1073
+		},
+		"spread": 0,
+		"years": 1,
+		"anchor": [57, 334],
+		"confidence": "low",
+		"flags": ["dates from 1 years only", "few records at an end of the route"]
+	},
+	{
+		"id": "ruddy-shelduck",
+		"name": "Ruddy Shelduck",
+		"sci": "Tadorna ferruginea",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 4278,
+		"where": ["NL", "RU", "MN"],
+		"pop": {
+			"dep": [82, 94, 297, 309],
+			"spring": [[78.2, 24.1], [84.9, 31.7], [92.8, 38.8]],
+			"wr": 1012,
+			"br": 1204
+		},
+		"spread": 12,
+		"years": 11,
+		"anchor": [82, 309],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "common-shelduck",
+		"name": "Common Shelduck",
+		"sci": "Tadorna tadorna",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 13809,
+		"where": ["NL", "SE", "DK"],
+		"pop": {
+			"dep": [46, 84, 291, 329],
+			"spring": [[80.3, 26.5], [49.8, 46.1], [2.4, 52]],
+			"wr": 1105,
+			"br": 991
+		},
+		"spread": 62,
+		"years": 10,
+		"anchor": [46, 329],
+		"confidence": "low",
+		"flags": ["timing varies 62 days between years"]
+	},
+	{
+		"id": "garganey",
+		"name": "Garganey",
+		"sci": "Spatula querquedula",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 8238,
+		"where": ["NL", "SE", "DK"],
+		"pop": {
+			"dep": [100, 123, 268, 291],
+			"spring": [[77.4, 19.8], [74.5, 38.2], [69.7, 56.4]],
+			"wr": 1109,
+			"br": 1500
+		},
+		"spread": 40,
+		"years": 11,
+		"anchor": [100, 291],
+		"confidence": "low",
+		"flags": ["timing varies 40 days between years"]
+	},
+	{
+		"id": "baikal-teal",
+		"name": "Baikal Teal",
+		"sci": "Sibirionetta formosa",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 7298,
+		"where": ["DK", "RU", "GB"],
+		"pop": {
+			"dep": [76, 96, 314, 334],
+			"spring": [[91.3, 26.5], [101.6, 40.5], [117, 53.2]],
+			"wr": 410,
+			"br": 1500
+		},
+		"spread": 0,
+		"years": 2,
+		"anchor": [76, 334],
+		"confidence": "low",
+		"flags": ["dates from 2 years only"]
+	},
+	{
+		"id": "northern-shoveler",
+		"name": "Northern Shoveler",
+		"sci": "Spatula clypeata",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 8234,
+		"where": ["US", "CA", "SE"],
+		"pop": {
+			"dep": [69, 92, 287, 310],
+			"spring": [[76.3, 21.9], [75.3, 40.4], [73.5, 58.9]],
+			"wr": 1032,
+			"br": 1252
+		},
+		"spread": 21,
+		"years": 11,
+		"anchor": [69, 310],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "gadwall",
+		"name": "Gadwall",
+		"sci": "Mareca strepera",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 7193,
+		"where": ["US", "CA", "SE"],
+		"pop": {
+			"dep": [65, 85, 286, 306],
+			"spring": [[78.6, 24.6], [73.5, 40.2], [65.4, 55.5]],
+			"wr": 1018,
+			"br": 1500
+		},
+		"spread": 10,
+		"years": 11,
+		"anchor": [65, 306],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "eastern-spot-billed-duck",
+		"name": "Eastern Spot-billed Duck",
+		"sci": "Anas zonorhyncha",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 4832,
+		"where": ["JP", "TW", "KR"],
+		"pop": {
+			"dep": [83, 96, 149, 163],
+			"spring": [[94.2, 26.7], [104.7, 32.6], [116.6, 37.5]],
+			"wr": 313,
+			"br": 1487
+		},
+		"spread": 331,
+		"years": 4,
+		"anchor": [83, 163],
+		"confidence": "low",
+		"flags": [
+			"timing varies 331 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "eurasian-wigeon",
+		"name": "Eurasian Wigeon",
+		"sci": "Mareca penelope",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 9155,
+		"where": ["SE", "NO", "DK"],
+		"pop": {
+			"dep": [73, 98, 291, 316],
+			"spring": [[77.8, 23], [76.5, 43.6], [73.9, 64.1]],
+			"wr": 1108,
+			"br": 1269
+		},
+		"spread": 17,
+		"years": 11,
+		"anchor": [73, 316],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "falcated-duck",
+		"name": "Falcated Duck",
+		"sci": "Mareca falcata",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 8311,
+		"where": ["US", "MN", "RU"],
+		"pop": {
+			"dep": [49, 72, 287, 310],
+			"spring": [[87.7, 25.9], [102.2, 40.2], [123.6, 51.8]],
+			"wr": 1038,
+			"br": 1056
+		},
+		"spread": 326,
+		"years": 9,
+		"anchor": [49, 310],
+		"confidence": "low",
+		"flags": ["timing varies 326 days between years"]
+	},
+	{
+		"id": "green-winged-teal",
+		"name": "Green-winged Teal",
+		"sci": "Anas crecca",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 8712,
+		"where": ["SE", "US", "CA"],
+		"pop": {
+			"dep": [62, 86, 286, 310],
+			"spring": [[77.2, 23.6], [78, 43.2], [79.6, 62.8]],
+			"wr": 1012,
+			"br": 1330
+		},
+		"spread": 13,
+		"years": 11,
+		"anchor": [62, 310],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "mallard",
+		"name": "Mallard",
+		"sci": "Anas platyrhynchos",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 7801,
+		"where": ["US", "CA", "SE"],
+		"pop": {
+			"dep": [70, 92, 284, 306],
+			"spring": [[78.4, 28], [69, 43.8], [53, 58.3]],
+			"wr": 1225,
+			"br": 1469
+		},
+		"spread": 28,
+		"years": 11,
+		"anchor": [70, 306],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "red-crested-pochard",
+		"name": "Red-crested Pochard",
+		"sci": "Netta rufina",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 4372,
+		"where": ["NL", "ES", "FR"],
+		"pop": {
+			"dep": [55, 67, 316, 328],
+			"spring": [[80.6, 24.7], [86.8, 32.9], [94.2, 40.8]],
+			"wr": 907,
+			"br": 947
+		},
+		"spread": 19,
+		"years": 11,
+		"anchor": [55, 328],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "common-pochard",
+		"name": "Common Pochard",
+		"sci": "Aythya ferina",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 6591,
+		"where": ["NL", "SE", "GB"],
+		"pop": {
+			"dep": [54, 72, 293, 311],
+			"spring": [[77.3, 24.4], [84.6, 37.9], [95.1, 50.7]],
+			"wr": 933,
+			"br": 1169
+		},
+		"spread": 15,
+		"years": 11,
+		"anchor": [54, 311],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "northern-pintail",
+		"name": "Northern Pintail",
+		"sci": "Anas acuta",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 9773,
+		"where": ["US", "CA", "SE"],
+		"pop": {
+			"dep": [60, 87, 292, 319],
+			"spring": [[77.8, 21.6], [77.3, 43.5], [76.1, 65.5]],
+			"wr": 1051,
+			"br": 1262
+		},
+		"spread": 19,
+		"years": 11,
+		"anchor": [60, 319],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "greater-scaup",
+		"name": "Greater Scaup",
+		"sci": "Aythya marila",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 13512,
+		"where": ["US", "CA", "IS"],
+		"pop": {
+			"dep": [51, 89, 283, 321],
+			"spring": [[88.6, 26.7], [112.6, 51], [166.1, 63.1]],
+			"wr": 1117,
+			"br": 346
+		},
+		"spread": 0,
+		"years": 3,
+		"anchor": [51, 321],
+		"confidence": "low",
+		"flags": ["dates from 3 years only"]
+	},
+	{
+		"id": "ferruginous-duck",
+		"name": "Ferruginous Duck",
+		"sci": "Aythya nyroca",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 4066,
+		"where": ["NL", "ES", "IL"],
+		"pop": {
+			"dep": [65, 76, 304, 315],
+			"spring": [[79.9, 26.3], [87.8, 32.3], [96.8, 37.8]],
+			"wr": 1056,
+			"br": 1277
+		},
+		"spread": 32,
+		"years": 11,
+		"anchor": [65, 315],
+		"confidence": "low",
+		"flags": ["timing varies 32 days between years"]
+	},
+	{
+		"id": "tufted-duck",
+		"name": "Tufted Duck",
+		"sci": "Aythya fuligula",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 8585,
+		"where": ["NL", "SE", "GB"],
+		"pop": {
+			"dep": [65, 89, 285, 309],
+			"spring": [[78.8, 24.8], [77.4, 44], [74.5, 63.3]],
+			"wr": 1008,
+			"br": 1213
+		},
+		"spread": 11,
+		"years": 11,
+		"anchor": [65, 309],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "red-breasted-merganser",
+		"name": "Red-breasted Merganser",
+		"sci": "Mergus serrator",
+		"family": "Ducks, Geese, and Waterfowl",
+		"kind": "winter",
+		"km": 10342,
+		"where": ["SE", "NO", "US"],
+		"pop": {
+			"dep": [10, 39, 305, 334],
+			"spring": [[71.7, 18.3], [72.4, 41.6], [74, 64.8]],
+			"wr": 1371,
+			"br": 1500
+		},
+		"spread": 0,
+		"years": 2,
+		"anchor": [10, 334],
+		"confidence": "low",
+		"flags": ["dates from 2 years only"]
+	},
+	{
+		"id": "blood-pheasant",
+		"name": "Blood Pheasant",
+		"sci": "Ithaginis cruentus",
+		"family": "Pheasants, Grouse, and Allies",
+		"kind": "passage",
+		"km": 2724,
+		"where": ["CN", "BT", "NP", "BT", "CN", "NP"],
+		"pop": {
+			"dep": [102, 110, 283, 291],
+			"spring": [[85.8, 29.3], [90.6, 26.9], [99.8, 29.5]],
+			"wr": 300,
+			"br": 412
+		},
+		"spread": 30,
+		"years": 6,
+		"anchor": [105, 288],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "kalij-pheasant",
+		"name": "Kalij Pheasant",
+		"sci": "Lophura leucomelanos",
+		"family": "Pheasants, Grouse, and Allies",
+		"kind": "passage",
+		"km": 2788,
+		"where": ["US", "TH", "NP", "US", "TH", "NP"],
+		"pop": {
+			"dep": [102, 110, 314, 322],
+			"spring": [[85.8, 29.5], [80.2, 29.5], [72.1, 34.3]],
+			"wr": 300,
+			"br": 300
+		},
+		"spread": 0,
+		"years": 11,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "tibetan-partridge",
+		"name": "Tibetan Partridge",
+		"sci": "Perdix hodgsoniae",
+		"family": "Pheasants, Grouse, and Allies",
+		"kind": "summer",
+		"km": 3326,
+		"where": ["CN"],
+		"pop": {
+			"dep": [155, 165, 223, 232],
+			"spring": [[95.2, 32.6], [86.4, 34.1], [77.4, 34.9]],
+			"wr": 494,
+			"br": 300
+		},
+		"spread": 38,
+		"years": 4,
+		"anchor": [165, 223],
+		"confidence": "low",
+		"flags": ["timing varies 38 days between years"]
+	},
+	{
+		"id": "black-francolin",
+		"name": "Black Francolin",
+		"sci": "Francolinus francolinus",
+		"family": "Pheasants, Grouse, and Allies",
+		"kind": "summer",
+		"km": 3444,
+		"where": ["US", "IL", "NP"],
+		"pop": {
+			"dep": [80, 90, 255, 264],
+			"spring": [[60.5, 32.3], [69.4, 31], [78.1, 29.1]],
+			"wr": 1320,
+			"br": 755
+		},
+		"spread": 34,
+		"years": 10,
+		"anchor": [90, 255],
+		"confidence": "low",
+		"flags": ["timing varies 34 days between years"]
+	},
+	{
+		"id": "tibetan-snowcock",
+		"name": "Tibetan Snowcock",
+		"sci": "Tetraogallus tibetanus",
+		"family": "Pheasants, Grouse, and Allies",
+		"kind": "summer",
+		"km": 2533,
+		"where": ["NP", "CN", "BT"],
+		"pop": {
+			"dep": [161, 169, 234, 241],
+			"spring": [[91.4, 35.2], [84.6, 34.2], [77.9, 32.9]],
+			"wr": 511,
+			"br": 300
+		},
+		"spread": 31,
+		"years": 4,
+		"anchor": [169, 234],
+		"confidence": "low",
+		"flags": ["timing varies 31 days between years"]
+	},
+	{
+		"id": "common-quail",
+		"name": "Common Quail",
+		"sci": "Coturnix coturnix",
+		"family": "Pheasants, Grouse, and Allies",
+		"kind": "winter",
+		"km": 6681,
+		"where": ["SE", "FR", "ES"],
+		"pop": {
+			"dep": [54, 73, 230, 249],
+			"spring": [[74.1, 25], [69.8, 39.6], [63.3, 54]],
+			"wr": 873,
+			"br": 1500
+		},
+		"spread": 251,
+		"years": 10,
+		"anchor": [54, 249],
+		"confidence": "low",
+		"flags": ["timing varies 251 days between years"]
+	},
+	{
+		"id": "common-wood-pigeon",
+		"name": "Common Wood-Pigeon",
+		"sci": "Columba palumbus",
+		"family": "Pigeons and Doves",
+		"kind": "winter",
+		"km": 7649,
+		"where": ["GB", "FR", "SE"],
+		"pop": {
+			"dep": [88, 109, 277, 298],
+			"spring": [[77.4, 32.1], [63.4, 45.5], [41.8, 56.2]],
+			"wr": 393,
+			"br": 1500
+		},
+		"spread": 250,
+		"years": 7,
+		"anchor": [88, 298],
+		"confidence": "low",
+		"flags": ["timing varies 250 days between years"]
+	},
+	{
+		"id": "hill-pigeon",
+		"name": "Hill Pigeon",
+		"sci": "Columba rupestris",
+		"family": "Pigeons and Doves",
+		"kind": "summer",
+		"km": 2916,
+		"where": ["CN", "RU", "NP"],
+		"pop": {
+			"dep": [146, 155, 236, 244],
+			"spring": [[93.2, 33.8], [85.3, 33.5], [77.5, 32.8]],
+			"wr": 1090,
+			"br": 300
+		},
+		"spread": 29,
+		"years": 10,
+		"anchor": [155, 236],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "yellow-eyed-pigeon",
+		"name": "Yellow-eyed Pigeon",
+		"sci": "Columba eversmanni",
+		"family": "Pigeons and Doves",
+		"kind": "winter",
+		"km": 4149,
+		"where": ["KZ", "IR", "UZ"],
+		"pop": {
+			"dep": [55, 66, 265, 277],
+			"spring": [[74.5, 26.7], [73.8, 36], [72.8, 45.3]],
+			"wr": 300,
+			"br": 300
+		},
+		"spread": 278,
+		"years": 10,
+		"anchor": [55, 277],
+		"confidence": "low",
+		"flags": [
+			"timing varies 278 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "ashy-wood-pigeon",
+		"name": "Ashy Wood-Pigeon",
+		"sci": "Columba pulchricollis",
+		"family": "Pigeons and Doves",
+		"kind": "passage",
+		"km": 2756,
+		"where": ["TW", "TH", "NP", "TW", "TH", "NP"],
+		"pop": {
+			"dep": [100, 108, 331, 339],
+			"spring": [[97, 21.1], [91.4, 26.7], [85.3, 27.4]],
+			"wr": 426,
+			"br": 330
+		},
+		"spread": 30,
+		"years": 6,
+		"anchor": [105, 334],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "pale-capped-pigeon",
+		"name": "Pale-capped Pigeon",
+		"sci": "Columba punicea",
+		"family": "Pigeons and Doves",
+		"kind": "winter",
+		"km": 3545,
+		"where": ["KH", "CN", "MM"],
+		"pop": {
+			"dep": [43, 52, 295, 305],
+			"spring": [[91.3, 23.9], [98.6, 19.7], [105.5, 15.2]],
+			"wr": 651,
+			"br": 676
+		},
+		"spread": 157,
+		"years": 8,
+		"anchor": [43, 305],
+		"confidence": "low",
+		"flags": [
+			"timing varies 157 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "oriental-turtle-dove",
+		"name": "Oriental Turtle-Dove",
+		"sci": "Streptopelia orientalis",
+		"family": "Pigeons and Doves",
+		"kind": "summer",
+		"km": 5569,
+		"where": ["TW", "JP", "KR"],
+		"pop": {
+			"dep": [48, 63, 189, 204],
+			"spring": [[108.1, 34.1], [93.8, 30.7], [80.7, 25.9]],
+			"wr": 1500,
+			"br": 1076
+		},
+		"spread": 28,
+		"years": 11,
+		"anchor": [63, 189],
+		"confidence": "low",
+		"flags": ["model disagrees with India's records in 5 months"]
+	},
+	{
+		"id": "barred-cuckoo-dove",
+		"name": "Barred Cuckoo-Dove",
+		"sci": "Macropygia unchall",
+		"family": "Pigeons and Doves",
+		"kind": "passage",
+		"km": 2802,
+		"where": ["ID", "TH", "CN", "TH", "CN", "VN"],
+		"pop": {
+			"dep": [101, 109, 300, 308],
+			"spring": [[84.2, 29.2], [91.4, 26.7], [97, 23.9]],
+			"wr": 300,
+			"br": 1075
+		},
+		"spread": 91,
+		"years": 10,
+		"anchor": [105, 304],
+		"confidence": "low",
+		"flags": [
+			"timing varies 91 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "namaqua-dove",
+		"name": "Namaqua Dove",
+		"sci": "Oena capensis",
+		"family": "Pigeons and Doves",
+		"kind": "winter",
+		"km": 5478,
+		"where": ["ZA", "NA", "KE"],
+		"pop": {
+			"dep": [48, 63, 311, 326],
+			"spring": [[71.7, 23.9], [58.2, 24.5], [44.7, 23.8]],
+			"wr": 300,
+			"br": 512
+		},
+		"spread": 41,
+		"years": 4,
+		"anchor": [48, 326],
+		"confidence": "low",
+		"flags": [
+			"timing varies 41 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "nicobar-pigeon",
+		"name": "Nicobar Pigeon",
+		"sci": "Caloenas nicobarica",
+		"family": "Pigeons and Doves",
+		"kind": "winter",
+		"km": 7076,
+		"where": ["PW", "PG", "ID"],
+		"pop": {
+			"dep": [26, 45, 255, 275],
+			"spring": [[92.8, 9.6], [108.1, 4.7], [123.1, -0.6]],
+			"wr": 369,
+			"br": 1102
+		},
+		"spread": 75,
+		"years": 4,
+		"anchor": [26, 275],
+		"confidence": "low",
+		"flags": [
+			"timing varies 75 days between years",
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months",
+			"an end of the route is at sea (93E 10N)"
+		]
+	},
+	{
+		"id": "ashy-headed-green-pigeon",
+		"name": "Ashy-headed Green-Pigeon",
+		"sci": "Treron phayrei",
+		"family": "Pigeons and Doves",
+		"kind": "winter",
+		"km": 1454,
+		"where": ["TH", "NP", "BD"],
+		"pop": {
+			"dep": [22, 26, 277, 282],
+			"spring": [[91.3, 26.5], [94, 24.3], [96.6, 22]],
+			"wr": 565,
+			"br": 524
+		},
+		"spread": 51,
+		"years": 10,
+		"anchor": [22, 282],
+		"confidence": "low",
+		"flags": [
+			"timing varies 51 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "pin-tailed-green-pigeon",
+		"name": "Pin-tailed Green-Pigeon",
+		"sci": "Treron apicauda",
+		"family": "Pigeons and Doves",
+		"kind": "winter",
+		"km": 1111,
+		"where": ["KH", "CN", "BT"],
+		"pop": {
+			"dep": [119, 122, 172, 175],
+			"spring": [[91.4, 26.7], [94.1, 26.1], [96.8, 25.5]],
+			"wr": 559,
+			"br": 494
+		},
+		"spread": 250,
+		"years": 10,
+		"anchor": [119, 175],
+		"confidence": "low",
+		"flags": [
+			"timing varies 250 days between years",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "chestnut-bellied-sandgrouse",
+		"name": "Chestnut-bellied Sandgrouse",
+		"sci": "Pterocles exustus",
+		"family": "Sandgrouse",
+		"kind": "winter",
+		"km": 1844,
+		"where": ["KE", "AE", "TZ"],
+		"pop": {
+			"dep": [53, 58, 188, 193],
+			"spring": [[74.1, 22.7], [70.2, 24.8], [66.1, 26.7]],
+			"wr": 806,
+			"br": 1487
+		},
+		"spread": 170,
+		"years": 11,
+		"anchor": [53, 193],
+		"confidence": "low",
+		"flags": ["timing varies 170 days between years"]
+	},
+	{
+		"id": "spotted-sandgrouse",
+		"name": "Spotted Sandgrouse",
+		"sci": "Pterocles senegallus",
+		"family": "Sandgrouse",
+		"kind": "winter",
+		"km": 14329,
+		"where": ["IL", "MA", "AE"],
+		"pop": {
+			"dep": [20, 59, 249, 289],
+			"spring": [[68.9, 23.9], [33.6, 33.2], [-4.7, 31.4]],
+			"wr": 300,
+			"br": 326
+		},
+		"spread": 94,
+		"years": 4,
+		"anchor": [20, 289],
+		"confidence": "low",
+		"flags": [
+			"timing varies 94 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "asian-houbara",
+		"name": "Asian Houbara",
+		"sci": "Chlamydotis macqueenii",
+		"family": "Bustards",
+		"kind": "winter",
+		"km": 4514,
+		"where": ["IL", "KZ", "AE"],
+		"pop": {
+			"dep": [23, 36, 302, 315],
+			"spring": [[71.7, 23.9], [68.8, 33.7], [65.1, 43.5]],
+			"wr": 313,
+			"br": 1277
+		},
+		"spread": 25,
+		"years": 10,
+		"anchor": [23, 315],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "lesser-coucal",
+		"name": "Lesser Coucal",
+		"sci": "Centropus bengalensis",
+		"family": "Cuckoos",
+		"kind": "summer",
+		"km": 3424,
+		"where": ["TW", "TH", "SG"],
+		"pop": {
+			"dep": [76, 86, 222, 231],
+			"spring": [[104.4, 19.6], [96.7, 22.4], [88.7, 24.7]],
+			"wr": 1481,
+			"br": 997
+		},
+		"spread": 72,
+		"years": 10,
+		"anchor": [86, 222],
+		"confidence": "low",
+		"flags": ["timing varies 72 days between years"]
+	},
+	{
+		"id": "green-billed-malkoha",
+		"name": "Green-billed Malkoha",
+		"sci": "Phaenicophaeus tristis",
+		"family": "Cuckoos",
+		"kind": "passage",
+		"km": 4276,
+		"where": ["TH", "MY", "KH", "TH", "KH", "VN"],
+		"pop": {
+			"dep": [102, 114, 310, 322],
+			"spring": [[84.7, 28.1], [89.9, 25.6], [102.2, 17.6]],
+			"wr": 300,
+			"br": 924
+		},
+		"spread": 31,
+		"years": 11,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": [
+			"timing varies 31 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "pied-cuckoo",
+		"name": "Pied Cuckoo",
+		"sci": "Clamator jacobinus",
+		"family": "Cuckoos",
+		"kind": "summer",
+		"km": 13260,
+		"where": ["ZA", "LK", "KE"],
+		"pop": {
+			"dep": [112, 149, 295, 332],
+			"spring": [[29.5, -16.6], [53.2, 1.9], [77.4, 20]],
+			"wr": 1421,
+			"br": 1093
+		},
+		"spread": 15,
+		"years": 11,
+		"anchor": [149, 295],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "gray-bellied-cuckoo",
+		"name": "Gray-bellied Cuckoo",
+		"sci": "Cacomantis passerinus",
+		"family": "Cuckoos",
+		"kind": "summer",
+		"km": 1666,
+		"where": ["LK", "NP", "OM"],
+		"pop": {
+			"dep": [125, 130, 247, 252],
+			"spring": [[81.6, 12.6], [79.5, 15.7], [77.3, 18.8]],
+			"wr": 1500,
+			"br": 993
+		},
+		"spread": 18,
+		"years": 11,
+		"anchor": [130, 247],
+		"confidence": "low",
+		"flags": [
+			"few records at an end of the route",
+			"an end of the route is at sea (82E 13N)"
+		]
+	},
+	{
+		"id": "banded-bay-cuckoo",
+		"name": "Banded Bay Cuckoo",
+		"sci": "Cacomantis sonneratii",
+		"family": "Cuckoos",
+		"kind": "summer",
+		"km": 6095,
+		"where": ["TH", "MY", "SG"],
+		"pop": {
+			"dep": [40, 57, 174, 190],
+			"spring": [[104.8, 6.4], [92.5, 12.9], [79.6, 18.8]],
+			"wr": 1337,
+			"br": 1216
+		},
+		"spread": 24,
+		"years": 10,
+		"anchor": [57, 174],
+		"confidence": "low",
+		"flags": [
+			"model disagrees with India's records in 5 months",
+			"an end of the route is at sea (105E 6N)"
+		]
+	},
+	{
+		"id": "square-tailed-drongo-cuckoo",
+		"name": "Square-tailed Drongo-Cuckoo",
+		"sci": "Surniculus lugubris",
+		"family": "Cuckoos",
+		"kind": "summer",
+		"km": 7103,
+		"where": ["MY", "TH", "SG"],
+		"pop": {
+			"dep": [86, 106, 194, 214],
+			"spring": [[107, 2.8], [94.1, 12.3], [80.2, 21.1]],
+			"wr": 1179,
+			"br": 1287
+		},
+		"spread": 20,
+		"years": 11,
+		"anchor": [106, 194],
+		"confidence": "low",
+		"flags": ["an end of the route is at sea (107E 3N)"]
+	},
+	{
+		"id": "lesser-cuckoo",
+		"name": "Lesser Cuckoo",
+		"sci": "Cuculus poliocephalus",
+		"family": "Cuckoos",
+		"kind": "passage",
+		"km": 4637,
+		"where": ["JP", "CN", "KR", "LK", "KE", "BT"],
+		"pop": {
+			"dep": [132, 146, 277, 291],
+			"spring": [[83.8, 28.7], [88.6, 26.7], [107.8, 30.2]],
+			"wr": 300,
+			"br": 770
+		},
+		"spread": 92,
+		"years": 10,
+		"anchor": [135, 288],
+		"confidence": "low",
+		"flags": [
+			"timing varies 92 days between years",
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "himalayan-cuckoo",
+		"name": "Himalayan Cuckoo",
+		"sci": "Cuculus saturatus",
+		"family": "Cuckoos",
+		"kind": "passage",
+		"km": 4697,
+		"where": ["CN", "KR", "NP", "KH", "SG", "TH"],
+		"pop": {
+			"dep": [101, 115, 217, 231],
+			"spring": [[83, 29.5], [88.6, 26.7], [107.4, 30.5]],
+			"wr": 417,
+			"br": 756
+		},
+		"spread": 31,
+		"years": 10,
+		"anchor": [105, 227],
+		"confidence": "low",
+		"flags": [
+			"timing varies 31 days between years",
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "common-hawk-cuckoo",
+		"name": "Common Hawk-Cuckoo",
+		"sci": "Hierococcyx varius",
+		"family": "Cuckoos",
+		"kind": "summer",
+		"km": 2822,
+		"where": ["LK", "BD", "NP"],
+		"pop": {
+			"dep": [69, 77, 243, 251],
+			"spring": [[74.5, 32.3], [77, 26.4], [79.1, 20.3]],
+			"wr": 863,
+			"br": 1038
+		},
+		"spread": 32,
+		"years": 11,
+		"anchor": [77, 243],
+		"confidence": "low",
+		"flags": ["timing varies 32 days between years"]
+	},
+	{
+		"id": "common-cuckoo",
+		"name": "Common Cuckoo",
+		"sci": "Cuculus canorus",
+		"family": "Cuckoos",
+		"kind": "passage",
+		"km": 15435,
+		"where": ["SE", "NL", "DK", "SE", "ZA", "FR"],
+		"pop": {
+			"dep": [104, 148, 275, 319],
+			"spring": [[36, -4.3], [79.3, 24.2], [93.6, 41.3]],
+			"wr": 1090,
+			"br": 1340
+		},
+		"spread": 31,
+		"years": 11,
+		"anchor": [135, 288],
+		"confidence": "low",
+		"flags": ["timing varies 31 days between years"]
+	},
+	{
+		"id": "great-eared-nightjar",
+		"name": "Great Eared-Nightjar",
+		"sci": "Lyncornis macrotis",
+		"family": "Nightjars and Allies",
+		"kind": "winter",
+		"km": 10272,
+		"where": ["ID", "PH", "TH"],
+		"pop": {
+			"dep": [41, 70, 183, 212],
+			"spring": [[77.3, 9.8], [100, 4.6], [122.3, -1.4]],
+			"wr": 1500,
+			"br": 442
+		},
+		"spread": 220,
+		"years": 10,
+		"anchor": [41, 212],
+		"confidence": "low",
+		"flags": [
+			"timing varies 220 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "himalayan-swiftlet",
+		"name": "Himalayan Swiftlet",
+		"sci": "Aerodramus brevirostris",
+		"family": "Swifts",
+		"kind": "passage",
+		"km": 2510,
+		"where": ["CN", "TH", "NP", "TH", "NP", "MM"],
+		"pop": {
+			"dep": [102, 110, 314, 322],
+			"spring": [[84.6, 29.3], [88.8, 26.9], [97, 26.7]],
+			"wr": 300,
+			"br": 1146
+		},
+		"spread": 31,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": [
+			"timing varies 31 days between years",
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "white-nest-swiftlet",
+		"name": "White-nest Swiftlet",
+		"sci": "Aerodramus fuciphagus",
+		"family": "Swifts",
+		"kind": "winter",
+		"km": 3130,
+		"where": ["TH", "MY", "ID"],
+		"pop": {
+			"dep": [15, 24, 219, 228],
+			"spring": [[91.4, 12.7], [98.5, 11.3], [105.5, 9.8]],
+			"wr": 305,
+			"br": 1306
+		},
+		"spread": 58,
+		"years": 9,
+		"anchor": [15, 228],
+		"confidence": "low",
+		"flags": [
+			"timing varies 58 days between years",
+			"an end of the route is at sea (91E 13N)"
+		]
+	},
+	{
+		"id": "house-swift",
+		"name": "House Swift",
+		"sci": "Apus nipalensis",
+		"family": "Swifts",
+		"kind": "summer",
+		"km": 2616,
+		"where": ["TW", "TH", "HK"],
+		"pop": {
+			"dep": [69, 76, 142, 149],
+			"spring": [[103.4, 23.3], [97.1, 24.4], [90.7, 25.2]],
+			"wr": 1244,
+			"br": 387
+		},
+		"spread": 20,
+		"years": 10,
+		"anchor": [76, 142],
+		"confidence": "low",
+		"flags": ["model disagrees with India's records in 5 months"]
+	},
+	{
+		"id": "common-swift",
+		"name": "Common Swift",
+		"sci": "Apus apus",
+		"family": "Swifts",
+		"kind": "summer",
+		"km": 12624,
+		"where": ["ZA", "NA", "GB"],
+		"pop": {
+			"dep": [119, 154, 211, 246],
+			"spring": [[1.4, 52], [46.4, 48.8], [77.3, 32.3]],
+			"wr": 1093,
+			"br": 1500
+		},
+		"spread": 31,
+		"years": 7,
+		"anchor": [154, 211],
+		"confidence": "low",
+		"flags": ["timing varies 31 days between years"]
+	},
+	{
+		"id": "water-rail",
+		"name": "Water Rail",
+		"sci": "Rallus aquaticus",
+		"family": "Rails, Gallinules, and Coots",
+		"kind": "winter",
+		"km": 12118,
+		"where": ["SE", "DK", "NL"],
+		"pop": {
+			"dep": [37, 71, 296, 330],
+			"spring": [[74.5, 26.7], [48.2, 43.7], [8.8, 51.2]],
+			"wr": 938,
+			"br": 1102
+		},
+		"spread": 48,
+		"years": 9,
+		"anchor": [37, 330],
+		"confidence": "low",
+		"flags": ["timing varies 48 days between years"]
+	},
+	{
+		"id": "watercock",
+		"name": "Watercock",
+		"sci": "Gallicrex cinerea",
+		"family": "Rails, Gallinules, and Coots",
+		"kind": "summer",
+		"km": 3623,
+		"where": ["LK", "KH", "MY"],
+		"pop": {
+			"dep": [50, 60, 121, 131],
+			"spring": [[98.4, 18.2], [89.8, 18.8], [81.2, 19]],
+			"wr": 982,
+			"br": 1236
+		},
+		"spread": 201,
+		"years": 10,
+		"anchor": [60, 121],
+		"confidence": "low",
+		"flags": [
+			"timing varies 201 days between years",
+			"model disagrees with India's records in 6 months"
+		]
+	},
+	{
+		"id": "slaty-legged-crake",
+		"name": "Slaty-legged Crake",
+		"sci": "Rallina eurizonoides",
+		"family": "Rails, Gallinules, and Coots",
+		"kind": "summer",
+		"km": 6442,
+		"where": ["LK", "TH", "TW"],
+		"pop": {
+			"dep": [112, 130, 231, 248],
+			"spring": [[106.8, 14.7], [91.9, 15.7], [76.8, 15.6]],
+			"wr": 722,
+			"br": 1383
+		},
+		"spread": 52,
+		"years": 8,
+		"anchor": [130, 231],
+		"confidence": "low",
+		"flags": ["timing varies 52 days between years"]
+	},
+	{
+		"id": "little-crake",
+		"name": "Little Crake",
+		"sci": "Zapornia parva",
+		"family": "Rails, Gallinules, and Coots",
+		"kind": "winter",
+		"km": 8454,
+		"where": ["SE", "NL", "NO"],
+		"pop": {
+			"dep": [34, 57, 323, 346],
+			"spring": [[71.8, 22.3], [59.2, 37.9], [40.2, 51.5]],
+			"wr": 529,
+			"br": 761
+		},
+		"spread": 0,
+		"years": 2,
+		"anchor": [34, 346],
+		"confidence": "low",
+		"flags": ["dates from 2 years only"]
+	},
+	{
+		"id": "demoiselle-crane",
+		"name": "Demoiselle Crane",
+		"sci": "Grus virgo",
+		"family": "Cranes",
+		"kind": "winter",
+		"km": 5830,
+		"where": ["MN", "RU", "SE"],
+		"pop": {
+			"dep": [50, 66, 293, 310],
+			"spring": [[71.7, 23.9], [72.5, 37], [73.6, 50.1]],
+			"wr": 426,
+			"br": 1453
+		},
+		"spread": 53,
+		"years": 10,
+		"anchor": [50, 310],
+		"confidence": "low",
+		"flags": ["timing varies 53 days between years"]
+	},
+	{
+		"id": "common-crane",
+		"name": "Common Crane",
+		"sci": "Grus grus",
+		"family": "Cranes",
+		"kind": "winter",
+		"km": 7579,
+		"where": ["SE", "NO", "DK"],
+		"pop": {
+			"dep": [41, 62, 289, 310],
+			"spring": [[71.7, 23.9], [70.8, 40.9], [69.3, 57.9]],
+			"wr": 646,
+			"br": 1375
+		},
+		"spread": 15,
+		"years": 11,
+		"anchor": [41, 310],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "indian-thick-knee",
+		"name": "Indian Thick-knee",
+		"sci": "Burhinus indicus",
+		"family": "Thick-knees",
+		"kind": "summer",
+		"km": 2555,
+		"where": ["LK", "TH", "NP"],
+		"pop": {
+			"dep": [40, 47, 252, 259],
+			"spring": [[84.3, 13.1], [80.8, 17.8], [77.2, 22.4]],
+			"wr": 1500,
+			"br": 968
+		},
+		"spread": 74,
+		"years": 11,
+		"anchor": [47, 252],
+		"confidence": "low",
+		"flags": [
+			"timing varies 74 days between years",
+			"an end of the route is at sea (84E 13N)"
+		]
+	},
+	{
+		"id": "pied-avocet",
+		"name": "Pied Avocet",
+		"sci": "Recurvirostra avosetta",
+		"family": "Stilts and Avocets",
+		"kind": "winter",
+		"km": 6525,
+		"where": ["NL", "SE", "DK"],
+		"pop": {
+			"dep": [60, 78, 277, 295],
+			"spring": [[75.9, 24.3], [85.8, 36.3], [99.2, 47.1]],
+			"wr": 1078,
+			"br": 622
+		},
+		"spread": 61,
+		"years": 11,
+		"anchor": [60, 295],
+		"confidence": "low",
+		"flags": ["timing varies 61 days between years"]
+	},
+	{
+		"id": "baillon-s-crake",
+		"name": "Baillon's Crake",
+		"sci": "Zapornia pusilla",
+		"family": "Rails, Gallinules, and Coots",
+		"kind": "winter",
+		"km": 7610,
+		"where": ["NL", "DK", "SE"],
+		"pop": {
+			"dep": [75, 96, 262, 283],
+			"spring": [[77.7, 20.3], [81.6, 37.1], [87.8, 53.7]],
+			"wr": 1137,
+			"br": 1500
+		},
+		"spread": 303,
+		"years": 10,
+		"anchor": [75, 283],
+		"confidence": "low",
+		"flags": ["timing varies 303 days between years"]
+	},
+	{
+		"id": "eurasian-oystercatcher",
+		"name": "Eurasian Oystercatcher",
+		"sci": "Haematopus ostralegus",
+		"family": "Oystercatchers",
+		"kind": "winter",
+		"km": 12609,
+		"where": ["SE", "GB", "NL"],
+		"pop": {
+			"dep": [58, 93, 207, 243],
+			"spring": [[74.5, 15.5], [62.6, 41.9], [34.2, 65.3]],
+			"wr": 950,
+			"br": 1500
+		},
+		"spread": 282,
+		"years": 10,
+		"anchor": [58, 243],
+		"confidence": "low",
+		"flags": ["timing varies 282 days between years"]
+	},
+	{
+		"id": "black-bellied-plover",
+		"name": "Black-bellied Plover",
+		"sci": "Pluvialis squatarola",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 20518,
+		"where": ["US", "SE", "CA"],
+		"pop": {
+			"dep": [29, 86, 188, 245],
+			"spring": [[76.4, 16], [77.4, 62.1], [-105.5, 71.7]],
+			"wr": 1179,
+			"br": 1382
+		},
+		"spread": 44,
+		"years": 11,
+		"anchor": [29, 245],
+		"confidence": "low",
+		"flags": ["timing varies 44 days between years"]
+	},
+	{
+		"id": "beach-thick-knee",
+		"name": "Beach Thick-knee",
+		"sci": "Esacus magnirostris",
+		"family": "Thick-knees",
+		"kind": "winter",
+		"km": 9758,
+		"where": ["AU", "ID", "SB"],
+		"pop": {
+			"dep": [37, 64, 302, 329],
+			"spring": [[91.5, 12.6], [108.6, -1.2], [126, -14.9]],
+			"wr": 308,
+			"br": 1194
+		},
+		"spread": 0,
+		"years": 3,
+		"anchor": [37, 329],
+		"confidence": "low",
+		"flags": [
+			"dates from 3 years only",
+			"few records at an end of the route",
+			"model disagrees with India's records in 6 months",
+			"an end of the route is at sea (92E 13N)"
+		]
+	},
+	{
+		"id": "common-ringed-plover",
+		"name": "Common Ringed Plover",
+		"sci": "Charadrius hiaticula",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 11992,
+		"where": ["SE", "NO", "DK"],
+		"pop": {
+			"dep": [24, 57, 273, 307],
+			"spring": [[74, 20], [63.5, 45.5], [35.7, 68.5]],
+			"wr": 1188,
+			"br": 1500
+		},
+		"spread": 70,
+		"years": 8,
+		"anchor": [24, 307],
+		"confidence": "low",
+		"flags": ["timing varies 70 days between years"]
+	},
+	{
+		"id": "pacific-golden-plover",
+		"name": "Pacific Golden-Plover",
+		"sci": "Pluvialis fulva",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 7948,
+		"where": ["US", "SE", "AU"],
+		"pop": {
+			"dep": [73, 95, 223, 245],
+			"spring": [[80.8, 16.7], [88, 33.4], [98.7, 49.4]],
+			"wr": 1245,
+			"br": 1316
+		},
+		"spread": 73,
+		"years": 11,
+		"anchor": [73, 245],
+		"confidence": "low",
+		"flags": ["timing varies 73 days between years"]
+	},
+	{
+		"id": "northern-lapwing",
+		"name": "Northern Lapwing",
+		"sci": "Vanellus vanellus",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 8677,
+		"where": ["SE", "NL", "DK"],
+		"pop": {
+			"dep": [82, 106, 286, 311],
+			"spring": [[88.6, 26.7], [76.7, 43.7], [56.1, 58.5]],
+			"wr": 1146,
+			"br": 1491
+		},
+		"spread": 21,
+		"years": 10,
+		"anchor": [82, 311],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "gray-headed-lapwing",
+		"name": "Gray-headed Lapwing",
+		"sci": "Vanellus cinereus",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 6253,
+		"where": ["CN", "NL", "JP"],
+		"pop": {
+			"dep": [58, 75, 266, 283],
+			"spring": [[86.4, 22.8], [98.2, 32.2], [112.6, 40.2]],
+			"wr": 1250,
+			"br": 1046
+		},
+		"spread": 38,
+		"years": 11,
+		"anchor": [58, 283],
+		"confidence": "low",
+		"flags": ["timing varies 38 days between years"]
+	},
+	{
+		"id": "river-lapwing",
+		"name": "River Lapwing",
+		"sci": "Vanellus duvaucelii",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 2803,
+		"where": ["NP", "TH", "BT"],
+		"pop": {
+			"dep": [127, 135, 263, 271],
+			"spring": [[81.5, 26.3], [88.4, 25], [95.1, 23.4]],
+			"wr": 758,
+			"br": 1006
+		},
+		"spread": 117,
+		"years": 11,
+		"anchor": [127, 271],
+		"confidence": "low",
+		"flags": ["timing varies 117 days between years"]
+	},
+	{
+		"id": "white-tailed-lapwing",
+		"name": "White-tailed Lapwing",
+		"sci": "Vanellus leucurus",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 3863,
+		"where": ["AE", "SE", "IR"],
+		"pop": {
+			"dep": [65, 76, 293, 304],
+			"spring": [[75.3, 26.8], [69.3, 33.8], [62.3, 40.4]],
+			"wr": 637,
+			"br": 1388
+		},
+		"spread": 16,
+		"years": 11,
+		"anchor": [65, 304],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "kentish-plover",
+		"name": "Kentish Plover",
+		"sci": "Anarhynchus alexandrinus",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 5436,
+		"where": ["FR", "ES", "TW"],
+		"pop": {
+			"dep": [77, 92, 228, 243],
+			"spring": [[77.2, 19.9], [84, 30.4], [92.5, 40.6]],
+			"wr": 1114,
+			"br": 720
+		},
+		"spread": 55,
+		"years": 11,
+		"anchor": [77, 243],
+		"confidence": "low",
+		"flags": ["timing varies 55 days between years"]
+	},
+	{
+		"id": "greater-sand-plover",
+		"name": "Greater Sand-Plover",
+		"sci": "Anarhynchus leschenaultii",
+		"family": "Plovers and Lapwings",
+		"kind": "winter",
+		"km": 6636,
+		"where": ["TW", "AU", "IL"],
+		"pop": {
+			"dep": [24, 42, 213, 231],
+			"spring": [[77.1, 15.3], [70.7, 29], [62.4, 42.3]],
+			"wr": 1283,
+			"br": 1500
+		},
+		"spread": 22,
+		"years": 10,
+		"anchor": [24, 231],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "eurasian-whimbrel",
+		"name": "Eurasian Whimbrel",
+		"sci": "Numenius phaeopus",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 19671,
+		"where": ["US", "SE", "NO"],
+		"pop": {
+			"dep": [36, 91, 161, 216],
+			"spring": [[79.6, 15], [103.8, 55], [-157.7, 66.4]],
+			"wr": 1300,
+			"br": 826
+		},
+		"spread": 259,
+		"years": 11,
+		"anchor": [36, 216],
+		"confidence": "low",
+		"flags": ["timing varies 259 days between years"]
+	},
+	{
+		"id": "greater-painted-snipe",
+		"name": "Greater Painted-Snipe",
+		"sci": "Rostratula benghalensis",
+		"family": "Painted-Snipes",
+		"kind": "summer",
+		"km": 7301,
+		"where": ["TW", "ZA", "TH"],
+		"pop": {
+			"dep": [73, 93, 227, 247],
+			"spring": [[113.9, 26.7], [95.7, 25.1], [78.3, 21.4]],
+			"wr": 682,
+			"br": 1054
+		},
+		"spread": 55,
+		"years": 11,
+		"anchor": [93, 227],
+		"confidence": "low",
+		"flags": [
+			"timing varies 55 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "bar-tailed-godwit",
+		"name": "Bar-tailed Godwit",
+		"sci": "Limosa lapponica",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 14580,
+		"where": ["SE", "DK", "NO"],
+		"pop": {
+			"dep": [28, 69, 204, 245],
+			"spring": [[75.1, 15.8], [95.1, 43.9], [142, 63.3]],
+			"wr": 1108,
+			"br": 1230
+		},
+		"spread": 32,
+		"years": 10,
+		"anchor": [28, 245],
+		"confidence": "low",
+		"flags": ["timing varies 32 days between years"]
+	},
+	{
+		"id": "eurasian-curlew",
+		"name": "Eurasian Curlew",
+		"sci": "Numenius arquata",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 11671,
+		"where": ["SE", "GB", "NO"],
+		"pop": {
+			"dep": [41, 73, 209, 241],
+			"spring": [[77.4, 19.1], [64.2, 42.8], [35.7, 63.3]],
+			"wr": 1164,
+			"br": 1132
+		},
+		"spread": 49,
+		"years": 11,
+		"anchor": [41, 241],
+		"confidence": "low",
+		"flags": ["timing varies 49 days between years"]
+	},
+	{
+		"id": "black-tailed-godwit",
+		"name": "Black-tailed Godwit",
+		"sci": "Limosa limosa",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 9448,
+		"where": ["NL", "GB", "SE"],
+		"pop": {
+			"dep": [101, 127, 225, 251],
+			"spring": [[75.7, 20.5], [68.6, 40.9], [55.1, 60.4]],
+			"wr": 1020,
+			"br": 943
+		},
+		"spread": 75,
+		"years": 11,
+		"anchor": [101, 251],
+		"confidence": "low",
+		"flags": ["timing varies 75 days between years"]
+	},
+	{
+		"id": "jack-snipe",
+		"name": "Jack Snipe",
+		"sci": "Lymnocryptes minimus",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 8014,
+		"where": ["FI", "SE", "NO"],
+		"pop": {
+			"dep": [61, 83, 290, 312],
+			"spring": [[76.4, 24.4], [76.7, 42.5], [77.3, 60.5]],
+			"wr": 1016,
+			"br": 1275
+		},
+		"spread": 51,
+		"years": 9,
+		"anchor": [61, 312],
+		"confidence": "low",
+		"flags": ["timing varies 51 days between years"]
+	},
+	{
+		"id": "pin-tailed-snipe",
+		"name": "Pin-tailed Snipe",
+		"sci": "Gallinago stenura",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 8395,
+		"where": ["RU", "MN", "US"],
+		"pop": {
+			"dep": [99, 122, 279, 302],
+			"spring": [[80.4, 17.3], [88.2, 34.8], [100.2, 51.6]],
+			"wr": 1358,
+			"br": 1466
+		},
+		"spread": 62,
+		"years": 10,
+		"anchor": [99, 302],
+		"confidence": "low",
+		"flags": ["timing varies 62 days between years"]
+	},
+	{
+		"id": "common-snipe",
+		"name": "Common Snipe",
+		"sci": "Gallinago gallinago",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 12165,
+		"where": ["SE", "NO", "IS"],
+		"pop": {
+			"dep": [95, 129, 271, 305],
+			"spring": [[78.5, 21.3], [63.2, 45.6], [27.6, 64.9]],
+			"wr": 1185,
+			"br": 1500
+		},
+		"spread": 13,
+		"years": 11,
+		"anchor": [95, 305],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "terek-sandpiper",
+		"name": "Terek Sandpiper",
+		"sci": "Xenus cinereus",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 10113,
+		"where": ["SE", "RU", "AU"],
+		"pop": {
+			"dep": [18, 46, 206, 234],
+			"spring": [[76.4, 16.8], [69.2, 38.7], [55.4, 59.7]],
+			"wr": 1107,
+			"br": 1296
+		},
+		"spread": 111,
+		"years": 11,
+		"anchor": [18, 234],
+		"confidence": "low",
+		"flags": ["timing varies 111 days between years"]
+	},
+	{
+		"id": "red-necked-phalarope",
+		"name": "Red-necked Phalarope",
+		"sci": "Phalaropus lobatus",
+		"family": "Sandpipers and Allies",
+		"kind": "passage",
+		"km": 20070,
+		"where": ["US", "IS", "SE", "TH", "EC", "ZA"],
+		"pop": {
+			"dep": [93, 157, 206, 270],
+			"spring": [[54.8, 18.3], [75.2, 20], [-159.6, 67.9]],
+			"wr": 429,
+			"br": 1500
+		},
+		"spread": 90,
+		"years": 6,
+		"anchor": [105, 258],
+		"confidence": "low",
+		"flags": [
+			"timing varies 90 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "common-sandpiper",
+		"name": "Common Sandpiper",
+		"sci": "Actitis hypoleucos",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 9036,
+		"where": ["SE", "NO", "NL"],
+		"pop": {
+			"dep": [101, 126, 211, 236],
+			"spring": [[77.7, 19.9], [78.5, 40.2], [80.2, 60.5]],
+			"wr": 1120,
+			"br": 1379
+		},
+		"spread": 16,
+		"years": 11,
+		"anchor": [101, 236],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "wood-sandpiper",
+		"name": "Wood Sandpiper",
+		"sci": "Tringa glareola",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 9977,
+		"where": ["SE", "DK", "NO"],
+		"pop": {
+			"dep": [114, 142, 245, 273],
+			"spring": [[77.6, 19.1], [69.1, 40.3], [52.7, 60.3]],
+			"wr": 1063,
+			"br": 1500
+		},
+		"spread": 26,
+		"years": 11,
+		"anchor": [114, 273],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "marsh-sandpiper",
+		"name": "Marsh Sandpiper",
+		"sci": "Tringa stagnatilis",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 7202,
+		"where": ["NL", "SE", "RU"],
+		"pop": {
+			"dep": [87, 107, 258, 278],
+			"spring": [[76.5, 19.9], [74.3, 36], [70.9, 52]],
+			"wr": 1070,
+			"br": 641
+		},
+		"spread": 51,
+		"years": 11,
+		"anchor": [87, 278],
+		"confidence": "low",
+		"flags": ["timing varies 51 days between years"]
+	},
+	{
+		"id": "green-sandpiper",
+		"name": "Green Sandpiper",
+		"sci": "Tringa ochropus",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 9155,
+		"where": ["SE", "NL", "DK"],
+		"pop": {
+			"dep": [89, 114, 238, 263],
+			"spring": [[77.6, 21.9], [69, 41.2], [53.2, 59.2]],
+			"wr": 1081,
+			"br": 1500
+		},
+		"spread": 29,
+		"years": 11,
+		"anchor": [89, 263],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "common-redshank",
+		"name": "Common Redshank",
+		"sci": "Tringa totanus",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 9121,
+		"where": ["SE", "NL", "NO"],
+		"pop": {
+			"dep": [100, 125, 206, 231],
+			"spring": [[77.4, 21.3], [68.9, 40.5], [53.5, 58.5]],
+			"wr": 1228,
+			"br": 1500
+		},
+		"spread": 37,
+		"years": 11,
+		"anchor": [100, 231],
+		"confidence": "low",
+		"flags": ["timing varies 37 days between years"]
+	},
+	{
+		"id": "spotted-redshank",
+		"name": "Spotted Redshank",
+		"sci": "Tringa erythropus",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 12139,
+		"where": ["SE", "DK", "GB"],
+		"pop": {
+			"dep": [127, 161, 277, 311],
+			"spring": [[77.6, 23.6], [54.8, 43.4], [16.3, 55.1]],
+			"wr": 1032,
+			"br": 982
+		},
+		"spread": 39,
+		"years": 11,
+		"anchor": [127, 311],
+		"confidence": "low",
+		"flags": ["timing varies 39 days between years"]
+	},
+	{
+		"id": "common-greenshank",
+		"name": "Common Greenshank",
+		"sci": "Tringa nebularia",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 10565,
+		"where": ["SE", "DK", "NO"],
+		"pop": {
+			"dep": [106, 135, 243, 272],
+			"spring": [[77.6, 20.8], [66.6, 42.7], [43.9, 62.3]],
+			"wr": 1218,
+			"br": 1298
+		},
+		"spread": 38,
+		"years": 11,
+		"anchor": [106, 272],
+		"confidence": "low",
+		"flags": ["timing varies 38 days between years"]
+	},
+	{
+		"id": "ruddy-turnstone",
+		"name": "Ruddy Turnstone",
+		"sci": "Arenaria interpres",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 18543,
+		"where": ["US", "SE", "NL"],
+		"pop": {
+			"dep": [39, 91, 175, 227],
+			"spring": [[75.4, 15.5], [71, 57.1], [-82.7, 80.5]],
+			"wr": 1022,
+			"br": 328
+		},
+		"spread": 290,
+		"years": 11,
+		"anchor": [39, 227],
+		"confidence": "low",
+		"flags": [
+			"timing varies 290 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "red-knot",
+		"name": "Red Knot",
+		"sci": "Calidris canutus",
+		"family": "Sandpipers and Allies",
+		"kind": "passage",
+		"km": 25981,
+		"where": ["SE", "US", "DK", "US", "GB", "AU"],
+		"pop": {
+			"dep": [70, 156, 237, 323],
+			"spring": [[122.3, -18.3], [77.9, 17], [-85.8, 80.2]],
+			"wr": 1075,
+			"br": 300
+		},
+		"spread": 0,
+		"years": 3,
+		"anchor": [105, 288],
+		"confidence": "low",
+		"flags": [
+			"dates from 3 years only",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "great-knot",
+		"name": "Great Knot",
+		"sci": "Calidris tenuirostris",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 10987,
+		"where": ["AU", "SE", "CN"],
+		"pop": {
+			"dep": [22, 52, 255, 286],
+			"spring": [[75.6, 15.9], [97.2, 30.7], [125.2, 40.8]],
+			"wr": 1001,
+			"br": 474
+		},
+		"spread": 112,
+		"years": 10,
+		"anchor": [22, 286],
+		"confidence": "low",
+		"flags": [
+			"timing varies 112 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "ruff",
+		"name": "Ruff",
+		"sci": "Calidris pugnax",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 8441,
+		"where": ["SE", "NL", "DK"],
+		"pop": {
+			"dep": [86, 109, 221, 244],
+			"spring": [[75.4, 22.7], [67.9, 40.6], [54.8, 57.7]],
+			"wr": 1088,
+			"br": 1464
+		},
+		"spread": 23,
+		"years": 11,
+		"anchor": [86, 244],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "curlew-sandpiper",
+		"name": "Curlew Sandpiper",
+		"sci": "Calidris ferruginea",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 12924,
+		"where": ["SE", "DK", "NL"],
+		"pop": {
+			"dep": [21, 57, 200, 236],
+			"spring": [[76.5, 18], [99.3, -0.5], [122.2, -18.9]],
+			"wr": 1178,
+			"br": 1029
+		},
+		"spread": 32,
+		"years": 11,
+		"anchor": [21, 236],
+		"confidence": "low",
+		"flags": ["timing varies 32 days between years"]
+	},
+	{
+		"id": "long-toed-stint",
+		"name": "Long-toed Stint",
+		"sci": "Calidris subminuta",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 8910,
+		"where": ["TW", "RU", "MN"],
+		"pop": {
+			"dep": [96, 121, 262, 287],
+			"spring": [[82.1, 13.8], [89.6, 32.6], [101.1, 50.7]],
+			"wr": 1067,
+			"br": 962
+		},
+		"spread": 78,
+		"years": 9,
+		"anchor": [96, 287],
+		"confidence": "low",
+		"flags": [
+			"timing varies 78 days between years",
+			"an end of the route is at sea (82E 14N)"
+		]
+	},
+	{
+		"id": "temminck-s-stint",
+		"name": "Temminck's Stint",
+		"sci": "Calidris temminckii",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 7521,
+		"where": ["SE", "NO", "DK"],
+		"pop": {
+			"dep": [111, 132, 243, 264],
+			"spring": [[78, 22.3], [85.1, 38], [96.2, 53.1]],
+			"wr": 1122,
+			"br": 1500
+		},
+		"spread": 42,
+		"years": 11,
+		"anchor": [111, 264],
+		"confidence": "low",
+		"flags": ["timing varies 42 days between years"]
+	},
+	{
+		"id": "red-necked-stint",
+		"name": "Red-necked Stint",
+		"sci": "Calidris ruficollis",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 10587,
+		"where": ["AU", "US", "TW"],
+		"pop": {
+			"dep": [72, 101, 276, 306],
+			"spring": [[91.4, 12.7], [99.7, 35.3], [114.5, 56.9]],
+			"wr": 985,
+			"br": 1020
+		},
+		"spread": 80,
+		"years": 8,
+		"anchor": [72, 306],
+		"confidence": "low",
+		"flags": [
+			"timing varies 80 days between years",
+			"an end of the route is at sea (91E 13N)"
+		]
+	},
+	{
+		"id": "dunlin",
+		"name": "Dunlin",
+		"sci": "Calidris alpina",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 13484,
+		"where": ["SE", "DK", "US"],
+		"pop": {
+			"dep": [26, 63, 236, 274],
+			"spring": [[74.5, 20.7], [50.1, 43.1], [6.6, 55.7]],
+			"wr": 1208,
+			"br": 1062
+		},
+		"spread": 29,
+		"years": 10,
+		"anchor": [26, 274],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "little-stint",
+		"name": "Little Stint",
+		"sci": "Calidris minuta",
+		"family": "Sandpipers and Allies",
+		"kind": "winter",
+		"km": 9296,
+		"where": ["SE", "DK", "NO"],
+		"pop": {
+			"dep": [99, 125, 217, 243],
+			"spring": [[76.5, 20.3], [76, 41.2], [75, 62.1]],
+			"wr": 1033,
+			"br": 1375
+		},
+		"spread": 70,
+		"years": 11,
+		"anchor": [99, 243],
+		"confidence": "low",
+		"flags": ["timing varies 70 days between years"]
+	},
+	{
+		"id": "yellow-legged-buttonquail",
+		"name": "Yellow-legged Buttonquail",
+		"sci": "Turnix tanki",
+		"family": "Buttonquail",
+		"kind": "summer",
+		"km": 4790,
+		"where": ["TH", "NP", "VN"],
+		"pop": {
+			"dep": [155, 168, 243, 256],
+			"spring": [[100.3, 19.3], [88.9, 20.3], [77.4, 20.4]],
+			"wr": 662,
+			"br": 946
+		},
+		"spread": 68,
+		"years": 7,
+		"anchor": [168, 243],
+		"confidence": "low",
+		"flags": ["timing varies 68 days between years"]
+	},
+	{
+		"id": "barred-buttonquail",
+		"name": "Barred Buttonquail",
+		"sci": "Turnix suscitator",
+		"family": "Buttonquail",
+		"kind": "summer",
+		"km": 5134,
+		"where": ["TW", "LK", "TH"],
+		"pop": {
+			"dep": [122, 136, 280, 294],
+			"spring": [[100.5, 15], [89, 18.4], [77.1, 21]],
+			"wr": 1054,
+			"br": 945
+		},
+		"spread": 40,
+		"years": 11,
+		"anchor": [136, 280],
+		"confidence": "low",
+		"flags": ["timing varies 40 days between years"]
+	},
+	{
+		"id": "crab-plover",
+		"name": "Crab-Plover",
+		"sci": "Dromas ardeola",
+		"family": "Crab-Plover",
+		"kind": "winter",
+		"km": 3017,
+		"where": ["KE", "KW", "AE"],
+		"pop": {
+			"dep": [35, 43, 286, 294],
+			"spring": [[71.8, 18.6], [64.8, 20], [57.7, 21.1]],
+			"wr": 1018,
+			"br": 300
+		},
+		"spread": 51,
+		"years": 10,
+		"anchor": [35, 294],
+		"confidence": "low",
+		"flags": [
+			"timing varies 51 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "cream-colored-courser",
+		"name": "Cream-colored Courser",
+		"sci": "Cursorius cursor",
+		"family": "Pratincoles and Coursers",
+		"kind": "winter",
+		"km": 14653,
+		"where": ["IL", "ES", "AE"],
+		"pop": {
+			"dep": [33, 74, 276, 317],
+			"spring": [[71.7, 26.7], [34.3, 34.5], [-4.6, 30.1]],
+			"wr": 422,
+			"br": 1278
+		},
+		"spread": 26,
+		"years": 9,
+		"anchor": [33, 317],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "small-pratincole",
+		"name": "Small Pratincole",
+		"sci": "Glareola lactea",
+		"family": "Pratincoles and Coursers",
+		"kind": "winter",
+		"km": 5538,
+		"where": ["TH", "KH", "LK"],
+		"pop": {
+			"dep": [132, 147, 290, 305],
+			"spring": [[78.7, 21.3], [91.7, 19.1], [104.4, 16]],
+			"wr": 1057,
+			"br": 386
+		},
+		"spread": 80,
+		"years": 11,
+		"anchor": [132, 305],
+		"confidence": "low",
+		"flags": ["timing varies 80 days between years"]
+	},
+	{
+		"id": "collared-pratincole",
+		"name": "Collared Pratincole",
+		"sci": "Glareola pratincola",
+		"family": "Pratincoles and Coursers",
+		"kind": "winter",
+		"km": 5633,
+		"where": ["ES", "FR", "PT"],
+		"pop": {
+			"dep": [36, 52, 218, 234],
+			"spring": [[73.1, 21.4], [61.7, 28.7], [48.7, 34.9]],
+			"wr": 1224,
+			"br": 1256
+		},
+		"spread": 66,
+		"years": 9,
+		"anchor": [36, 234],
+		"confidence": "low",
+		"flags": [
+			"timing varies 66 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "long-tailed-jaeger",
+		"name": "Long-tailed Jaeger",
+		"sci": "Stercorarius longicaudus",
+		"family": "Skuas and Jaegers",
+		"kind": "passage",
+		"km": 32133,
+		"where": ["US", "SE", "NO", "AU", "CL", "AR"],
+		"pop": {
+			"dep": [25, 120, 273, 365],
+			"spring": [[142, -38], [75.8, 12.2], [-4.1, 68.2]],
+			"wr": 815,
+			"br": 1115
+		},
+		"spread": 0,
+		"years": 1,
+		"anchor": [74, 319],
+		"confidence": "low",
+		"flags": ["dates from 1 years only", "few records at an end of the route"]
+	},
+	{
+		"id": "oriental-pratincole",
+		"name": "Oriental Pratincole",
+		"sci": "Glareola maldivarum",
+		"family": "Pratincoles and Coursers",
+		"kind": "summer",
+		"km": 4628,
+		"where": ["AU", "MY", "TH"],
+		"pop": {
+			"dep": [57, 70, 184, 197],
+			"spring": [[100.9, 15.3], [90.5, 18.2], [79.7, 20.5]],
+			"wr": 574,
+			"br": 1133
+		},
+		"spread": 135,
+		"years": 11,
+		"anchor": [70, 184],
+		"confidence": "low",
+		"flags": ["timing varies 135 days between years"]
+	},
+	{
+		"id": "parasitic-jaeger",
+		"name": "Parasitic Jaeger",
+		"sci": "Stercorarius parasiticus",
+		"family": "Skuas and Jaegers",
+		"kind": "passage",
+		"km": 17241,
+		"where": ["US", "NO", "SE", "US", "NZ", "AU"],
+		"pop": {
+			"dep": [44, 103, 245, 303],
+			"spring": [[99.8, 10.3], [74.5, 12.7], [21, 77.7]],
+			"wr": 369,
+			"br": 1500
+		},
+		"spread": 31,
+		"years": 10,
+		"anchor": [60, 288],
+		"confidence": "low",
+		"flags": [
+			"timing varies 31 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "pomarine-jaeger",
+		"name": "Pomarine Jaeger",
+		"sci": "Stercorarius pomarinus",
+		"family": "Skuas and Jaegers",
+		"kind": "passage",
+		"km": 31175,
+		"where": ["US", "CA", "NO", "US", "SE", "AU"],
+		"pop": {
+			"dep": [7, 103, 275, 365],
+			"spring": [[150.2, -34.6], [74.5, 12.7], [5.8, 69.2]],
+			"wr": 632,
+			"br": 1263
+		},
+		"spread": 91,
+		"years": 8,
+		"anchor": [60, 319],
+		"confidence": "low",
+		"flags": [
+			"timing varies 91 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "black-headed-gull",
+		"name": "Black-headed Gull",
+		"sci": "Chroicocephalus ridibundus",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 9354,
+		"where": ["SE", "GB", "NL"],
+		"pop": {
+			"dep": [68, 93, 291, 317],
+			"spring": [[76.6, 21.5], [65.9, 40.5], [47, 57.7]],
+			"wr": 1203,
+			"br": 1500
+		},
+		"spread": 32,
+		"years": 10,
+		"anchor": [68, 317],
+		"confidence": "low",
+		"flags": ["timing varies 32 days between years"]
+	},
+	{
+		"id": "slender-billed-gull",
+		"name": "Slender-billed Gull",
+		"sci": "Chroicocephalus genei",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 4954,
+		"where": ["ES", "FR", "IL"],
+		"pop": {
+			"dep": [51, 65, 264, 278],
+			"spring": [[72.6, 18.9], [64.3, 27], [54.7, 34.5]],
+			"wr": 1129,
+			"br": 1416
+		},
+		"spread": 150,
+		"years": 11,
+		"anchor": [51, 278],
+		"confidence": "low",
+		"flags": ["timing varies 150 days between years"]
+	},
+	{
+		"id": "brown-headed-gull",
+		"name": "Brown-headed Gull",
+		"sci": "Chroicocephalus brunnicephalus",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 3394,
+		"where": ["CN", "MN", "TH"],
+		"pop": {
+			"dep": [95, 104, 305, 314],
+			"spring": [[77.3, 20.9], [82.7, 26.8], [88.6, 32.4]],
+			"wr": 1207,
+			"br": 412
+		},
+		"spread": 50,
+		"years": 11,
+		"anchor": [95, 314],
+		"confidence": "low",
+		"flags": ["timing varies 50 days between years"]
+	},
+	{
+		"id": "pallas-s-gull",
+		"name": "Pallas's Gull",
+		"sci": "Ichthyaetus ichthyaetus",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 2925,
+		"where": ["RU", "MN", "CN"],
+		"pop": {
+			"dep": [69, 77, 290, 298],
+			"spring": [[77.1, 23.9], [82.6, 28.2], [88.6, 32.3]],
+			"wr": 1165,
+			"br": 1198
+		},
+		"spread": 82,
+		"years": 11,
+		"anchor": [69, 298],
+		"confidence": "low",
+		"flags": ["timing varies 82 days between years"]
+	},
+	{
+		"id": "lesser-black-backed-gull",
+		"name": "Lesser Black-backed Gull",
+		"sci": "Larus fuscus",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 14886,
+		"where": ["GB", "NL", "SE"],
+		"pop": {
+			"dep": [60, 101, 218, 259],
+			"spring": [[74.5, 17.7], [47.1, 41.7], [-0.5, 53.6]],
+			"wr": 1069,
+			"br": 1500
+		},
+		"spread": 41,
+		"years": 11,
+		"anchor": [60, 259],
+		"confidence": "low",
+		"flags": ["timing varies 41 days between years"]
+	},
+	{
+		"id": "lesser-noddy",
+		"name": "Lesser Noddy",
+		"sci": "Anous tenuirostris",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "passage",
+		"km": 15824,
+		"where": ["SC", "KE", "MU", "SC", "MV", "IO"],
+		"pop": {
+			"dep": [132, 177, 216, 261],
+			"spring": [[113.9, -24.3], [74.8, 14.7], [57.2, 20.7]],
+			"wr": 300,
+			"br": 300
+		},
+		"spread": 0,
+		"years": 2,
+		"anchor": [166, 227],
+		"confidence": "low",
+		"flags": ["dates from 2 years only", "few records at an end of the route"]
+	},
+	{
+		"id": "sooty-tern",
+		"name": "Sooty Tern",
+		"sci": "Onychoprion fuscatus",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "summer",
+		"km": 8377,
+		"where": ["AU", "US", "NF"],
+		"pop": {
+			"dep": [144, 167, 236, 259],
+			"spring": [[49.2, -12.7], [63, 0.3], [76.8, 13.2]],
+			"wr": 300,
+			"br": 1302
+		},
+		"spread": 0,
+		"years": 1,
+		"anchor": [167, 236],
+		"confidence": "low",
+		"flags": ["dates from 1 years only", "few records at an end of the route"]
+	},
+	{
+		"id": "bridled-tern",
+		"name": "Bridled Tern",
+		"sci": "Onychoprion anaethetus",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "passage",
+		"km": 15400,
+		"where": ["TW", "US", "PR", "AU", "CR", "ID"],
+		"pop": {
+			"dep": [93, 136, 227, 270],
+			"spring": [[56.3, 19.8], [74.7, 12.8], [122.7, -3.8]],
+			"wr": 300,
+			"br": 1331
+		},
+		"spread": 30,
+		"years": 9,
+		"anchor": [105, 258],
+		"confidence": "low",
+		"flags": [
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "caspian-tern",
+		"name": "Caspian Tern",
+		"sci": "Hydroprogne caspia",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 12834,
+		"where": ["US", "SE", "CA"],
+		"pop": {
+			"dep": [45, 81, 227, 263],
+			"spring": [[75.6, 16], [96.7, -3.9], [118.8, -23.3]],
+			"wr": 906,
+			"br": 1180
+		},
+		"spread": 85,
+		"years": 11,
+		"anchor": [45, 263],
+		"confidence": "low",
+		"flags": ["timing varies 85 days between years"]
+	},
+	{
+		"id": "gull-billed-tern",
+		"name": "Gull-billed Tern",
+		"sci": "Gelochelidon nilotica",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 8141,
+		"where": ["US", "ES", "FR"],
+		"pop": {
+			"dep": [44, 67, 215, 238],
+			"spring": [[74.5, 18.1], [86.3, 33], [102.7, 46.4]],
+			"wr": 967,
+			"br": 1094
+		},
+		"spread": 47,
+		"years": 11,
+		"anchor": [44, 238],
+		"confidence": "low",
+		"flags": ["timing varies 47 days between years"]
+	},
+	{
+		"id": "white-winged-tern",
+		"name": "White-winged Tern",
+		"sci": "Chlidonias leucopterus",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "passage",
+		"km": 15791,
+		"where": ["NL", "MN", "RU", "ZA", "AU", "TH"],
+		"pop": {
+			"dep": [82, 131, 232, 281],
+			"spring": [[39.8, 11.2], [78.2, 17.3], [113.7, 48.9]],
+			"wr": 1407,
+			"br": 1405
+		},
+		"spread": 61,
+		"years": 10,
+		"anchor": [105, 258],
+		"confidence": "low",
+		"flags": ["timing varies 61 days between years"]
+	},
+	{
+		"id": "whiskered-tern",
+		"name": "Whiskered Tern",
+		"sci": "Chlidonias hybrida",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 8711,
+		"where": ["NL", "ES", "AU"],
+		"pop": {
+			"dep": [84, 108, 231, 255],
+			"spring": [[76.8, 17.8], [92.8, 30.9], [113.4, 41.5]],
+			"wr": 1009,
+			"br": 1370
+		},
+		"spread": 38,
+		"years": 11,
+		"anchor": [84, 255],
+		"confidence": "low",
+		"flags": ["timing varies 38 days between years"]
+	},
+	{
+		"id": "black-naped-tern",
+		"name": "Black-naped Tern",
+		"sci": "Sterna sumatrana",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "summer",
+		"km": 5907,
+		"where": ["AU", "PW", "TH"],
+		"pop": {
+			"dep": [67, 83, 153, 169],
+			"spring": [[113, -3.8], [102.5, 4.4], [91.8, 12.4]],
+			"wr": 1466,
+			"br": 300
+		},
+		"spread": 58,
+		"years": 9,
+		"anchor": [83, 153],
+		"confidence": "low",
+		"flags": [
+			"timing varies 58 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "common-tern",
+		"name": "Common Tern",
+		"sci": "Sterna hirundo",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "passage",
+		"km": 21355,
+		"where": ["US", "SE", "NL", "ZA", "AU", "US"],
+		"pop": {
+			"dep": [72, 134, 229, 291],
+			"spring": [[117.1, -21.4], [76.2, 15], [52.1, 58.5]],
+			"wr": 647,
+			"br": 1268
+		},
+		"spread": 90,
+		"years": 10,
+		"anchor": [105, 258],
+		"confidence": "low",
+		"flags": ["timing varies 90 days between years"]
+	},
+	{
+		"id": "sandwich-tern",
+		"name": "Sandwich Tern",
+		"sci": "Thalasseus sandvicensis",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 15599,
+		"where": ["US", "SE", "DK"],
+		"pop": {
+			"dep": [39, 82, 226, 269],
+			"spring": [[74.8, 13.8], [45.7, 37.4], [-0.6, 49.2]],
+			"wr": 724,
+			"br": 1246
+		},
+		"spread": 66,
+		"years": 10,
+		"anchor": [39, 269],
+		"confidence": "low",
+		"flags": ["timing varies 66 days between years"]
+	},
+	{
+		"id": "lesser-crested-tern",
+		"name": "Lesser Crested Tern",
+		"sci": "Thalasseus bengalensis",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 5800,
+		"where": ["AU", "AE", "IL"],
+		"pop": {
+			"dep": [30, 46, 227, 243],
+			"spring": [[76.4, 13.4], [64.9, 20.4], [52.4, 26.6]],
+			"wr": 1166,
+			"br": 1429
+		},
+		"spread": 291,
+		"years": 11,
+		"anchor": [30, 243],
+		"confidence": "low",
+		"flags": [
+			"timing varies 291 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "great-crested-tern",
+		"name": "Great Crested Tern",
+		"sci": "Thalasseus bergii",
+		"family": "Gulls, Terns, and Skimmers",
+		"kind": "winter",
+		"km": 11801,
+		"where": ["AU", "ZA", "TW"],
+		"pop": {
+			"dep": [51, 84, 187, 220],
+			"spring": [[76.1, 12.5], [96.5, -4.6], [117.9, -21.1]],
+			"wr": 620,
+			"br": 1500
+		},
+		"spread": 278,
+		"years": 11,
+		"anchor": [51, 220],
+		"confidence": "low",
+		"flags": [
+			"timing varies 278 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "great-crested-grebe",
+		"name": "Great Crested Grebe",
+		"sci": "Podiceps cristatus",
+		"family": "Grebes",
+		"kind": "winter",
+		"km": 7749,
+		"where": ["NL", "SE", "GB"],
+		"pop": {
+			"dep": [44, 65, 296, 318],
+			"spring": [[79.4, 26.4], [69.1, 41.6], [52.8, 55.4]],
+			"wr": 992,
+			"br": 1323
+		},
+		"spread": 17,
+		"years": 10,
+		"anchor": [44, 318],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "eared-grebe",
+		"name": "Eared Grebe",
+		"sci": "Podiceps nigricollis",
+		"family": "Grebes",
+		"kind": "winter",
+		"km": 6472,
+		"where": ["US", "CA", "NL"],
+		"pop": {
+			"dep": [46, 64, 171, 189],
+			"spring": [[78.1, 27.8], [72.3, 41.5], [63.3, 54.8]],
+			"wr": 1134,
+			"br": 1477
+		},
+		"spread": 138,
+		"years": 8,
+		"anchor": [46, 189],
+		"confidence": "low",
+		"flags": ["timing varies 138 days between years"]
+	},
+	{
+		"id": "lesser-flamingo",
+		"name": "Lesser Flamingo",
+		"sci": "Phoeniconaias minor",
+		"family": "Flamingos",
+		"kind": "winter",
+		"km": 15727,
+		"where": ["ZA", "KE", "TZ"],
+		"pop": {
+			"dep": [58, 102, 282, 326],
+			"spring": [[71.7, 21.1], [44.2, -1.8], [15.9, -24.2]],
+			"wr": 430,
+			"br": 931
+		},
+		"spread": 60,
+		"years": 11,
+		"anchor": [58, 326],
+		"confidence": "low",
+		"flags": [
+			"timing varies 60 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "flesh-footed-shearwater",
+		"name": "Flesh-footed Shearwater",
+		"sci": "Ardenna carneipes",
+		"family": "Shearwaters and Petrels",
+		"kind": "passage",
+		"km": 15828,
+		"where": ["US", "AU", "AE", "AU", "NZ", "US"],
+		"pop": {
+			"dep": [72, 117, 246, 291],
+			"spring": [[113.9, -23.9], [74.7, 12.4], [55.9, 19.4]],
+			"wr": 426,
+			"br": 300
+		},
+		"spread": 30,
+		"years": 6,
+		"anchor": [105, 258],
+		"confidence": "low",
+		"flags": [
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "black-stork",
+		"name": "Black Stork",
+		"sci": "Ciconia nigra",
+		"family": "Storks",
+		"kind": "winter",
+		"km": 7844,
+		"where": ["NL", "DE", "FR"],
+		"pop": {
+			"dep": [98, 120, 285, 307],
+			"spring": [[79.5, 24.3], [88.9, 40], [103.9, 54.6]],
+			"wr": 1015,
+			"br": 1052
+		},
+		"spread": 13,
+		"years": 11,
+		"anchor": [98, 307],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "asian-woolly-necked-stork",
+		"name": "Asian Woolly-necked Stork",
+		"sci": "Ciconia episcopus",
+		"family": "Storks",
+		"kind": "winter",
+		"km": 2120,
+		"where": ["ZA", "LK", "KE"],
+		"pop": {
+			"dep": [121, 127, 283, 289],
+			"spring": [[77.3, 21.1], [80.7, 24.7], [84.3, 28.3]],
+			"wr": 980,
+			"br": 300
+		},
+		"spread": 42,
+		"years": 11,
+		"anchor": [121, 289],
+		"confidence": "low",
+		"flags": [
+			"timing varies 42 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "greater-adjutant",
+		"name": "Greater Adjutant",
+		"sci": "Leptoptilos dubius",
+		"family": "Storks",
+		"kind": "winter",
+		"km": 3895,
+		"where": ["KH", "TH"],
+		"pop": {
+			"dep": [43, 54, 289, 300],
+			"spring": [[91.4, 26.7], [97.4, 19.9], [102.9, 12.9]],
+			"wr": 422,
+			"br": 300
+		},
+		"spread": 268,
+		"years": 11,
+		"anchor": [43, 300],
+		"confidence": "low",
+		"flags": [
+			"timing varies 268 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "white-stork",
+		"name": "White Stork",
+		"sci": "Ciconia ciconia",
+		"family": "Storks",
+		"kind": "winter",
+		"km": 9930,
+		"where": ["NL", "ES", "DE"],
+		"pop": {
+			"dep": [26, 54, 263, 291],
+			"spring": [[73.8, 19.1], [56, 35], [30.9, 47.1]],
+			"wr": 847,
+			"br": 1233
+		},
+		"spread": 306,
+		"years": 10,
+		"anchor": [26, 291],
+		"confidence": "low",
+		"flags": ["timing varies 306 days between years"]
+	},
+	{
+		"id": "black-necked-stork",
+		"name": "Black-necked Stork",
+		"sci": "Ephippiorhynchus asiaticus",
+		"family": "Storks",
+		"kind": "winter",
+		"km": 15180,
+		"where": ["AU", "LK"],
+		"pop": {
+			"dep": [120, 162, 250, 292],
+			"spring": [[77.3, 26.7], [106.1, 6.3], [132.6, -15.5]],
+			"wr": 904,
+			"br": 1049
+		},
+		"spread": 51,
+		"years": 11,
+		"anchor": [120, 292],
+		"confidence": "low",
+		"flags": ["timing varies 51 days between years"]
+	},
+	{
+		"id": "masked-booby",
+		"name": "Masked Booby",
+		"sci": "Sula dactylatra",
+		"family": "Boobies and Gannets",
+		"kind": "passage",
+		"km": 20994,
+		"where": ["US", "TW", "MX", "US", "AU", "MX"],
+		"pop": {
+			"dep": [57, 116, 247, 305],
+			"spring": [[144.8, -15.5], [74.1, 14.5], [55.5, 18.9]],
+			"wr": 692,
+			"br": 300
+		},
+		"spread": 151,
+		"years": 6,
+		"anchor": [105, 258],
+		"confidence": "low",
+		"flags": [
+			"timing varies 151 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "eurasian-bittern",
+		"name": "Eurasian Bittern",
+		"sci": "Botaurus stellaris",
+		"family": "Herons, Egrets, and Bitterns",
+		"kind": "winter",
+		"km": 8855,
+		"where": ["SE", "NL", "DK"],
+		"pop": {
+			"dep": [9, 34, 308, 333],
+			"spring": [[76.2, 26.7], [95.5, 38.3], [120.5, 45.7]],
+			"wr": 969,
+			"br": 1211
+		},
+		"spread": 50,
+		"years": 7,
+		"anchor": [9, 333],
+		"confidence": "low",
+		"flags": ["timing varies 50 days between years"]
+	},
+	{
+		"id": "black-crowned-night-heron",
+		"name": "Black-crowned Night Heron",
+		"sci": "Nycticorax nycticorax",
+		"family": "Herons, Egrets, and Bitterns",
+		"kind": "summer",
+		"km": 7416,
+		"where": ["US", "TW", "MX"],
+		"pop": {
+			"dep": [82, 103, 294, 315],
+			"spring": [[113, 31.3], [94.8, 26.5], [78.3, 19.6]],
+			"wr": 1013,
+			"br": 1090
+		},
+		"spread": 112,
+		"years": 11,
+		"anchor": [103, 294],
+		"confidence": "low",
+		"flags": ["timing varies 112 days between years"]
+	},
+	{
+		"id": "pacific-reef-heron",
+		"name": "Pacific Reef-Heron",
+		"sci": "Egretta sacra",
+		"family": "Herons, Egrets, and Bitterns",
+		"kind": "winter",
+		"km": 3589,
+		"where": ["AU", "TW", "ID"],
+		"pop": {
+			"dep": [35, 44, 237, 247],
+			"spring": [[92.2, 12.1], [98.4, 6.8], [104.5, 1.4]],
+			"wr": 300,
+			"br": 1500
+		},
+		"spread": 54,
+		"years": 10,
+		"anchor": [35, 247],
+		"confidence": "low",
+		"flags": [
+			"timing varies 54 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "western-reef-heron",
+		"name": "Western Reef-Heron",
+		"sci": "Egretta gularis",
+		"family": "Herons, Egrets, and Bitterns",
+		"kind": "winter",
+		"km": 4011,
+		"where": ["AE", "ES", "IL"],
+		"pop": {
+			"dep": [57, 68, 248, 259],
+			"spring": [[74.2, 16.7], [65.5, 20.3], [56.3, 23.5]],
+			"wr": 839,
+			"br": 596
+		},
+		"spread": 44,
+		"years": 11,
+		"anchor": [57, 259],
+		"confidence": "low",
+		"flags": ["timing varies 44 days between years"]
+	},
+	{
+		"id": "dalmatian-pelican",
+		"name": "Dalmatian Pelican",
+		"sci": "Pelecanus crispus",
+		"family": "Pelicans",
+		"kind": "winter",
+		"km": 6132,
+		"where": ["GR", "RO", "SE"],
+		"pop": {
+			"dep": [53, 70, 306, 323],
+			"spring": [[71.7, 23.9], [71.2, 37.7], [70.3, 51.5]],
+			"wr": 426,
+			"br": 757
+		},
+		"spread": 24,
+		"years": 10,
+		"anchor": [53, 323],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "osprey",
+		"name": "Osprey",
+		"sci": "Pandion haliaetus",
+		"family": "Osprey",
+		"kind": "winter",
+		"km": 21994,
+		"where": ["US", "CA", "SE"],
+		"pop": {
+			"dep": [89, 150, 222, 283],
+			"spring": [[78.3, 21.2], [100, 68.9], [-120.9, 58.3]],
+			"wr": 1094,
+			"br": 1500
+		},
+		"spread": 14,
+		"years": 11,
+		"anchor": [89, 283],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "great-white-pelican",
+		"name": "Great White Pelican",
+		"sci": "Pelecanus onocrotalus",
+		"family": "Pelicans",
+		"kind": "winter",
+		"km": 9006,
+		"where": ["ZA", "RO", "KE"],
+		"pop": {
+			"dep": [62, 87, 303, 328],
+			"spring": [[71.9, 23.9], [52.8, 35.5], [28.4, 43.3]],
+			"wr": 631,
+			"br": 620
+		},
+		"spread": 43,
+		"years": 11,
+		"anchor": [62, 328],
+		"confidence": "low",
+		"flags": ["timing varies 43 days between years"]
+	},
+	{
+		"id": "bearded-vulture",
+		"name": "Bearded Vulture",
+		"sci": "Gypaetus barbatus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "summer",
+		"km": 2659,
+		"where": ["FR", "ES", "IT"],
+		"pop": {
+			"dep": [83, 90, 171, 178],
+			"spring": [[91.5, 33.3], [84.4, 33], [77.3, 32.3]],
+			"wr": 891,
+			"br": 412
+		},
+		"spread": 89,
+		"years": 10,
+		"anchor": [90, 171],
+		"confidence": "low",
+		"flags": [
+			"timing varies 89 days between years",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "black-baza",
+		"name": "Black Baza",
+		"sci": "Aviceda leuphotes",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 4661,
+		"where": ["TH", "CN", "KH"],
+		"pop": {
+			"dep": [25, 37, 286, 299],
+			"spring": [[86.4, 20.3], [97.1, 23.7], [108.4, 26.3]],
+			"wr": 1476,
+			"br": 1468
+		},
+		"spread": 85,
+		"years": 10,
+		"anchor": [25, 299],
+		"confidence": "low",
+		"flags": [
+			"timing varies 85 days between years",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "jerdon-s-baza",
+		"name": "Jerdon's Baza",
+		"sci": "Aviceda jerdoni",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "summer",
+		"km": 2994,
+		"where": ["TH", "SG", "MY"],
+		"pop": {
+			"dep": [62, 70, 137, 145],
+			"spring": [[105.3, 23.3], [98.1, 24.6], [90.7, 25.5]],
+			"wr": 925,
+			"br": 705
+		},
+		"spread": 29,
+		"years": 10,
+		"anchor": [70, 137],
+		"confidence": "low",
+		"flags": ["model disagrees with India's records in 7 months"]
+	},
+	{
+		"id": "himalayan-griffon",
+		"name": "Himalayan Griffon",
+		"sci": "Gyps himalayensis",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 2454,
+		"where": ["CN", "MN", "KG"],
+		"pop": {
+			"dep": [9, 16, 288, 295],
+			"spring": [[80.2, 29.5], [85.6, 32.5], [91.4, 35.2]],
+			"wr": 884,
+			"br": 1022
+		},
+		"spread": 147,
+		"years": 11,
+		"anchor": [9, 295],
+		"confidence": "low",
+		"flags": [
+			"timing varies 147 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "cinereous-vulture",
+		"name": "Cinereous Vulture",
+		"sci": "Aegypius monachus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 7032,
+		"where": ["MN", "ES", "FR"],
+		"pop": {
+			"dep": [71, 91, 292, 312],
+			"spring": [[76.1, 27.4], [90.1, 38], [108.3, 46.4]],
+			"wr": 588,
+			"br": 383
+		},
+		"spread": 34,
+		"years": 11,
+		"anchor": [71, 312],
+		"confidence": "low",
+		"flags": ["timing varies 34 days between years"]
+	},
+	{
+		"id": "white-rumped-vulture",
+		"name": "White-rumped Vulture",
+		"sci": "Gyps bengalensis",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 1617,
+		"where": ["NP", "MM", "KH"],
+		"pop": {
+			"dep": [153, 157, 204, 208],
+			"spring": [[79.5, 24], [82.2, 26.6], [85.1, 29.2]],
+			"wr": 1105,
+			"br": 300
+		},
+		"spread": 253,
+		"years": 11,
+		"anchor": [153, 208],
+		"confidence": "low",
+		"flags": [
+			"timing varies 253 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "eurasian-griffon",
+		"name": "Eurasian Griffon",
+		"sci": "Gyps fulvus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 14265,
+		"where": ["ES", "FR", "PT"],
+		"pop": {
+			"dep": [70, 110, 265, 305],
+			"spring": [[75.7, 26.3], [40.9, 40.7], [-2, 41.4]],
+			"wr": 685,
+			"br": 423
+		},
+		"spread": 50,
+		"years": 10,
+		"anchor": [70, 305],
+		"confidence": "low",
+		"flags": ["timing varies 50 days between years"]
+	},
+	{
+		"id": "mountain-hawk-eagle",
+		"name": "Mountain Hawk-Eagle",
+		"sci": "Nisaetus nipalensis",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "passage",
+		"km": 2325,
+		"where": ["TW", "CN", "TH", "TW", "TH", "CN"],
+		"pop": {
+			"dep": [103, 110, 314, 321],
+			"spring": [[85.8, 29.5], [88.3, 27.2], [97.3, 26.9]],
+			"wr": 300,
+			"br": 1222
+		},
+		"spread": 0,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "indian-spotted-eagle",
+		"name": "Indian Spotted Eagle",
+		"sci": "Clanga hastata",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 2048,
+		"where": ["NP", "BD", "PK"],
+		"pop": {
+			"dep": [82, 88, 268, 274],
+			"spring": [[77.7, 21.2], [79.9, 25.3], [82.3, 29.4]],
+			"wr": 987,
+			"br": 808
+		},
+		"spread": 26,
+		"years": 10,
+		"anchor": [82, 274],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "steppe-eagle",
+		"name": "Steppe Eagle",
+		"sci": "Aquila nipalensis",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 5783,
+		"where": ["KZ", "RU", "MN"],
+		"pop": {
+			"dep": [76, 92, 290, 306],
+			"spring": [[77.3, 26.7], [70.2, 38.3], [60.5, 49.2]],
+			"wr": 982,
+			"br": 1223
+		},
+		"spread": 13,
+		"years": 11,
+		"anchor": [76, 306],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "greater-spotted-eagle",
+		"name": "Greater Spotted Eagle",
+		"sci": "Clanga clanga",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 7658,
+		"where": ["RU", "SE", "NL"],
+		"pop": {
+			"dep": [74, 95, 271, 292],
+			"spring": [[75.5, 21], [75.8, 38.2], [76.3, 55.4]],
+			"wr": 991,
+			"br": 475
+		},
+		"spread": 16,
+		"years": 11,
+		"anchor": [74, 292],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "booted-eagle",
+		"name": "Booted Eagle",
+		"sci": "Hieraaetus pennatus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 8329,
+		"where": ["ES", "PT", "FR"],
+		"pop": {
+			"dep": [76, 99, 253, 276],
+			"spring": [[76.7, 19.2], [60.8, 31.2], [40.8, 40.8]],
+			"wr": 1106,
+			"br": 300
+		},
+		"spread": 8,
+		"years": 11,
+		"anchor": [76, 276],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "imperial-eagle",
+		"name": "Imperial Eagle",
+		"sci": "Aquila heliaca",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 5836,
+		"where": ["RU", "HU", "AT"],
+		"pop": {
+			"dep": [54, 70, 292, 308],
+			"spring": [[74.6, 25.9], [69.2, 38.2], [61.6, 50.2]],
+			"wr": 842,
+			"br": 1337
+		},
+		"spread": 24,
+		"years": 11,
+		"anchor": [54, 308],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "golden-eagle",
+		"name": "Golden Eagle",
+		"sci": "Aquila chrysaetos",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "summer",
+		"km": 16862,
+		"where": ["US", "SE", "ES"],
+		"pop": {
+			"dep": [37, 84, 167, 214],
+			"spring": [[-141.2, 67.7], [100.6, 67.8], [77.3, 32.3]],
+			"wr": 783,
+			"br": 412
+		},
+		"spread": 126,
+		"years": 10,
+		"anchor": [84, 167],
+		"confidence": "low",
+		"flags": [
+			"timing varies 126 days between years",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "tawny-eagle",
+		"name": "Tawny Eagle",
+		"sci": "Aquila rapax",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 8784,
+		"where": ["ZA", "KE", "TZ"],
+		"pop": {
+			"dep": [28, 52, 164, 188],
+			"spring": [[74.8, 23.8], [55.9, 15.3], [38.5, 5.3]],
+			"wr": 928,
+			"br": 833
+		},
+		"spread": 44,
+		"years": 10,
+		"anchor": [28, 188],
+		"confidence": "low",
+		"flags": ["timing varies 44 days between years"]
+	},
+	{
+		"id": "eurasian-sparrowhawk",
+		"name": "Eurasian Sparrowhawk",
+		"sci": "Accipiter nisus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 7913,
+		"where": ["SE", "NL", "GB"],
+		"pop": {
+			"dep": [108, 130, 252, 274],
+			"spring": [[77, 25.7], [67.9, 41.8], [52.9, 56.7]],
+			"wr": 1133,
+			"br": 1500
+		},
+		"spread": 96,
+		"years": 11,
+		"anchor": [108, 274],
+		"confidence": "low",
+		"flags": ["timing varies 96 days between years"]
+	},
+	{
+		"id": "western-marsh-harrier",
+		"name": "Western Marsh Harrier",
+		"sci": "Circus aeruginosus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 8514,
+		"where": ["SE", "NL", "DK"],
+		"pop": {
+			"dep": [64, 88, 252, 276],
+			"spring": [[75.7, 20], [66.9, 37.6], [52.8, 54.1]],
+			"wr": 1066,
+			"br": 1223
+		},
+		"spread": 26,
+		"years": 11,
+		"anchor": [64, 276],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "pallid-harrier",
+		"name": "Pallid Harrier",
+		"sci": "Circus macrourus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 6529,
+		"where": ["SE", "RU", "NL"],
+		"pop": {
+			"dep": [40, 58, 253, 271],
+			"spring": [[75.5, 19.9], [76.2, 34.6], [77.3, 49.2]],
+			"wr": 850,
+			"br": 816
+		},
+		"spread": 9,
+		"years": 11,
+		"anchor": [40, 271],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "hen-harrier",
+		"name": "Hen Harrier",
+		"sci": "Circus cyaneus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 6742,
+		"where": ["US", "CA", "FR"],
+		"pop": {
+			"dep": [82, 100, 288, 307],
+			"spring": [[88.6, 26.7], [92.2, 41.6], [98, 56.3]],
+			"wr": 1146,
+			"br": 957
+		},
+		"spread": 87,
+		"years": 10,
+		"anchor": [82, 307],
+		"confidence": "low",
+		"flags": ["timing varies 87 days between years"]
+	},
+	{
+		"id": "montagu-s-harrier",
+		"name": "Montagu's Harrier",
+		"sci": "Circus pygargus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 8536,
+		"where": ["FR", "ES", "NL"],
+		"pop": {
+			"dep": [37, 61, 229, 253],
+			"spring": [[74.4, 20.2], [64.1, 37.2], [48, 52.8]],
+			"wr": 842,
+			"br": 686
+		},
+		"spread": 23,
+		"years": 11,
+		"anchor": [37, 253],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "pied-harrier",
+		"name": "Pied Harrier",
+		"sci": "Circus melanoleucos",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 8995,
+		"where": ["RU", "CN", "MN"],
+		"pop": {
+			"dep": [54, 78, 290, 315],
+			"spring": [[88.3, 23.9], [104.4, 38.8], [127.8, 50.4]],
+			"wr": 1111,
+			"br": 790
+		},
+		"spread": 68,
+		"years": 10,
+		"anchor": [54, 315],
+		"confidence": "low",
+		"flags": ["timing varies 68 days between years"]
+	},
+	{
+		"id": "eastern-marsh-harrier",
+		"name": "Eastern Marsh Harrier",
+		"sci": "Circus spilonotus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 7640,
+		"where": ["MN", "RU", "CN"],
+		"pop": {
+			"dep": [35, 56, 303, 325],
+			"spring": [[88.6, 23.9], [99.7, 38.2], [116, 51]],
+			"wr": 646,
+			"br": 1285
+		},
+		"spread": 51,
+		"years": 8,
+		"anchor": [35, 325],
+		"confidence": "low",
+		"flags": ["timing varies 51 days between years"]
+	},
+	{
+		"id": "pallas-s-fish-eagle",
+		"name": "Pallas's Fish-Eagle",
+		"sci": "Haliaeetus leucoryphus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 3500,
+		"where": ["MN", "CN", "KZ"],
+		"pop": {
+			"dep": [100, 110, 299, 309],
+			"spring": [[82.8, 28.3], [89.2, 33.9], [96.6, 39.2]],
+			"wr": 1142,
+			"br": 1026
+		},
+		"spread": 270,
+		"years": 11,
+		"anchor": [100, 309],
+		"confidence": "low",
+		"flags": ["timing varies 270 days between years"]
+	},
+	{
+		"id": "gray-headed-fish-eagle",
+		"name": "Gray-headed Fish-Eagle",
+		"sci": "Icthyophaga ichthyaetus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 8151,
+		"where": ["SG", "MY", "LK"],
+		"pop": {
+			"dep": [129, 152, 278, 301],
+			"spring": [[81.6, 22.8], [97, 11.8], [111.1, 0]],
+			"wr": 1215,
+			"br": 1260
+		},
+		"spread": 238,
+		"years": 11,
+		"anchor": [129, 301],
+		"confidence": "low",
+		"flags": ["timing varies 238 days between years"]
+	},
+	{
+		"id": "lesser-fish-eagle",
+		"name": "Lesser Fish-Eagle",
+		"sci": "Icthyophaga humilis",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 8561,
+		"where": ["MY", "TH", "ID"],
+		"pop": {
+			"dep": [81, 105, 224, 248],
+			"spring": [[77.6, 15.4], [96.1, 8.9], [113.9, 1.4]],
+			"wr": 1500,
+			"br": 1127
+		},
+		"spread": 95,
+		"years": 10,
+		"anchor": [81, 248],
+		"confidence": "low",
+		"flags": [
+			"timing varies 95 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "upland-buzzard",
+		"name": "Upland Buzzard",
+		"sci": "Buteo hemilasius",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "summer",
+		"km": 2616,
+		"where": ["CN", "KR", "TW"],
+		"pop": {
+			"dep": [160, 168, 247, 254],
+			"spring": [[93.4, 36.8], [86.6, 34.8], [80.1, 32.3]],
+			"wr": 1411,
+			"br": 405
+		},
+		"spread": 59,
+		"years": 10,
+		"anchor": [168, 247],
+		"confidence": "low",
+		"flags": ["timing varies 59 days between years"]
+	},
+	{
+		"id": "himalayan-buzzard",
+		"name": "Himalayan Buzzard",
+		"sci": "Buteo refectus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 3067,
+		"where": ["CN", "BT"],
+		"pop": {
+			"dep": [28, 36, 270, 279],
+			"spring": [[83.7, 29], [91.4, 30.5], [99.4, 31.6]],
+			"wr": 1064,
+			"br": 548
+		},
+		"spread": 106,
+		"years": 10,
+		"anchor": [28, 279],
+		"confidence": "low",
+		"flags": ["timing varies 106 days between years"]
+	},
+	{
+		"id": "australasian-grass-owl",
+		"name": "Australasian Grass-Owl",
+		"sci": "Tyto longimembris",
+		"family": "Barn-Owls",
+		"kind": "winter",
+		"km": 8876,
+		"where": ["AU", "PH", "ID"],
+		"pop": {
+			"dep": [33, 58, 272, 297],
+			"spring": [[94.2, 26.7], [110.3, 13.6], [124.6, -0.4]],
+			"wr": 313,
+			"br": 829
+		},
+		"spread": 0,
+		"years": 3,
+		"anchor": [33, 297],
+		"confidence": "low",
+		"flags": [
+			"dates from 3 years only",
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "common-buzzard",
+		"name": "Common Buzzard",
+		"sci": "Buteo buteo",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 8326,
+		"where": ["NL", "GB", "SE"],
+		"pop": {
+			"dep": [40, 63, 262, 286],
+			"spring": [[74.7, 21.3], [66.3, 38.6], [52.6, 54.9]],
+			"wr": 1307,
+			"br": 1413
+		},
+		"spread": 29,
+		"years": 10,
+		"anchor": [40, 286],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "long-legged-buzzard",
+		"name": "Long-legged Buzzard",
+		"sci": "Buteo rufinus",
+		"family": "Hawks, Eagles, and Kites",
+		"kind": "winter",
+		"km": 4806,
+		"where": ["TR", "KZ", "IL"],
+		"pop": {
+			"dep": [46, 59, 272, 286],
+			"spring": [[77.3, 26.7], [72.4, 36.7], [66.1, 46.4]],
+			"wr": 976,
+			"br": 1437
+		},
+		"spread": 30,
+		"years": 10,
+		"anchor": [46, 286],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "oriental-bay-owl",
+		"name": "Oriental Bay-Owl",
+		"sci": "Phodilus badius",
+		"family": "Barn-Owls",
+		"kind": "winter",
+		"km": 5530,
+		"where": ["MY", "TH", "ID"],
+		"pop": {
+			"dep": [82, 97, 283, 299],
+			"spring": [[94.2, 26.7], [100.7, 15.9], [106.6, 4.8]],
+			"wr": 417,
+			"br": 1189
+		},
+		"spread": 278,
+		"years": 4,
+		"anchor": [82, 299],
+		"confidence": "low",
+		"flags": [
+			"timing varies 278 days between years",
+			"an end of the route is at sea (107E 5N)"
+		]
+	},
+	{
+		"id": "mountain-scops-owl",
+		"name": "Mountain Scops-Owl",
+		"sci": "Otus spilocephalus",
+		"family": "Owls",
+		"kind": "passage",
+		"km": 4055,
+		"where": ["TW", "MY", "CN", "TW", "TH", "CN"],
+		"pop": {
+			"dep": [103, 114, 279, 290],
+			"spring": [[85.7, 29.5], [88.7, 26.9], [103.5, 20.9]],
+			"wr": 300,
+			"br": 1488
+		},
+		"spread": 0,
+		"years": 10,
+		"anchor": [105, 288],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "collared-scops-owl",
+		"name": "Collared Scops-Owl",
+		"sci": "Otus lettia",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 3313,
+		"where": ["TW", "TH", "CN"],
+		"pop": {
+			"dep": [139, 148, 245, 254],
+			"spring": [[90.3, 26.1], [98.5, 25.1], [106.6, 23.7]],
+			"wr": 721,
+			"br": 974
+		},
+		"spread": 84,
+		"years": 10,
+		"anchor": [139, 254],
+		"confidence": "low",
+		"flags": ["timing varies 84 days between years"]
+	},
+	{
+		"id": "oriental-scops-owl",
+		"name": "Oriental Scops-Owl",
+		"sci": "Otus sunia",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 7530,
+		"where": ["CN", "KR", "JP"],
+		"pop": {
+			"dep": [91, 112, 249, 270],
+			"spring": [[81.8, 20.7], [98, 29.1], [116.7, 35.2]],
+			"wr": 1298,
+			"br": 1080
+		},
+		"spread": 129,
+		"years": 11,
+		"anchor": [91, 270],
+		"confidence": "low",
+		"flags": ["timing varies 129 days between years"]
+	},
+	{
+		"id": "pallid-scops-owl",
+		"name": "Pallid Scops-Owl",
+		"sci": "Otus brucei",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 4557,
+		"where": ["TR", "PS", "CN"],
+		"pop": {
+			"dep": [32, 45, 311, 324],
+			"spring": [[71.7, 23.9], [72.2, 34.1], [72.8, 44.4]],
+			"wr": 838,
+			"br": 1500
+		},
+		"spread": 25,
+		"years": 9,
+		"anchor": [32, 324],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "eurasian-eagle-owl",
+		"name": "Eurasian Eagle-Owl",
+		"sci": "Bubo bubo",
+		"family": "Owls",
+		"kind": "summer",
+		"km": 6321,
+		"where": ["FR", "ES", "SE"],
+		"pop": {
+			"dep": [155, 173, 247, 264],
+			"spring": [[113.3, 40.7], [95.2, 37.9], [79.1, 32.5]],
+			"wr": 1500,
+			"br": 511
+		},
+		"spread": 55,
+		"years": 4,
+		"anchor": [173, 247],
+		"confidence": "low",
+		"flags": ["timing varies 55 days between years"]
+	},
+	{
+		"id": "rock-eagle-owl",
+		"name": "Rock Eagle-Owl",
+		"sci": "Bubo bengalensis",
+		"family": "Owls",
+		"kind": "summer",
+		"km": 2314,
+		"where": ["NP", "PK", "DE"],
+		"pop": {
+			"dep": [119, 125, 142, 148],
+			"spring": [[83, 29.5], [79.6, 25.2], [76.5, 20.9]],
+			"wr": 863,
+			"br": 920
+		},
+		"spread": 0,
+		"years": 2,
+		"anchor": [125, 142],
+		"confidence": "low",
+		"flags": [
+			"dates from 2 years only",
+			"model disagrees with India's records in 6 months"
+		]
+	},
+	{
+		"id": "spot-bellied-eagle-owl",
+		"name": "Spot-bellied Eagle-Owl",
+		"sci": "Ketupa nipalensis",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 4723,
+		"where": ["LK", "TH", "BT"],
+		"pop": {
+			"dep": [87, 100, 257, 270],
+			"spring": [[80.2, 18.2], [91.3, 19.5], [102.6, 20]],
+			"wr": 1279,
+			"br": 785
+		},
+		"spread": 97,
+		"years": 10,
+		"anchor": [87, 270],
+		"confidence": "low",
+		"flags": ["timing varies 97 days between years"]
+	},
+	{
+		"id": "tawny-fish-owl",
+		"name": "Tawny Fish-Owl",
+		"sci": "Ketupa flavipes",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 5164,
+		"where": ["CN", "BT", "TW"],
+		"pop": {
+			"dep": [8, 22, 286, 301],
+			"spring": [[80.2, 29.5], [93.4, 31.7], [107.1, 32.4]],
+			"wr": 1146,
+			"br": 300
+		},
+		"spread": 92,
+		"years": 10,
+		"anchor": [8, 301],
+		"confidence": "low",
+		"flags": [
+			"timing varies 92 days between years",
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "dusky-eagle-owl",
+		"name": "Dusky Eagle-Owl",
+		"sci": "Ketupa coromanda",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 6464,
+		"where": ["MY", "TH", "NP"],
+		"pop": {
+			"dep": [74, 92, 292, 310],
+			"spring": [[77.3, 26.7], [89.2, 17.2], [99.8, 7]],
+			"wr": 422,
+			"br": 300
+		},
+		"spread": 73,
+		"years": 10,
+		"anchor": [74, 310],
+		"confidence": "low",
+		"flags": [
+			"timing varies 73 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "little-owl",
+		"name": "Little Owl",
+		"sci": "Athene noctua",
+		"family": "Owls",
+		"kind": "summer",
+		"km": 7915,
+		"where": ["NL", "ES", "IT"],
+		"pop": {
+			"dep": [149, 171, 238, 260],
+			"spring": [[34.8, 39.2], [57.5, 37.9], [78.4, 32.6]],
+			"wr": 778,
+			"br": 1182
+		},
+		"spread": 33,
+		"years": 7,
+		"anchor": [171, 238],
+		"confidence": "low",
+		"flags": ["timing varies 33 days between years"]
+	},
+	{
+		"id": "collared-owlet",
+		"name": "Collared Owlet",
+		"sci": "Taenioptynx brodiei",
+		"family": "Owls",
+		"kind": "passage",
+		"km": 4174,
+		"where": ["MY", "CN", "ID", "TH", "CN", "VN"],
+		"pop": {
+			"dep": [101, 113, 311, 323],
+			"spring": [[83.3, 29.5], [89.4, 27.1], [104.3, 26.7]],
+			"wr": 396,
+			"br": 1040
+		},
+		"spread": 31,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["timing varies 31 days between years"]
+	},
+	{
+		"id": "brown-wood-owl",
+		"name": "Brown Wood-Owl",
+		"sci": "Strix leptogrammica",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 8509,
+		"where": ["MY", "CN", "LK"],
+		"pop": {
+			"dep": [12, 36, 267, 291],
+			"spring": [[78.7, 20.1], [95.9, 10.6], [112, 0.1]],
+			"wr": 1154,
+			"br": 1361
+		},
+		"spread": 132,
+		"years": 10,
+		"anchor": [12, 291],
+		"confidence": "low",
+		"flags": [
+			"timing varies 132 days between years",
+			"model disagrees with India's records in 6 months"
+		]
+	},
+	{
+		"id": "himalayan-owl",
+		"name": "Himalayan Owl",
+		"sci": "Strix nivicolum",
+		"family": "Owls",
+		"kind": "passage",
+		"km": 4318,
+		"where": ["CN", "TW", "BT", "CN", "TW", "NP"],
+		"pop": {
+			"dep": [132, 144, 310, 322],
+			"spring": [[83.8, 29.5], [88.8, 27.1], [106, 28.4]],
+			"wr": 300,
+			"br": 658
+		},
+		"spread": 30,
+		"years": 9,
+		"anchor": [135, 319],
+		"confidence": "low",
+		"flags": [
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "tawny-owl",
+		"name": "Tawny Owl",
+		"sci": "Strix aluco",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 7403,
+		"where": ["SE", "FR", "GB"],
+		"pop": {
+			"dep": [129, 150, 166, 187],
+			"spring": [[74.5, 35.2], [58.1, 46.3], [35, 54.1]],
+			"wr": 300,
+			"br": 1438
+		},
+		"spread": 179,
+		"years": 4,
+		"anchor": [129, 187],
+		"confidence": "low",
+		"flags": [
+			"timing varies 179 days between years",
+			"few records at an end of the route",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "short-eared-owl",
+		"name": "Short-eared Owl",
+		"sci": "Asio flammeus",
+		"family": "Owls",
+		"kind": "winter",
+		"km": 8141,
+		"where": ["US", "SE", "NO"],
+		"pop": {
+			"dep": [38, 60, 284, 307],
+			"spring": [[75.9, 23.8], [72.4, 41.8], [65.9, 59.7]],
+			"wr": 963,
+			"br": 1485
+		},
+		"spread": 35,
+		"years": 10,
+		"anchor": [38, 307],
+		"confidence": "low",
+		"flags": ["timing varies 35 days between years"]
+	},
+	{
+		"id": "wreathed-hornbill",
+		"name": "Wreathed Hornbill",
+		"sci": "Rhyticeros undulatus",
+		"family": "Hornbills",
+		"kind": "winter",
+		"km": 5935,
+		"where": ["MY", "TH", "ID"],
+		"pop": {
+			"dep": [39, 55, 297, 314],
+			"spring": [[94.2, 26.7], [99.7, 14.4], [104.7, 2]],
+			"wr": 313,
+			"br": 1095
+		},
+		"spread": 81,
+		"years": 10,
+		"anchor": [39, 314],
+		"confidence": "low",
+		"flags": ["timing varies 81 days between years"]
+	},
+	{
+		"id": "european-bee-eater",
+		"name": "European Bee-eater",
+		"sci": "Merops apiaster",
+		"family": "Bee-eaters",
+		"kind": "winter",
+		"km": 10152,
+		"where": ["ES", "FR", "PT"],
+		"pop": {
+			"dep": [62, 90, 234, 262],
+			"spring": [[77.3, 12.7], [62.3, 30.8], [40.8, 46.4]],
+			"wr": 1500,
+			"br": 1094
+		},
+		"spread": 157,
+		"years": 10,
+		"anchor": [62, 262],
+		"confidence": "low",
+		"flags": ["timing varies 157 days between years"]
+	},
+	{
+		"id": "blue-tailed-bee-eater",
+		"name": "Blue-tailed Bee-eater",
+		"sci": "Merops philippinus",
+		"family": "Bee-eaters",
+		"kind": "winter",
+		"km": 5282,
+		"where": ["TW", "TH", "PH"],
+		"pop": {
+			"dep": [81, 96, 223, 238],
+			"spring": [[78.3, 15.5], [90.6, 14.4], [102.7, 12.7]],
+			"wr": 1252,
+			"br": 868
+		},
+		"spread": 32,
+		"years": 11,
+		"anchor": [81, 238],
+		"confidence": "low",
+		"flags": ["timing varies 32 days between years"]
+	},
+	{
+		"id": "black-backed-dwarf-kingfisher",
+		"name": "Black-backed Dwarf-Kingfisher",
+		"sci": "Ceyx erithaca",
+		"family": "Kingfishers",
+		"kind": "summer",
+		"km": 8838,
+		"where": ["MY", "LK", "ID"],
+		"pop": {
+			"dep": [104, 129, 219, 243],
+			"spring": [[112.2, -0.8], [94.5, 8.2], [75.9, 16.4]],
+			"wr": 743,
+			"br": 1500
+		},
+		"spread": 39,
+		"years": 10,
+		"anchor": [129, 219],
+		"confidence": "low",
+		"flags": ["timing varies 39 days between years"]
+	},
+	{
+		"id": "crested-kingfisher",
+		"name": "Crested Kingfisher",
+		"sci": "Megaceryle lugubris",
+		"family": "Kingfishers",
+		"kind": "winter",
+		"km": 5386,
+		"where": ["CN", "JP", "BT"],
+		"pop": {
+			"dep": [70, 85, 264, 279],
+			"spring": [[80.2, 29.5], [94, 31.7], [108.3, 32.3]],
+			"wr": 1146,
+			"br": 528
+		},
+		"spread": 133,
+		"years": 11,
+		"anchor": [70, 279],
+		"confidence": "low",
+		"flags": ["timing varies 133 days between years"]
+	},
+	{
+		"id": "black-capped-kingfisher",
+		"name": "Black-capped Kingfisher",
+		"sci": "Halcyon pileata",
+		"family": "Kingfishers",
+		"kind": "winter",
+		"km": 7093,
+		"where": ["CN", "KR", "MY"],
+		"pop": {
+			"dep": [45, 65, 265, 285],
+			"spring": [[80.2, 17.2], [94.7, 25.7], [111.2, 32.6]],
+			"wr": 1096,
+			"br": 715
+		},
+		"spread": 54,
+		"years": 10,
+		"anchor": [45, 285],
+		"confidence": "low",
+		"flags": ["timing varies 54 days between years"]
+	},
+	{
+		"id": "indochinese-roller",
+		"name": "Indochinese Roller",
+		"sci": "Coracias affinis",
+		"family": "Rollers",
+		"kind": "winter",
+		"km": 2866,
+		"where": ["TH", "KH", "MM"],
+		"pop": {
+			"dep": [100, 108, 281, 289],
+			"spring": [[91.7, 26.5], [96.1, 21.5], [100.3, 16.4]],
+			"wr": 423,
+			"br": 827
+		},
+		"spread": 120,
+		"years": 11,
+		"anchor": [100, 289],
+		"confidence": "low",
+		"flags": ["timing varies 120 days between years"]
+	},
+	{
+		"id": "great-barbet",
+		"name": "Great Barbet",
+		"sci": "Psilopogon virens",
+		"family": "Asian Barbets",
+		"kind": "passage",
+		"km": 2927,
+		"where": ["NP", "CN", "TH", "TH", "CN", "NP"],
+		"pop": {
+			"dep": [103, 111, 313, 321],
+			"spring": [[83, 29.5], [86.9, 28], [97.6, 27]],
+			"wr": 300,
+			"br": 1335
+		},
+		"spread": 30,
+		"years": 11,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["model disagrees with India's records in 4 months"]
+	},
+	{
+		"id": "collared-kingfisher",
+		"name": "Collared Kingfisher",
+		"sci": "Todiramphus chloris",
+		"family": "Kingfishers",
+		"kind": "winter",
+		"km": 5273,
+		"where": ["SG", "ID", "PH"],
+		"pop": {
+			"dep": [34, 48, 199, 214],
+			"spring": [[91.4, 12.7], [101.2, 5.8], [110.8, -1.2]],
+			"wr": 985,
+			"br": 1365
+		},
+		"spread": 97,
+		"years": 10,
+		"anchor": [34, 214],
+		"confidence": "low",
+		"flags": [
+			"timing varies 97 days between years",
+			"an end of the route is at sea (91E 13N)"
+		]
+	},
+	{
+		"id": "blue-throated-barbet",
+		"name": "Blue-throated Barbet",
+		"sci": "Psilopogon asiaticus",
+		"family": "Asian Barbets",
+		"kind": "summer",
+		"km": 1559,
+		"where": ["TH", "NP", "CN"],
+		"pop": {
+			"dep": [38, 42, 179, 183],
+			"spring": [[96.6, 24.1], [92.9, 25.2], [89.2, 26.2]],
+			"wr": 905,
+			"br": 856
+		},
+		"spread": 28,
+		"years": 11,
+		"anchor": [42, 179],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "golden-throated-barbet",
+		"name": "Golden-throated Barbet",
+		"sci": "Psilopogon franklinii",
+		"family": "Asian Barbets",
+		"kind": "passage",
+		"km": 2238,
+		"where": ["NP", "TH", "MY", "TH", "CN", "BT"],
+		"pop": {
+			"dep": [101, 108, 331, 338],
+			"spring": [[85.8, 29.5], [91.4, 26.7], [97, 27.5]],
+			"wr": 300,
+			"br": 1113
+		},
+		"spread": 30,
+		"years": 10,
+		"anchor": [105, 334],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "eurasian-wryneck",
+		"name": "Eurasian Wryneck",
+		"sci": "Jynx torquilla",
+		"family": "Woodpeckers",
+		"kind": "winter",
+		"km": 7451,
+		"where": ["SE", "ES", "NO"],
+		"pop": {
+			"dep": [31, 52, 224, 245],
+			"spring": [[77.4, 23.8], [80.8, 40.3], [86.3, 56.7]],
+			"wr": 1133,
+			"br": 1500
+		},
+		"spread": 74,
+		"years": 11,
+		"anchor": [31, 245],
+		"confidence": "low",
+		"flags": ["timing varies 74 days between years"]
+	},
+	{
+		"id": "freckle-breasted-woodpecker",
+		"name": "Freckle-breasted Woodpecker",
+		"sci": "Dendrocopos analis",
+		"family": "Woodpeckers",
+		"kind": "winter",
+		"km": 6173,
+		"where": ["ID", "TH", "KH"],
+		"pop": {
+			"dep": [43, 60, 270, 287],
+			"spring": [[91.4, 12.7], [101.3, 2.9], [111.1, -7]],
+			"wr": 305,
+			"br": 310
+		},
+		"spread": 73,
+		"years": 9,
+		"anchor": [43, 287],
+		"confidence": "low",
+		"flags": [
+			"timing varies 73 days between years",
+			"few records at an end of the route",
+			"an end of the route is at sea (91E 13N)"
+		]
+	},
+	{
+		"id": "brown-fronted-woodpecker",
+		"name": "Brown-fronted Woodpecker",
+		"sci": "Dendrocoptes auriceps",
+		"family": "Woodpeckers",
+		"kind": "winter",
+		"km": 1214,
+		"where": ["PK", "NP"],
+		"pop": {
+			"dep": [63, 66, 260, 263],
+			"spring": [[78.1, 30.6], [76.3, 32.9], [74.5, 35.2]],
+			"wr": 300,
+			"br": 300
+		},
+		"spread": 211,
+		"years": 11,
+		"anchor": [63, 263],
+		"confidence": "low",
+		"flags": [
+			"timing varies 211 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "bay-woodpecker",
+		"name": "Bay Woodpecker",
+		"sci": "Blythipicus pyrrhotis",
+		"family": "Woodpeckers",
+		"kind": "passage",
+		"km": 3435,
+		"where": ["CN", "TH", "MY", "TH", "CN", "VN"],
+		"pop": {
+			"dep": [101, 111, 343, 353],
+			"spring": [[85.8, 29.5], [92, 26.7], [102.7, 25.7]],
+			"wr": 300,
+			"br": 936
+		},
+		"spread": 30,
+		"years": 10,
+		"anchor": [105, 349],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "crimson-naped-woodpecker",
+		"name": "Crimson-naped Woodpecker",
+		"sci": "Dryobates cathpharius",
+		"family": "Woodpeckers",
+		"kind": "passage",
+		"km": 3896,
+		"where": ["CN", "BT", "NP", "CN", "TH", "MM"],
+		"pop": {
+			"dep": [101, 113, 311, 323],
+			"spring": [[85.1, 29.5], [91.4, 26.7], [105.4, 31.2]],
+			"wr": 300,
+			"br": 823
+		},
+		"spread": 61,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": [
+			"timing varies 61 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "common-flameback",
+		"name": "Common Flameback",
+		"sci": "Dinopium javanense",
+		"family": "Woodpeckers",
+		"kind": "winter",
+		"km": 5751,
+		"where": ["SG", "TH", "MY"],
+		"pop": {
+			"dep": [86, 102, 170, 186],
+			"spring": [[76.7, 12], [89.6, 9.7], [102.4, 6.9]],
+			"wr": 300,
+			"br": 1009
+		},
+		"spread": 122,
+		"years": 10,
+		"anchor": [86, 186],
+		"confidence": "low",
+		"flags": [
+			"timing varies 122 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "scaly-bellied-woodpecker",
+		"name": "Scaly-bellied Woodpecker",
+		"sci": "Picus squamatus",
+		"family": "Woodpeckers",
+		"kind": "summer",
+		"km": 813,
+		"where": ["PK", "NP", "CN"],
+		"pop": {
+			"dep": [58, 61, 190, 192],
+			"spring": [[74.5, 35.2], [76, 33.8], [77.3, 32.3]],
+			"wr": 300,
+			"br": 412
+		},
+		"spread": 49,
+		"years": 10,
+		"anchor": [61, 190],
+		"confidence": "low",
+		"flags": [
+			"timing varies 49 days between years",
+			"route under 500 km",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "great-slaty-woodpecker",
+		"name": "Great Slaty Woodpecker",
+		"sci": "Mulleripicus pulverulentus",
+		"family": "Woodpeckers",
+		"kind": "winter",
+		"km": 9488,
+		"where": ["MY", "TH", "KH"],
+		"pop": {
+			"dep": [97, 123, 250, 276],
+			"spring": [[80.2, 29.5], [98.2, 16.1], [113.9, 1.4]],
+			"wr": 1279,
+			"br": 1500
+		},
+		"spread": 269,
+		"years": 10,
+		"anchor": [97, 276],
+		"confidence": "low",
+		"flags": ["timing varies 269 days between years"]
+	},
+	{
+		"id": "greater-yellownape",
+		"name": "Greater Yellownape",
+		"sci": "Chrysophlegma flavinucha",
+		"family": "Woodpeckers",
+		"kind": "winter",
+		"km": 3838,
+		"where": ["MY", "TH", "NP"],
+		"pop": {
+			"dep": [104, 115, 233, 244],
+			"spring": [[88.6, 26.7], [95.9, 21.2], [102.7, 15.5]],
+			"wr": 884,
+			"br": 1500
+		},
+		"spread": 218,
+		"years": 11,
+		"anchor": [104, 244],
+		"confidence": "low",
+		"flags": ["timing varies 218 days between years"]
+	},
+	{
+		"id": "white-bellied-woodpecker",
+		"name": "White-bellied Woodpecker",
+		"sci": "Dryocopus javensis",
+		"family": "Woodpeckers",
+		"kind": "winter",
+		"km": 8593,
+		"where": ["MY", "PH", "ID"],
+		"pop": {
+			"dep": [41, 65, 259, 283],
+			"spring": [[76.2, 12.9], [94.7, 6.6], [112.8, -0.4]],
+			"wr": 362,
+			"br": 922
+		},
+		"spread": 80,
+		"years": 10,
+		"anchor": [41, 283],
+		"confidence": "low",
+		"flags": [
+			"timing varies 80 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "eurasian-kestrel",
+		"name": "Eurasian Kestrel",
+		"sci": "Falco tinnunculus",
+		"family": "Falcons and Caracaras",
+		"kind": "winter",
+		"km": 7533,
+		"where": ["SE", "NL", "FR"],
+		"pop": {
+			"dep": [68, 89, 252, 273],
+			"spring": [[78, 22.5], [83.5, 38.8], [92.4, 54.6]],
+			"wr": 1143,
+			"br": 1200
+		},
+		"spread": 30,
+		"years": 11,
+		"anchor": [68, 273],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "lesser-kestrel",
+		"name": "Lesser Kestrel",
+		"sci": "Falco naumanni",
+		"family": "Falcons and Caracaras",
+		"kind": "winter",
+		"km": 6622,
+		"where": ["ES", "FR", "PT"],
+		"pop": {
+			"dep": [51, 69, 255, 273],
+			"spring": [[76.5, 19.5], [76.8, 34.3], [77.3, 49.2]],
+			"wr": 1089,
+			"br": 1020
+		},
+		"spread": 279,
+		"years": 9,
+		"anchor": [51, 273],
+		"confidence": "low",
+		"flags": ["timing varies 279 days between years"]
+	},
+	{
+		"id": "collared-falconet",
+		"name": "Collared Falconet",
+		"sci": "Microhierax caerulescens",
+		"family": "Falcons and Caracaras",
+		"kind": "winter",
+		"km": 1850,
+		"where": ["KH", "NP", "VN"],
+		"pop": {
+			"dep": [57, 62, 280, 285],
+			"spring": [[88.6, 26.7], [92.8, 24.9], [96.8, 23]],
+			"wr": 884,
+			"br": 1237
+		},
+		"spread": 112,
+		"years": 10,
+		"anchor": [57, 285],
+		"confidence": "low",
+		"flags": [
+			"timing varies 112 days between years",
+			"model disagrees with India's records in 6 months"
+		]
+	},
+	{
+		"id": "pied-falconet",
+		"name": "Pied Falconet",
+		"sci": "Microhierax melanoleucos",
+		"family": "Falcons and Caracaras",
+		"kind": "winter",
+		"km": 2616,
+		"where": ["CN", "VN"],
+		"pop": {
+			"dep": [29, 36, 291, 298],
+			"spring": [[94.2, 26.7], [100, 24], [105.5, 21.1]],
+			"wr": 300,
+			"br": 1461
+		},
+		"spread": 141,
+		"years": 10,
+		"anchor": [29, 298],
+		"confidence": "low",
+		"flags": [
+			"timing varies 141 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "merlin",
+		"name": "Merlin",
+		"sci": "Falco columbarius",
+		"family": "Falcons and Caracaras",
+		"kind": "winter",
+		"km": 19113,
+		"where": ["CA", "US", "NO"],
+		"pop": {
+			"dep": [30, 83, 265, 318],
+			"spring": [[72.4, 26.6], [93.5, 67.6], [-135.8, 64.9]],
+			"wr": 797,
+			"br": 1339
+		},
+		"spread": 24,
+		"years": 8,
+		"anchor": [30, 318],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "amur-falcon",
+		"name": "Amur Falcon",
+		"sci": "Falco amurensis",
+		"family": "Falcons and Caracaras",
+		"kind": "passage",
+		"km": 23130,
+		"where": ["CN", "MN", "RU", "ZA", "ZW", "ZM"],
+		"pop": {
+			"dep": [79, 143, 296, 360],
+			"spring": [[27.7, -23.2], [79.6, 20.7], [115.1, 43.7]],
+			"wr": 733,
+			"br": 938
+		},
+		"spread": 120,
+		"years": 10,
+		"anchor": [120, 319],
+		"confidence": "low",
+		"flags": ["timing varies 120 days between years"]
+	},
+	{
+		"id": "eurasian-hobby",
+		"name": "Eurasian Hobby",
+		"sci": "Falco subbuteo",
+		"family": "Falcons and Caracaras",
+		"kind": "passage",
+		"km": 18672,
+		"where": ["SE", "NL", "GB", "ZA", "ZW", "ZM"],
+		"pop": {
+			"dep": [132, 188, 266, 322],
+			"spring": [[34, -7.7], [77.3, 26.7], [97, 60.5]],
+			"wr": 1188,
+			"br": 1164
+		},
+		"spread": 31,
+		"years": 10,
+		"anchor": [166, 288],
+		"confidence": "low",
+		"flags": [
+			"timing varies 31 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "peregrine-falcon",
+		"name": "Peregrine Falcon",
+		"sci": "Falco peregrinus",
+		"family": "Falcons and Caracaras",
+		"kind": "winter",
+		"km": 19923,
+		"where": ["US", "NL", "CA"],
+		"pop": {
+			"dep": [88, 143, 210, 265],
+			"spring": [[78.4, 21.2], [84.3, 65.9], [-111.1, 68.9]],
+			"wr": 1087,
+			"br": 1500
+		},
+		"spread": 28,
+		"years": 11,
+		"anchor": [88, 265],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "red-breasted-parakeet",
+		"name": "Red-breasted Parakeet",
+		"sci": "Psittacula alexandri",
+		"family": "Old World Parrots",
+		"kind": "winter",
+		"km": 3307,
+		"where": ["SG", "ID", "TH"],
+		"pop": {
+			"dep": [40, 49, 267, 276],
+			"spring": [[90, 24.6], [96.4, 20.1], [102.5, 15.4]],
+			"wr": 1332,
+			"br": 1079
+		},
+		"spread": 305,
+		"years": 11,
+		"anchor": [40, 276],
+		"confidence": "low",
+		"flags": [
+			"timing varies 305 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "long-tailed-parakeet",
+		"name": "Long-tailed Parakeet",
+		"sci": "Psittacula longicauda",
+		"family": "Old World Parrots",
+		"kind": "winter",
+		"km": 5354,
+		"where": ["MY", "SG", "ID"],
+		"pop": {
+			"dep": [15, 29, 232, 247],
+			"spring": [[91.4, 12.7], [101.4, 5.7], [111.1, -1.4]],
+			"wr": 305,
+			"br": 442
+		},
+		"spread": 71,
+		"years": 10,
+		"anchor": [15, 247],
+		"confidence": "low",
+		"flags": [
+			"timing varies 71 days between years",
+			"model disagrees with India's records in 5 months",
+			"an end of the route is at sea (91E 13N)"
+		]
+	},
+	{
+		"id": "long-tailed-broadbill",
+		"name": "Long-tailed Broadbill",
+		"sci": "Psarisomus dalhousiae",
+		"family": "Asian and Grauer's Broadbills",
+		"kind": "passage",
+		"km": 4427,
+		"where": ["MY", "TH", "NP", "TH", "MY", "CN"],
+		"pop": {
+			"dep": [100, 112, 312, 324],
+			"spring": [[83, 29.5], [91.4, 26.7], [103.2, 21.5]],
+			"wr": 417,
+			"br": 1269
+		},
+		"spread": 0,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "western-hooded-pitta",
+		"name": "Western Hooded Pitta",
+		"sci": "Pitta sordida",
+		"family": "Pittas",
+		"kind": "summer",
+		"km": 7401,
+		"where": ["SG", "MY", "PH"],
+		"pop": {
+			"dep": [99, 120, 192, 212],
+			"spring": [[113.9, 1.4], [103.3, 14.3], [91.4, 26.7]],
+			"wr": 1127,
+			"br": 634
+		},
+		"spread": 15,
+		"years": 8,
+		"anchor": [120, 192],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "scarlet-minivet",
+		"name": "Scarlet Minivet",
+		"sci": "Pericrocotus speciosus",
+		"family": "Cuckooshrikes",
+		"kind": "winter",
+		"km": 3788,
+		"where": ["MY", "TH", "HK"],
+		"pop": {
+			"dep": [92, 103, 285, 296],
+			"spring": [[87.8, 25.5], [97, 23.9], [106, 21.8]],
+			"wr": 948,
+			"br": 1046
+		},
+		"spread": 162,
+		"years": 11,
+		"anchor": [92, 296],
+		"confidence": "low",
+		"flags": ["timing varies 162 days between years"]
+	},
+	{
+		"id": "long-tailed-minivet",
+		"name": "Long-tailed Minivet",
+		"sci": "Pericrocotus ethologus",
+		"family": "Cuckooshrikes",
+		"kind": "passage",
+		"km": 4834,
+		"where": ["CN", "NP", "PK", "TH", "NP", "VN"],
+		"pop": {
+			"dep": [130, 145, 309, 324],
+			"spring": [[73.2, 34.8], [80.2, 29.5], [98.5, 30.3]],
+			"wr": 300,
+			"br": 1442
+		},
+		"spread": 31,
+		"years": 11,
+		"anchor": [135, 319],
+		"confidence": "low",
+		"flags": ["timing varies 31 days between years"]
+	},
+	{
+		"id": "black-winged-cuckooshrike",
+		"name": "Black-winged Cuckooshrike",
+		"sci": "Lalage melaschistos",
+		"family": "Cuckooshrikes",
+		"kind": "passage",
+		"km": 3463,
+		"where": ["NP", "CN", "BT", "TH", "HK", "CN"],
+		"pop": {
+			"dep": [103, 113, 341, 351],
+			"spring": [[85.1, 28.5], [88.4, 26.2], [101.6, 23.6]],
+			"wr": 300,
+			"br": 1286
+		},
+		"spread": 0,
+		"years": 10,
+		"anchor": [105, 349],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "short-billed-minivet",
+		"name": "Short-billed Minivet",
+		"sci": "Pericrocotus brevirostris",
+		"family": "Cuckooshrikes",
+		"kind": "passage",
+		"km": 2889,
+		"where": ["CN", "TH", "BT", "TH", "CN", "MM"],
+		"pop": {
+			"dep": [101, 110, 314, 323],
+			"spring": [[85.8, 29.5], [91.4, 26.7], [99.8, 25.8]],
+			"wr": 300,
+			"br": 693
+		},
+		"spread": 61,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": [
+			"timing varies 61 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "white-browed-shrike-babbler",
+		"name": "White-browed Shrike-Babbler",
+		"sci": "Pteruthius aeralatus",
+		"family": "Vireos, Shrike-Babblers, and Erpornis",
+		"kind": "passage",
+		"km": 3205,
+		"where": ["MY", "TH", "ID", "TH", "CN", "MY"],
+		"pop": {
+			"dep": [103, 112, 281, 290],
+			"spring": [[85.8, 29.5], [88.6, 26.8], [101.3, 25.2]],
+			"wr": 300,
+			"br": 1306
+		},
+		"spread": 61,
+		"years": 10,
+		"anchor": [105, 288],
+		"confidence": "low",
+		"flags": [
+			"timing varies 61 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "white-bellied-erpornis",
+		"name": "White-bellied Erpornis",
+		"sci": "Erpornis zantholeuca",
+		"family": "Vireos, Shrike-Babblers, and Erpornis",
+		"kind": "winter",
+		"km": 3206,
+		"where": ["TW", "MY", "TH"],
+		"pop": {
+			"dep": [139, 148, 290, 299],
+			"spring": [[91.4, 26.7], [99.1, 24.7], [106.5, 22.4]],
+			"wr": 559,
+			"br": 1098
+		},
+		"spread": 199,
+		"years": 10,
+		"anchor": [139, 299],
+		"confidence": "low",
+		"flags": ["timing varies 199 days between years"]
+	},
+	{
+		"id": "ashy-minivet",
+		"name": "Ashy Minivet",
+		"sci": "Pericrocotus divaricatus",
+		"family": "Cuckooshrikes",
+		"kind": "winter",
+		"km": 10982,
+		"where": ["JP", "RU", "CN"],
+		"pop": {
+			"dep": [8, 38, 285, 316],
+			"spring": [[90.6, 13.7], [107.4, 33.1], [132.8, 49]],
+			"wr": 1449,
+			"br": 637
+		},
+		"spread": 89,
+		"years": 8,
+		"anchor": [8, 316],
+		"confidence": "low",
+		"flags": [
+			"timing varies 89 days between years",
+			"an end of the route is at sea (91E 14N)"
+		]
+	},
+	{
+		"id": "black-naped-oriole",
+		"name": "Black-naped Oriole",
+		"sci": "Oriolus chinensis",
+		"family": "Old World Orioles",
+		"kind": "winter",
+		"km": 7349,
+		"where": ["KR", "SG", "MY"],
+		"pop": {
+			"dep": [97, 117, 268, 288],
+			"spring": [[83, 16.9], [97.2, 26.9], [113.9, 35.2]],
+			"wr": 1201,
+			"br": 1277
+		},
+		"spread": 12,
+		"years": 11,
+		"anchor": [97, 288],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "ashy-drongo",
+		"name": "Ashy Drongo",
+		"sci": "Dicrurus leucophaeus",
+		"family": "Drongos",
+		"kind": "winter",
+		"km": 4507,
+		"where": ["MY", "NP", "ID"],
+		"pop": {
+			"dep": [132, 145, 262, 275],
+			"spring": [[78.3, 19.5], [89, 20.6], [99.8, 21.1]],
+			"wr": 1128,
+			"br": 1298
+		},
+		"spread": 28,
+		"years": 11,
+		"anchor": [132, 275],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "lesser-racket-tailed-drongo",
+		"name": "Lesser Racket-tailed Drongo",
+		"sci": "Dicrurus remifer",
+		"family": "Drongos",
+		"kind": "winter",
+		"km": 2213,
+		"where": ["MY", "ID", "TH"],
+		"pop": {
+			"dep": [103, 109, 297, 303],
+			"spring": [[91.4, 26.7], [95.5, 23.4], [99.3, 19.9]],
+			"wr": 634,
+			"br": 1070
+		},
+		"spread": 116,
+		"years": 10,
+		"anchor": [103, 303],
+		"confidence": "low",
+		"flags": ["timing varies 116 days between years"]
+	},
+	{
+		"id": "red-tailed-shrike",
+		"name": "Red-tailed Shrike",
+		"sci": "Lanius phoenicuroides",
+		"family": "Shrikes",
+		"kind": "passage",
+		"km": 9702,
+		"where": ["CN", "KZ", "KG", "KE", "OM", "ET"],
+		"pop": {
+			"dep": [1, 27, 246, 276],
+			"spring": [[42.3, 12.4], [70.7, 24.7], [77.5, 43.8]],
+			"wr": 1500,
+			"br": 893
+		},
+		"spread": 30,
+		"years": 6,
+		"anchor": [15, 258],
+		"confidence": "low",
+		"flags": ["model disagrees with India's records in 4 months"]
+	},
+	{
+		"id": "isabelline-shrike",
+		"name": "Isabelline Shrike",
+		"sci": "Lanius isabellinus",
+		"family": "Shrikes",
+		"kind": "winter",
+		"km": 5217,
+		"where": ["MN", "CN", "RU"],
+		"pop": {
+			"dep": [43, 57, 236, 250],
+			"spring": [[73.7, 24.1], [82, 33.3], [92.2, 41.8]],
+			"wr": 707,
+			"br": 776
+		},
+		"spread": 31,
+		"years": 10,
+		"anchor": [43, 250],
+		"confidence": "low",
+		"flags": ["timing varies 31 days between years"]
+	},
+	{
+		"id": "brown-shrike",
+		"name": "Brown Shrike",
+		"sci": "Lanius cristatus",
+		"family": "Shrikes",
+		"kind": "winter",
+		"km": 9115,
+		"where": ["CN", "RU", "MN"],
+		"pop": {
+			"dep": [61, 86, 243, 268],
+			"spring": [[81.4, 17.8], [94.8, 34.5], [114.4, 49]],
+			"wr": 1216,
+			"br": 1500
+		},
+		"spread": 65,
+		"years": 11,
+		"anchor": [61, 268],
+		"confidence": "low",
+		"flags": ["timing varies 65 days between years"]
+	},
+	{
+		"id": "bay-backed-shrike",
+		"name": "Bay-backed Shrike",
+		"sci": "Lanius vittatus",
+		"family": "Shrikes",
+		"kind": "winter",
+		"km": 2878,
+		"where": ["PK", "AE", "IR"],
+		"pop": {
+			"dep": [39, 47, 226, 234],
+			"spring": [[76.7, 20.8], [71.6, 25.3], [66.1, 29.5]],
+			"wr": 915,
+			"br": 313
+		},
+		"spread": 43,
+		"years": 11,
+		"anchor": [39, 234],
+		"confidence": "low",
+		"flags": ["timing varies 43 days between years"]
+	},
+	{
+		"id": "gray-backed-shrike",
+		"name": "Gray-backed Shrike",
+		"sci": "Lanius tephronotus",
+		"family": "Shrikes",
+		"kind": "winter",
+		"km": 1632,
+		"where": ["CN", "BT", "NP"],
+		"pop": {
+			"dep": [105, 110, 264, 269],
+			"spring": [[91.4, 26.7], [94.4, 29.2], [97.6, 31.7]],
+			"wr": 634,
+			"br": 825
+		},
+		"spread": 196,
+		"years": 11,
+		"anchor": [105, 269],
+		"confidence": "low",
+		"flags": ["timing varies 196 days between years"]
+	},
+	{
+		"id": "great-gray-shrike",
+		"name": "Great Gray Shrike",
+		"sci": "Lanius excubitor",
+		"family": "Shrikes",
+		"kind": "winter",
+		"km": 8371,
+		"where": ["SE", "IL", "PL"],
+		"pop": {
+			"dep": [19, 42, 188, 211],
+			"spring": [[74.6, 24.2], [65.5, 41.4], [50.1, 57.5]],
+			"wr": 668,
+			"br": 1500
+		},
+		"spread": 46,
+		"years": 11,
+		"anchor": [19, 211],
+		"confidence": "low",
+		"flags": ["timing varies 46 days between years"]
+	},
+	{
+		"id": "yellow-billed-blue-magpie",
+		"name": "Yellow-billed Blue-Magpie",
+		"sci": "Urocissa flavirostris",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "passage",
+		"km": 1914,
+		"where": ["BT", "PK", "NP", "BT", "NP", "CN"],
+		"pop": {
+			"dep": [131, 137, 286, 292],
+			"spring": [[85.8, 29.5], [79, 31.3], [77, 33.9]],
+			"wr": 816,
+			"br": 957
+		},
+		"spread": 31,
+		"years": 11,
+		"anchor": [135, 288],
+		"confidence": "low",
+		"flags": ["timing varies 31 days between years"]
+	},
+	{
+		"id": "red-billed-blue-magpie",
+		"name": "Red-billed Blue-Magpie",
+		"sci": "Urocissa erythroryncha",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "winter",
+		"km": 5752,
+		"where": ["HK", "NP", "CN"],
+		"pop": {
+			"dep": [102, 118, 259, 275],
+			"spring": [[80.2, 29.5], [95.1, 30.8], [110.1, 30.3]],
+			"wr": 412,
+			"br": 691
+		},
+		"spread": 208,
+		"years": 11,
+		"anchor": [102, 275],
+		"confidence": "low",
+		"flags": ["timing varies 208 days between years"]
+	},
+	{
+		"id": "eurasian-jay",
+		"name": "Eurasian Jay",
+		"sci": "Garrulus glandarius",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "passage",
+		"km": 14840,
+		"where": ["FR", "NL", "GB", "DE", "NL", "FR"],
+		"pop": {
+			"dep": [79, 138, 286, 345],
+			"spring": [[129.7, 50.4], [80.2, 29.5], [12, 49.6]],
+			"wr": 733,
+			"br": 1500
+		},
+		"spread": 61,
+		"years": 11,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": [
+			"timing varies 61 days between years",
+			"route 1.47x the great circle"
+		]
+	},
+	{
+		"id": "common-green-magpie",
+		"name": "Common Green-Magpie",
+		"sci": "Cissa chinensis",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "winter",
+		"km": 1102,
+		"where": ["TH", "NP", "MY"],
+		"pop": {
+			"dep": [59, 62, 274, 278],
+			"spring": [[90.2, 26.8], [92.7, 25.8], [95.2, 24.7]],
+			"wr": 740,
+			"br": 1321
+		},
+		"spread": 122,
+		"years": 10,
+		"anchor": [59, 278],
+		"confidence": "low",
+		"flags": [
+			"timing varies 122 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "eurasian-magpie",
+		"name": "Eurasian Magpie",
+		"sci": "Pica pica",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "summer",
+		"km": 5768,
+		"where": ["GB", "FR", "NO"],
+		"pop": {
+			"dep": [140, 156, 243, 259],
+			"spring": [[59.8, 58.4], [70.5, 47.1], [77.3, 35.2]],
+			"wr": 1500,
+			"br": 313
+		},
+		"spread": 45,
+		"years": 10,
+		"anchor": [156, 243],
+		"confidence": "low",
+		"flags": ["timing varies 45 days between years"]
+	},
+	{
+		"id": "yellow-billed-chough",
+		"name": "Yellow-billed Chough",
+		"sci": "Pyrrhocorax graculus",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "summer",
+		"km": 6490,
+		"where": ["IT", "FR", "CH"],
+		"pop": {
+			"dep": [125, 143, 218, 236],
+			"spring": [[42.8, 43.6], [61.5, 39.3], [77.3, 32.3]],
+			"wr": 300,
+			"br": 407
+		},
+		"spread": 34,
+		"years": 10,
+		"anchor": [143, 218],
+		"confidence": "low",
+		"flags": [
+			"timing varies 34 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "eurasian-jackdaw",
+		"name": "Eurasian Jackdaw",
+		"sci": "Coloeus monedula",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "summer",
+		"km": 6012,
+		"where": ["GB", "NL", "SE"],
+		"pop": {
+			"dep": [95, 112, 160, 176],
+			"spring": [[51.6, 57.4], [65.4, 46.8], [74.5, 35.2]],
+			"wr": 1445,
+			"br": 300
+		},
+		"spread": 61,
+		"years": 10,
+		"anchor": [112, 160],
+		"confidence": "low",
+		"flags": [
+			"timing varies 61 days between years",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "red-billed-chough",
+		"name": "Red-billed Chough",
+		"sci": "Pyrrhocorax pyrrhocorax",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "summer",
+		"km": 3126,
+		"where": ["ES", "FR", "IM"],
+		"pop": {
+			"dep": [105, 114, 216, 225],
+			"spring": [[94.2, 35.6], [85.7, 34.5], [77.5, 32.9]],
+			"wr": 1500,
+			"br": 300
+		},
+		"spread": 96,
+		"years": 10,
+		"anchor": [114, 216],
+		"confidence": "low",
+		"flags": ["timing varies 96 days between years"]
+	},
+	{
+		"id": "carrion-crow",
+		"name": "Carrion Crow",
+		"sci": "Corvus corone",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "summer",
+		"km": 11958,
+		"where": ["GB", "NL", "FR"],
+		"pop": {
+			"dep": [100, 134, 220, 253],
+			"spring": [[4.2, 49.2], [45.5, 48.4], [77.3, 35.2]],
+			"wr": 703,
+			"br": 300
+		},
+		"spread": 113,
+		"years": 6,
+		"anchor": [134, 220],
+		"confidence": "low",
+		"flags": ["timing varies 113 days between years"]
+	},
+	{
+		"id": "common-raven",
+		"name": "Common Raven",
+		"sci": "Corvus corax",
+		"family": "Crows, Jays, and Magpies",
+		"kind": "summer",
+		"km": 6584,
+		"where": ["US", "CA", "SE"],
+		"pop": {
+			"dep": [151, 169, 246, 264],
+			"spring": [[63.3, 60.5], [72.2, 46.6], [77.3, 32.3]],
+			"wr": 300,
+			"br": 829
+		},
+		"spread": 105,
+		"years": 10,
+		"anchor": [169, 246],
+		"confidence": "low",
+		"flags": [
+			"timing varies 105 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "gray-headed-canary-flycatcher",
+		"name": "Gray-headed Canary-Flycatcher",
+		"sci": "Culicicapa ceylonensis",
+		"family": "Fairy Flycatchers",
+		"kind": "winter",
+		"km": 4844,
+		"where": ["CN", "MY", "TH"],
+		"pop": {
+			"dep": [163, 176, 256, 269],
+			"spring": [[80.6, 24.4], [92.6, 25.4], [104.6, 25.5]],
+			"wr": 1188,
+			"br": 945
+		},
+		"spread": 80,
+		"years": 11,
+		"anchor": [163, 269],
+		"confidence": "low",
+		"flags": ["timing varies 80 days between years"]
+	},
+	{
+		"id": "rufous-naped-tit",
+		"name": "Rufous-naped Tit",
+		"sci": "Periparus rufonuchalis",
+		"family": "Tits, Chickadees, and Titmice",
+		"kind": "summer",
+		"km": 1722,
+		"where": ["UZ", "KG", "PK"],
+		"pop": {
+			"dep": [112, 117, 184, 189],
+			"spring": [[72.8, 39.1], [75.1, 35.8], [77.3, 32.3]],
+			"wr": 452,
+			"br": 407
+		},
+		"spread": 136,
+		"years": 10,
+		"anchor": [117, 184],
+		"confidence": "low",
+		"flags": ["timing varies 136 days between years"]
+	},
+	{
+		"id": "rufous-vented-tit",
+		"name": "Rufous-vented Tit",
+		"sci": "Periparus rubidiventris",
+		"family": "Tits, Chickadees, and Titmice",
+		"kind": "passage",
+		"km": 3262,
+		"where": ["CN", "NP", "BT", "CN", "NP", "BT"],
+		"pop": {
+			"dep": [101, 111, 297, 307],
+			"spring": [[83, 29.5], [88.6, 26.7], [99.8, 29.5]],
+			"wr": 412,
+			"br": 412
+		},
+		"spread": 31,
+		"years": 10,
+		"anchor": [105, 304],
+		"confidence": "low",
+		"flags": [
+			"timing varies 31 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "ground-tit",
+		"name": "Ground Tit",
+		"sci": "Pseudopodoces humilis",
+		"family": "Tits, Chickadees, and Titmice",
+		"kind": "summer",
+		"km": 2817,
+		"where": ["CN", "NP", "PK"],
+		"pop": {
+			"dep": [169, 177, 248, 255],
+			"spring": [[92.4, 34.1], [84.8, 33.4], [77.3, 32.3]],
+			"wr": 477,
+			"br": 313
+		},
+		"spread": 29,
+		"years": 8,
+		"anchor": [177, 248],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "white-crowned-penduline-tit",
+		"name": "White-crowned Penduline-Tit",
+		"sci": "Remiz coronatus",
+		"family": "Penduline-Tits",
+		"kind": "winter",
+		"km": 3117,
+		"where": ["MN", "KZ", "CN"],
+		"pop": {
+			"dep": [12, 21, 324, 333],
+			"spring": [[76.8, 29.9], [74.9, 36.7], [72.5, 43.5]],
+			"wr": 347,
+			"br": 972
+		},
+		"spread": 0,
+		"years": 3,
+		"anchor": [12, 333],
+		"confidence": "low",
+		"flags": ["dates from 3 years only", "few records at an end of the route"]
+	},
+	{
+		"id": "desert-lark",
+		"name": "Desert Lark",
+		"sci": "Ammomanes deserti",
+		"family": "Larks",
+		"kind": "winter",
+		"km": 3124,
+		"where": ["IL", "AE", "PS"],
+		"pop": {
+			"dep": [54, 63, 291, 300],
+			"spring": [[71.7, 26.7], [64, 28.1], [56, 29]],
+			"wr": 300,
+			"br": 1359
+		},
+		"spread": 35,
+		"years": 9,
+		"anchor": [54, 300],
+		"confidence": "low",
+		"flags": ["timing varies 35 days between years"]
+	},
+	{
+		"id": "greater-hoopoe-lark",
+		"name": "Greater Hoopoe-Lark",
+		"sci": "Alaemon alaudipes",
+		"family": "Larks",
+		"kind": "winter",
+		"km": 5024,
+		"where": ["AE", "KW", "SA"],
+		"pop": {
+			"dep": [35, 48, 260, 274],
+			"spring": [[70.7, 25.2], [58.2, 25.2], [45.9, 24.1]],
+			"wr": 300,
+			"br": 653
+		},
+		"spread": 98,
+		"years": 8,
+		"anchor": [35, 274],
+		"confidence": "low",
+		"flags": ["timing varies 98 days between years"]
+	},
+	{
+		"id": "black-crowned-sparrow-lark",
+		"name": "Black-crowned Sparrow-Lark",
+		"sci": "Eremopterix nigriceps",
+		"family": "Larks",
+		"kind": "winter",
+		"km": 4560,
+		"where": ["AE", "KW", "QA"],
+		"pop": {
+			"dep": [29, 42, 262, 275],
+			"spring": [[71.7, 26.7], [60.3, 25.7], [49.2, 23.9]],
+			"wr": 300,
+			"br": 921
+		},
+		"spread": 82,
+		"years": 10,
+		"anchor": [29, 275],
+		"confidence": "low",
+		"flags": ["timing varies 82 days between years"]
+	},
+	{
+		"id": "eurasian-skylark",
+		"name": "Eurasian Skylark",
+		"sci": "Alauda arvensis",
+		"family": "Larks",
+		"kind": "summer",
+		"km": 12222,
+		"where": ["FR", "NZ", "GB"],
+		"pop": {
+			"dep": [116, 150, 221, 255],
+			"spring": [[4.8, 50.5], [47, 47.4], [77.3, 32.3]],
+			"wr": 1053,
+			"br": 407
+		},
+		"spread": 39,
+		"years": 5,
+		"anchor": [150, 221],
+		"confidence": "low",
+		"flags": ["timing varies 39 days between years"]
+	},
+	{
+		"id": "crested-lark",
+		"name": "Crested Lark",
+		"sci": "Galerida cristata",
+		"family": "Larks",
+		"kind": "winter",
+		"km": 3709,
+		"where": ["ES", "PT", "FR"],
+		"pop": {
+			"dep": [57, 67, 226, 236],
+			"spring": [[74.2, 26.2], [65.4, 29.3], [56.2, 31.7]],
+			"wr": 620,
+			"br": 574
+		},
+		"spread": 39,
+		"years": 11,
+		"anchor": [57, 236],
+		"confidence": "low",
+		"flags": ["timing varies 39 days between years"]
+	},
+	{
+		"id": "greater-short-toed-lark",
+		"name": "Greater Short-toed Lark",
+		"sci": "Calandrella brachydactyla",
+		"family": "Larks",
+		"kind": "winter",
+		"km": 5567,
+		"where": ["ES", "PT", "FR"],
+		"pop": {
+			"dep": [37, 52, 262, 277],
+			"spring": [[74.8, 22.7], [70.4, 34.6], [64.6, 46.3]],
+			"wr": 1075,
+			"br": 1192
+		},
+		"spread": 36,
+		"years": 11,
+		"anchor": [37, 277],
+		"confidence": "low",
+		"flags": ["timing varies 36 days between years"]
+	},
+	{
+		"id": "horned-lark",
+		"name": "Horned Lark",
+		"sci": "Eremophila alpestris",
+		"family": "Larks",
+		"kind": "summer",
+		"km": 17445,
+		"where": ["US", "CA", "NL"],
+		"pop": {
+			"dep": [112, 161, 245, 293],
+			"spring": [[-99.4, 68.9], [75.3, 71.8], [77.6, 32.6]],
+			"wr": 879,
+			"br": 300
+		},
+		"spread": 28,
+		"years": 10,
+		"anchor": [161, 245],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "hume-s-lark",
+		"name": "Hume's Lark",
+		"sci": "Calandrella acutirostris",
+		"family": "Larks",
+		"kind": "summer",
+		"km": 1107,
+		"where": ["BD", "NP", "PK"],
+		"pop": {
+			"dep": [150, 153, 229, 232],
+			"spring": [[78, 34.6], [78.6, 32.1], [79.2, 29.7]],
+			"wr": 300,
+			"br": 974
+		},
+		"spread": 29,
+		"years": 9,
+		"anchor": [153, 229],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "mongolian-short-toed-lark",
+		"name": "Mongolian Short-toed Lark",
+		"sci": "Calandrella dukhunensis",
+		"family": "Larks",
+		"kind": "winter",
+		"km": 9055,
+		"where": ["MN", "CN"],
+		"pop": {
+			"dep": [11, 36, 252, 278],
+			"spring": [[77.3, 18.3], [92.5, 33.5], [113.4, 46.1]],
+			"wr": 986,
+			"br": 894
+		},
+		"spread": 26,
+		"years": 10,
+		"anchor": [11, 278],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "bimaculated-lark",
+		"name": "Bimaculated Lark",
+		"sci": "Melanocorypha bimaculata",
+		"family": "Larks",
+		"kind": "winter",
+		"km": 4762,
+		"where": ["TR", "KZ", "IR"],
+		"pop": {
+			"dep": [31, 44, 288, 302],
+			"spring": [[71.7, 26.7], [65.3, 35.9], [57.2, 44.7]],
+			"wr": 559,
+			"br": 717
+		},
+		"spread": 26,
+		"years": 10,
+		"anchor": [31, 302],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "sand-lark",
+		"name": "Sand Lark",
+		"sci": "Alaudala raytal",
+		"family": "Larks",
+		"kind": "winter",
+		"km": 2803,
+		"where": ["BD", "PK", "NP"],
+		"pop": {
+			"dep": [70, 77, 269, 277],
+			"spring": [[80.2, 26.8], [73.2, 27], [66.1, 26.7]],
+			"wr": 1110,
+			"br": 634
+		},
+		"spread": 61,
+		"years": 10,
+		"anchor": [70, 277],
+		"confidence": "low",
+		"flags": ["timing varies 61 days between years"]
+	},
+	{
+		"id": "himalayan-prinia",
+		"name": "Himalayan Prinia",
+		"sci": "Prinia crinigera",
+		"family": "Cisticolas and Allies",
+		"kind": "summer",
+		"km": 1088,
+		"where": ["NP", "BT", "PK"],
+		"pop": {
+			"dep": [86, 90, 184, 187],
+			"spring": [[85.8, 29.5], [83, 29.6], [80.2, 29.5]],
+			"wr": 1117,
+			"br": 884
+		},
+		"spread": 23,
+		"years": 10,
+		"anchor": [90, 184],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "hill-prinia",
+		"name": "Hill Prinia",
+		"sci": "Prinia superciliaris",
+		"family": "Cisticolas and Allies",
+		"kind": "winter",
+		"km": 1807,
+		"where": ["TH", "ID", "CN"],
+		"pop": {
+			"dep": [45, 50, 294, 299],
+			"spring": [[97, 26.7], [101.3, 25.4], [105.5, 23.9]],
+			"wr": 313,
+			"br": 657
+		},
+		"spread": 0,
+		"years": 3,
+		"anchor": [45, 299],
+		"confidence": "low",
+		"flags": ["dates from 3 years only", "few records at an end of the route"]
+	},
+	{
+		"id": "delicate-prinia",
+		"name": "Delicate Prinia",
+		"sci": "Prinia lepida",
+		"family": "Cisticolas and Allies",
+		"kind": "winter",
+		"km": 2660,
+		"where": ["AE", "TR", "KW"],
+		"pop": {
+			"dep": [11, 18, 224, 231],
+			"spring": [[76.7, 27.2], [70, 27.1], [63.3, 26.7]],
+			"wr": 865,
+			"br": 300
+		},
+		"spread": 59,
+		"years": 10,
+		"anchor": [11, 231],
+		"confidence": "low",
+		"flags": [
+			"timing varies 59 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "yellow-bellied-prinia",
+		"name": "Yellow-bellied Prinia",
+		"sci": "Prinia flaviventris",
+		"family": "Cisticolas and Allies",
+		"kind": "summer",
+		"km": 4814,
+		"where": ["TW", "TH", "HK"],
+		"pop": {
+			"dep": [46, 59, 144, 157],
+			"spring": [[109.1, 23.3], [97.5, 25.4], [85.5, 26.6]],
+			"wr": 1116,
+			"br": 867
+		},
+		"spread": 156,
+		"years": 11,
+		"anchor": [59, 144],
+		"confidence": "low",
+		"flags": [
+			"timing varies 156 days between years",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "thick-billed-warbler",
+		"name": "Thick-billed Warbler",
+		"sci": "Arundinax aedon",
+		"family": "Reed Warblers and Allies",
+		"kind": "winter",
+		"km": 9826,
+		"where": ["RU", "MN", "CN"],
+		"pop": {
+			"dep": [82, 109, 283, 311],
+			"spring": [[86.2, 21.9], [104.4, 37.6], [130.5, 49.1]],
+			"wr": 1397,
+			"br": 1000
+		},
+		"spread": 90,
+		"years": 10,
+		"anchor": [82, 311],
+		"confidence": "low",
+		"flags": ["timing varies 90 days between years"]
+	},
+	{
+		"id": "sykes-s-warbler",
+		"name": "Sykes's Warbler",
+		"sci": "Iduna rama",
+		"family": "Reed Warblers and Allies",
+		"kind": "winter",
+		"km": 5653,
+		"where": ["KZ", "IR", "CN"],
+		"pop": {
+			"dep": [93, 109, 243, 259],
+			"spring": [[76, 19.2], [71, 31.1], [64.5, 42.7]],
+			"wr": 856,
+			"br": 1475
+		},
+		"spread": 40,
+		"years": 10,
+		"anchor": [93, 259],
+		"confidence": "low",
+		"flags": ["timing varies 40 days between years"]
+	},
+	{
+		"id": "booted-warbler",
+		"name": "Booted Warbler",
+		"sci": "Iduna caligata",
+		"family": "Reed Warblers and Allies",
+		"kind": "winter",
+		"km": 8313,
+		"where": ["RU", "SE", "EE"],
+		"pop": {
+			"dep": [90, 113, 278, 301],
+			"spring": [[77.3, 18.3], [74.2, 36.8], [69, 55.1]],
+			"wr": 938,
+			"br": 1500
+		},
+		"spread": 16,
+		"years": 11,
+		"anchor": [90, 301],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "moustached-warbler",
+		"name": "Moustached Warbler",
+		"sci": "Acrocephalus melanopogon",
+		"family": "Reed Warblers and Allies",
+		"kind": "winter",
+		"km": 5874,
+		"where": ["ES", "FR", "TR"],
+		"pop": {
+			"dep": [32, 48, 309, 326],
+			"spring": [[76.5, 27.6], [62.5, 32.9], [47, 36.5]],
+			"wr": 633,
+			"br": 1108
+		},
+		"spread": 46,
+		"years": 10,
+		"anchor": [32, 326],
+		"confidence": "low",
+		"flags": ["timing varies 46 days between years"]
+	},
+	{
+		"id": "blyth-s-reed-warbler",
+		"name": "Blyth's Reed Warbler",
+		"sci": "Acrocephalus dumetorum",
+		"family": "Reed Warblers and Allies",
+		"kind": "winter",
+		"km": 9337,
+		"where": ["SE", "RU", "FI"],
+		"pop": {
+			"dep": [99, 125, 276, 302],
+			"spring": [[77.3, 16.7], [74.5, 37.6], [69.5, 58.3]],
+			"wr": 1007,
+			"br": 1454
+		},
+		"spread": 11,
+		"years": 11,
+		"anchor": [99, 302],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "paddyfield-warbler",
+		"name": "Paddyfield Warbler",
+		"sci": "Acrocephalus agricola",
+		"family": "Reed Warblers and Allies",
+		"kind": "winter",
+		"km": 6355,
+		"where": ["RU", "MN", "UA"],
+		"pop": {
+			"dep": [45, 63, 289, 307],
+			"spring": [[76.9, 20.6], [75.3, 34.8], [73.1, 49]],
+			"wr": 998,
+			"br": 1349
+		},
+		"spread": 27,
+		"years": 11,
+		"anchor": [45, 307],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "oriental-reed-warbler",
+		"name": "Oriental Reed Warbler",
+		"sci": "Acrocephalus orientalis",
+		"family": "Reed Warblers and Allies",
+		"kind": "winter",
+		"km": 9794,
+		"where": ["JP", "CN", "KR"],
+		"pop": {
+			"dep": [44, 71, 270, 297],
+			"spring": [[91.4, 12.7], [105.3, 30.6], [125.1, 46.4]],
+			"wr": 697,
+			"br": 1284
+		},
+		"spread": 321,
+		"years": 7,
+		"anchor": [44, 297],
+		"confidence": "low",
+		"flags": [
+			"timing varies 321 days between years",
+			"an end of the route is at sea (91E 13N)"
+		]
+	},
+	{
+		"id": "clamorous-reed-warbler",
+		"name": "Clamorous Reed Warbler",
+		"sci": "Acrocephalus stentoreus",
+		"family": "Reed Warblers and Allies",
+		"kind": "winter",
+		"km": 4990,
+		"where": ["IL", "AE", "PH"],
+		"pop": {
+			"dep": [86, 100, 292, 306],
+			"spring": [[77.6, 19.5], [67.5, 25.9], [56.5, 31.5]],
+			"wr": 1078,
+			"br": 1343
+		},
+		"spread": 16,
+		"years": 11,
+		"anchor": [86, 306],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "common-grasshopper-warbler",
+		"name": "Common Grasshopper Warbler",
+		"sci": "Locustella naevia",
+		"family": "Grassbirds and Allies",
+		"kind": "winter",
+		"km": 8758,
+		"where": ["SE", "DK", "GB"],
+		"pop": {
+			"dep": [8, 32, 236, 260],
+			"spring": [[74.4, 19.3], [67.3, 38], [55.1, 55.9]],
+			"wr": 912,
+			"br": 1500
+		},
+		"spread": 47,
+		"years": 9,
+		"anchor": [8, 260],
+		"confidence": "low",
+		"flags": ["timing varies 47 days between years"]
+	},
+	{
+		"id": "baikal-bush-warbler",
+		"name": "Baikal Bush Warbler",
+		"sci": "Locustella davidi",
+		"family": "Grassbirds and Allies",
+		"kind": "winter",
+		"km": 5953,
+		"where": ["CN", "RU", "MN"],
+		"pop": {
+			"dep": [37, 54, 294, 311],
+			"spring": [[92.2, 25.7], [102.9, 35.4], [116.4, 43.9]],
+			"wr": 497,
+			"br": 1440
+		},
+		"spread": 33,
+		"years": 5,
+		"anchor": [37, 311],
+		"confidence": "low",
+		"flags": ["timing varies 33 days between years"]
+	},
+	{
+		"id": "pallas-s-grasshopper-warbler",
+		"name": "Pallas's Grasshopper Warbler",
+		"sci": "Helopsaltes certhiola",
+		"family": "Grassbirds and Allies",
+		"kind": "winter",
+		"km": 8467,
+		"where": ["RU", "CN", "MN"],
+		"pop": {
+			"dep": [77, 100, 257, 281],
+			"spring": [[88.6, 21.1], [100.5, 37.1], [118.5, 51.2]],
+			"wr": 1298,
+			"br": 1453
+		},
+		"spread": 289,
+		"years": 8,
+		"anchor": [77, 281],
+		"confidence": "low",
+		"flags": ["timing varies 289 days between years"]
+	},
+	{
+		"id": "striated-grassbird",
+		"name": "Striated Grassbird",
+		"sci": "Megalurus palustris",
+		"family": "Grassbirds and Allies",
+		"kind": "winter",
+		"km": 1135,
+		"where": ["PH", "ID", "MY"],
+		"pop": {
+			"dep": [61, 64, 282, 285],
+			"spring": [[90.8, 26.1], [93.3, 24.9], [95.7, 23.6]],
+			"wr": 756,
+			"br": 311
+		},
+		"spread": 230,
+		"years": 10,
+		"anchor": [61, 285],
+		"confidence": "low",
+		"flags": ["timing varies 230 days between years"]
+	},
+	{
+		"id": "spotted-bush-warbler",
+		"name": "Spotted Bush Warbler",
+		"sci": "Locustella thoracica",
+		"family": "Grassbirds and Allies",
+		"kind": "winter",
+		"km": 2623,
+		"where": ["CN", "RU"],
+		"pop": {
+			"dep": [78, 85, 279, 287],
+			"spring": [[92.3, 26.3], [97.5, 30], [103.2, 33.3]],
+			"wr": 477,
+			"br": 517
+		},
+		"spread": 230,
+		"years": 10,
+		"anchor": [78, 287],
+		"confidence": "low",
+		"flags": ["timing varies 230 days between years"]
+	},
+	{
+		"id": "bank-swallow",
+		"name": "Bank Swallow",
+		"sci": "Riparia riparia",
+		"family": "Swallows",
+		"kind": "winter",
+		"km": 8495,
+		"where": ["US", "CA", "NL"],
+		"pop": {
+			"dep": [36, 59, 286, 310],
+			"spring": [[76.6, 22.6], [68.9, 40.6], [55.6, 57.7]],
+			"wr": 1295,
+			"br": 1412
+		},
+		"spread": 50,
+		"years": 10,
+		"anchor": [36, 310],
+		"confidence": "low",
+		"flags": ["timing varies 50 days between years"]
+	},
+	{
+		"id": "pale-martin",
+		"name": "Pale Martin",
+		"sci": "Riparia diluta",
+		"family": "Swallows",
+		"kind": "winter",
+		"km": 3970,
+		"where": ["CN", "MN", "RU"],
+		"pop": {
+			"dep": [35, 46, 248, 259],
+			"spring": [[78.4, 28.6], [83.6, 36.4], [89.8, 43.9]],
+			"wr": 918,
+			"br": 1257
+		},
+		"spread": 112,
+		"years": 10,
+		"anchor": [35, 259],
+		"confidence": "low",
+		"flags": [
+			"timing varies 112 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "pygmy-cupwing",
+		"name": "Pygmy Cupwing",
+		"sci": "Pnoepyga pusilla",
+		"family": "Cupwings",
+		"kind": "passage",
+		"km": 4617,
+		"where": ["ID", "CN", "MY", "HK", "TH", "CN"],
+		"pop": {
+			"dep": [100, 113, 311, 324],
+			"spring": [[84.4, 28.9], [93.3, 26.9], [108.1, 28]],
+			"wr": 300,
+			"br": 561
+		},
+		"spread": 0,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "pacific-swallow",
+		"name": "Pacific Swallow",
+		"sci": "Hirundo javanica",
+		"family": "Swallows",
+		"kind": "winter",
+		"km": 4409,
+		"where": ["TW", "MY", "ID"],
+		"pop": {
+			"dep": [43, 55, 220, 232],
+			"spring": [[91.4, 12.7], [99.3, 6.5], [107, 0.2]],
+			"wr": 305,
+			"br": 1095
+		},
+		"spread": 50,
+		"years": 9,
+		"anchor": [43, 232],
+		"confidence": "low",
+		"flags": [
+			"timing varies 50 days between years",
+			"few records at an end of the route",
+			"an end of the route is at sea (91E 13N, 107E 0N)"
+		]
+	},
+	{
+		"id": "barn-swallow",
+		"name": "Barn Swallow",
+		"sci": "Hirundo rustica",
+		"family": "Swallows",
+		"kind": "winter",
+		"km": 14527,
+		"where": ["US", "CA", "SE"],
+		"pop": {
+			"dep": [83, 123, 228, 268],
+			"spring": [[78.7, 19], [50.4, 41], [4.7, 51.2]],
+			"wr": 1161,
+			"br": 1486
+		},
+		"spread": 11,
+		"years": 11,
+		"anchor": [83, 268],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "western-house-martin",
+		"name": "Western House-Martin",
+		"sci": "Delichon urbicum",
+		"family": "Swallows",
+		"kind": "summer",
+		"km": 14246,
+		"where": ["ZA", "ES", "PT"],
+		"pop": {
+			"dep": [51, 91, 147, 187],
+			"spring": [[-0.3, 46.4], [45, 42.8], [77.9, 25.3]],
+			"wr": 988,
+			"br": 1092
+		},
+		"spread": 171,
+		"years": 10,
+		"anchor": [91, 147],
+		"confidence": "low",
+		"flags": [
+			"timing varies 171 days between years",
+			"model disagrees with India's records in 6 months"
+		]
+	},
+	{
+		"id": "nepal-house-martin",
+		"name": "Nepal House-Martin",
+		"sci": "Delichon nipalense",
+		"family": "Swallows",
+		"kind": "winter",
+		"km": 840,
+		"where": ["NP", "CN", "BT"],
+		"pop": {
+			"dep": [140, 142, 257, 260],
+			"spring": [[88.7, 26.8], [87.3, 28.2], [85.8, 29.5]],
+			"wr": 893,
+			"br": 816
+		},
+		"spread": 210,
+		"years": 10,
+		"anchor": [140, 260],
+		"confidence": "low",
+		"flags": ["timing varies 210 days between years", "route under 500 km"]
+	},
+	{
+		"id": "asian-house-martin",
+		"name": "Asian House-Martin",
+		"sci": "Delichon dasypus",
+		"family": "Swallows",
+		"kind": "summer",
+		"km": 2517,
+		"where": ["TW", "TH", "CN"],
+		"pop": {
+			"dep": [91, 98, 149, 156],
+			"spring": [[100.1, 32], [94.2, 29.5], [88.6, 26.7]],
+			"wr": 983,
+			"br": 1254
+		},
+		"spread": 46,
+		"years": 9,
+		"anchor": [98, 149],
+		"confidence": "low",
+		"flags": [
+			"timing varies 46 days between years",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "ashy-bulbul",
+		"name": "Ashy Bulbul",
+		"sci": "Hemixos flavala",
+		"family": "Bulbuls",
+		"kind": "winter",
+		"km": 1254,
+		"where": ["TH", "NP", "BT"],
+		"pop": {
+			"dep": [139, 142, 300, 304],
+			"spring": [[91.4, 26.7], [94.2, 25.5], [97, 24.1]],
+			"wr": 634,
+			"br": 676
+		},
+		"spread": 260,
+		"years": 10,
+		"anchor": [139, 304],
+		"confidence": "low",
+		"flags": ["timing varies 260 days between years"]
+	},
+	{
+		"id": "mountain-bulbul",
+		"name": "Mountain Bulbul",
+		"sci": "Ixos mcclellandii",
+		"family": "Bulbuls",
+		"kind": "passage",
+		"km": 4559,
+		"where": ["CN", "MY", "TH", "TH", "CN", "HK"],
+		"pop": {
+			"dep": [101, 114, 310, 323],
+			"spring": [[84.9, 29.1], [91.4, 26.7], [108.3, 28.7]],
+			"wr": 300,
+			"br": 602
+		},
+		"spread": 30,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "white-throated-bulbul",
+		"name": "White-throated Bulbul",
+		"sci": "Alophoixus flaveolus",
+		"family": "Bulbuls",
+		"kind": "winter",
+		"km": 874,
+		"where": ["TH", "BD", "BT"],
+		"pop": {
+			"dep": [54, 56, 302, 305],
+			"spring": [[92.6, 26.5], [94.8, 26.6], [97, 26.7]],
+			"wr": 437,
+			"br": 313
+		},
+		"spread": 270,
+		"years": 10,
+		"anchor": [54, 305],
+		"confidence": "low",
+		"flags": [
+			"timing varies 270 days between years",
+			"route under 500 km",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "flavescent-bulbul",
+		"name": "Flavescent Bulbul",
+		"sci": "Pycnonotus flavescens",
+		"family": "Bulbuls",
+		"kind": "winter",
+		"km": 1161,
+		"where": ["TH", "MY", "VN"],
+		"pop": {
+			"dep": [65, 68, 298, 301],
+			"spring": [[93.6, 25.9], [95.4, 23.9], [97.1, 21.8]],
+			"wr": 315,
+			"br": 374
+		},
+		"spread": 123,
+		"years": 9,
+		"anchor": [65, 301],
+		"confidence": "low",
+		"flags": [
+			"timing varies 123 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "white-eared-bulbul",
+		"name": "White-eared Bulbul",
+		"sci": "Pycnonotus leucotis",
+		"family": "Bulbuls",
+		"kind": "winter",
+		"km": 2937,
+		"where": ["AE", "IR", "KW"],
+		"pop": {
+			"dep": [67, 75, 224, 232],
+			"spring": [[72.1, 24.2], [65.2, 26.5], [58.1, 28.4]],
+			"wr": 637,
+			"br": 1079
+		},
+		"spread": 91,
+		"years": 11,
+		"anchor": [67, 232],
+		"confidence": "low",
+		"flags": ["timing varies 91 days between years"]
+	},
+	{
+		"id": "buff-barred-warbler",
+		"name": "Buff-barred Warbler",
+		"sci": "Phylloscopus pulcher",
+		"family": "Leaf Warblers",
+		"kind": "passage",
+		"km": 3262,
+		"where": ["CN", "NP", "BT", "CN", "NP", "TH"],
+		"pop": {
+			"dep": [101, 111, 313, 323],
+			"spring": [[83, 29.5], [88.6, 26.7], [99.8, 29.5]],
+			"wr": 417,
+			"br": 544
+		},
+		"spread": 30,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "yellow-browed-warbler",
+		"name": "Yellow-browed Warbler",
+		"sci": "Phylloscopus inornatus",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 8612,
+		"where": ["RU", "MN", "BE"],
+		"pop": {
+			"dep": [70, 94, 274, 298],
+			"spring": [[90.1, 24.5], [100.7, 41.7], [118.8, 57.3]],
+			"wr": 1088,
+			"br": 1500
+		},
+		"spread": 102,
+		"years": 10,
+		"anchor": [70, 298],
+		"confidence": "low",
+		"flags": ["timing varies 102 days between years"]
+	},
+	{
+		"id": "hume-s-warbler",
+		"name": "Hume's Warbler",
+		"sci": "Phylloscopus humei",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 3999,
+		"where": ["CN", "KZ", "RU"],
+		"pop": {
+			"dep": [98, 109, 271, 282],
+			"spring": [[78.3, 25.8], [80.5, 34.6], [83.2, 43.4]],
+			"wr": 851,
+			"br": 1178
+		},
+		"spread": 27,
+		"years": 11,
+		"anchor": [98, 282],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "brooks-s-leaf-warbler",
+		"name": "Brooks's Leaf Warbler",
+		"sci": "Phylloscopus subviridis",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 1637,
+		"where": ["PK"],
+		"pop": {
+			"dep": [38, 42, 322, 327],
+			"spring": [[77.3, 29.5], [74.6, 32.4], [71.7, 35.2]],
+			"wr": 412,
+			"br": 300
+		},
+		"spread": 71,
+		"years": 10,
+		"anchor": [38, 327],
+		"confidence": "low",
+		"flags": ["timing varies 71 days between years"]
+	},
+	{
+		"id": "dusky-warbler",
+		"name": "Dusky Warbler",
+		"sci": "Phylloscopus fuscatus",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 8154,
+		"where": ["RU", "MN", "CN"],
+		"pop": {
+			"dep": [51, 73, 269, 292],
+			"spring": [[90.3, 24.5], [103.3, 39.2], [122.6, 51.7]],
+			"wr": 1146,
+			"br": 1500
+		},
+		"spread": 82,
+		"years": 10,
+		"anchor": [51, 292],
+		"confidence": "low",
+		"flags": ["timing varies 82 days between years"]
+	},
+	{
+		"id": "sulphur-bellied-warbler",
+		"name": "Sulphur-bellied Warbler",
+		"sci": "Phylloscopus griseolus",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 3871,
+		"where": ["KG", "MN", "KZ"],
+		"pop": {
+			"dep": [102, 113, 277, 288],
+			"spring": [[76.8, 23.6], [78.3, 32.2], [80.2, 40.8]],
+			"wr": 794,
+			"br": 977
+		},
+		"spread": 26,
+		"years": 11,
+		"anchor": [102, 288],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "tickell-s-leaf-warbler",
+		"name": "Tickell's Leaf Warbler",
+		"sci": "Phylloscopus affinis",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 2714,
+		"where": ["CN", "NP", "BT"],
+		"pop": {
+			"dep": [118, 126, 276, 284],
+			"spring": [[83.4, 24.8], [88.8, 28.6], [94.6, 32.1]],
+			"wr": 1378,
+			"br": 807
+		},
+		"spread": 97,
+		"years": 10,
+		"anchor": [118, 284],
+		"confidence": "low",
+		"flags": ["timing varies 97 days between years"]
+	},
+	{
+		"id": "smoky-warbler",
+		"name": "Smoky Warbler",
+		"sci": "Phylloscopus fuligiventer",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 1001,
+		"where": ["CN", "NP"],
+		"pop": {
+			"dep": [41, 44, 303, 306],
+			"spring": [[85.8, 26.9], [87.6, 28.5], [89.5, 30.1]],
+			"wr": 842,
+			"br": 1298
+		},
+		"spread": 57,
+		"years": 9,
+		"anchor": [41, 306],
+		"confidence": "low",
+		"flags": ["timing varies 57 days between years"]
+	},
+	{
+		"id": "common-chiffchaff",
+		"name": "Common Chiffchaff",
+		"sci": "Phylloscopus collybita",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 8541,
+		"where": ["NL", "GB", "SE"],
+		"pop": {
+			"dep": [71, 95, 268, 292],
+			"spring": [[77.2, 25.9], [67.1, 43.3], [49.4, 59.1]],
+			"wr": 864,
+			"br": 1500
+		},
+		"spread": 16,
+		"years": 11,
+		"anchor": [71, 292],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "white-spectacled-warbler",
+		"name": "White-spectacled Warbler",
+		"sci": "Phylloscopus intermedius",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 2638,
+		"where": ["CN", "VN", "BT"],
+		"pop": {
+			"dep": [88, 95, 287, 294],
+			"spring": [[94.2, 26.7], [100.9, 27.2], [107.5, 27.3]],
+			"wr": 313,
+			"br": 913
+		},
+		"spread": 247,
+		"years": 10,
+		"anchor": [88, 294],
+		"confidence": "low",
+		"flags": [
+			"timing varies 247 days between years",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "whistler-s-warbler",
+		"name": "Whistler's Warbler",
+		"sci": "Phylloscopus whistleri",
+		"family": "Leaf Warblers",
+		"kind": "passage",
+		"km": 2090,
+		"where": ["NP", "BT", "CN", "NP", "BD", "PK"],
+		"pop": {
+			"dep": [101, 107, 317, 323],
+			"spring": [[94.2, 23.9], [88.6, 26.7], [85.8, 29.5]],
+			"wr": 313,
+			"br": 816
+		},
+		"spread": 0,
+		"years": 11,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "green-warbler",
+		"name": "Green Warbler",
+		"sci": "Phylloscopus nitidus",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 8863,
+		"where": ["RU", "GE", "TR"],
+		"pop": {
+			"dep": [65, 90, 266, 291],
+			"spring": [[75.7, 14.8], [61.7, 30], [43, 43.3]],
+			"wr": 736,
+			"br": 300
+		},
+		"spread": 50,
+		"years": 11,
+		"anchor": [65, 291],
+		"confidence": "low",
+		"flags": ["timing varies 50 days between years"]
+	},
+	{
+		"id": "greenish-warbler",
+		"name": "Greenish Warbler",
+		"sci": "Phylloscopus trochiloides",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 5307,
+		"where": ["SE", "RU", "CN"],
+		"pop": {
+			"dep": [97, 112, 251, 266],
+			"spring": [[79.1, 20.5], [80.2, 32.4], [81.7, 44.2]],
+			"wr": 1052,
+			"br": 1500
+		},
+		"spread": 24,
+		"years": 11,
+		"anchor": [97, 266],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "large-billed-leaf-warbler",
+		"name": "Large-billed Leaf Warbler",
+		"sci": "Phylloscopus magnirostris",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 6377,
+		"where": ["CN", "BT", "NP"],
+		"pop": {
+			"dep": [14, 32, 259, 277],
+			"spring": [[77.6, 14.8], [89.3, 24], [102.7, 32.1]],
+			"wr": 1500,
+			"br": 650
+		},
+		"spread": 29,
+		"years": 10,
+		"anchor": [14, 277],
+		"confidence": "low",
+		"flags": ["model disagrees with India's records in 4 months"]
+	},
+	{
+		"id": "arctic-warbler",
+		"name": "Arctic Warbler",
+		"sci": "Phylloscopus borealis",
+		"family": "Leaf Warblers",
+		"kind": "winter",
+		"km": 10406,
+		"where": ["US", "NO", "RU"],
+		"pop": {
+			"dep": [1, 30, 275, 304],
+			"spring": [[91.4, 12.7], [97.4, 35.4], [108.3, 57.7]],
+			"wr": 313,
+			"br": 1093
+		},
+		"spread": 35,
+		"years": 5,
+		"anchor": [1, 304],
+		"confidence": "low",
+		"flags": [
+			"timing varies 35 days between years",
+			"an end of the route is at sea (91E 13N)"
+		]
+	},
+	{
+		"id": "chestnut-crowned-warbler",
+		"name": "Chestnut-crowned Warbler",
+		"sci": "Phylloscopus castaniceps",
+		"family": "Leaf Warblers",
+		"kind": "passage",
+		"km": 4260,
+		"where": ["CN", "MY", "NP", "TH", "CN", "VN"],
+		"pop": {
+			"dep": [101, 114, 310, 323],
+			"spring": [[85.8, 29.5], [91.4, 26.7], [107.7, 28.7]],
+			"wr": 300,
+			"br": 805
+		},
+		"spread": 0,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "blyth-s-leaf-warbler",
+		"name": "Blyth's Leaf Warbler",
+		"sci": "Phylloscopus reguloides",
+		"family": "Leaf Warblers",
+		"kind": "passage",
+		"km": 2476,
+		"where": ["CN", "BT", "NP", "TH", "CN", "NP"],
+		"pop": {
+			"dep": [101, 109, 315, 323],
+			"spring": [[85.8, 29.5], [91.4, 26.7], [98.4, 28.4]],
+			"wr": 300,
+			"br": 1238
+		},
+		"spread": 31,
+		"years": 11,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": [
+			"timing varies 31 days between years",
+			"few records at an end of the route",
+			"model disagrees with India's records in 4 months"
+		]
+	},
+	{
+		"id": "chestnut-crowned-bush-warbler",
+		"name": "Chestnut-crowned Bush Warbler",
+		"sci": "Cettia major",
+		"family": "Bush Warblers and Allies",
+		"kind": "winter",
+		"km": 1268,
+		"where": ["CN", "NP"],
+		"pop": {
+			"dep": [84, 88, 309, 313],
+			"spring": [[94.2, 26.7], [97, 28.2], [99.8, 29.5]],
+			"wr": 417,
+			"br": 313
+		},
+		"spread": 109,
+		"years": 6,
+		"anchor": [84, 313],
+		"confidence": "low",
+		"flags": ["timing varies 109 days between years"]
+	},
+	{
+		"id": "asian-stubtail",
+		"name": "Asian Stubtail",
+		"sci": "Urosphena squameiceps",
+		"family": "Bush Warblers and Allies",
+		"kind": "winter",
+		"km": 9039,
+		"where": ["JP", "KR", "CN"],
+		"pop": {
+			"dep": [54, 79, 280, 305],
+			"spring": [[91.4, 23.9], [110, 36.5], [134.4, 45.2]],
+			"wr": 422,
+			"br": 520
+		},
+		"spread": 0,
+		"years": 2,
+		"anchor": [54, 305],
+		"confidence": "low",
+		"flags": ["dates from 2 years only"]
+	},
+	{
+		"id": "gray-bellied-tesia",
+		"name": "Gray-bellied Tesia",
+		"sci": "Tesia cyaniventer",
+		"family": "Bush Warblers and Allies",
+		"kind": "winter",
+		"km": 1378,
+		"where": ["NP", "CN", "VN"],
+		"pop": {
+			"dep": [106, 109, 302, 306],
+			"spring": [[91.4, 26.7], [94.8, 26], [98.1, 25.3]],
+			"wr": 422,
+			"br": 1305
+		},
+		"spread": 205,
+		"years": 10,
+		"anchor": [106, 306],
+		"confidence": "low",
+		"flags": ["timing varies 205 days between years"]
+	},
+	{
+		"id": "yellow-bellied-warbler",
+		"name": "Yellow-bellied Warbler",
+		"sci": "Abroscopus superciliaris",
+		"family": "Bush Warblers and Allies",
+		"kind": "winter",
+		"km": 2467,
+		"where": ["TH", "MY", "ID"],
+		"pop": {
+			"dep": [111, 117, 242, 249],
+			"spring": [[93, 26.7], [98.5, 24.2], [103.8, 21.5]],
+			"wr": 442,
+			"br": 695
+		},
+		"spread": 234,
+		"years": 10,
+		"anchor": [111, 249],
+		"confidence": "low",
+		"flags": ["timing varies 234 days between years"]
+	},
+	{
+		"id": "rufous-faced-warbler",
+		"name": "Rufous-faced Warbler",
+		"sci": "Abroscopus albogularis",
+		"family": "Bush Warblers and Allies",
+		"kind": "winter",
+		"km": 2654,
+		"where": ["TW", "CN"],
+		"pop": {
+			"dep": [10, 17, 292, 299],
+			"spring": [[95.1, 27.5], [101.7, 28.6], [108.5, 29.2]],
+			"wr": 300,
+			"br": 600
+		},
+		"spread": 182,
+		"years": 9,
+		"anchor": [10, 299],
+		"confidence": "low",
+		"flags": [
+			"timing varies 182 days between years",
+			"model disagrees with India's records in 5 months"
+		]
+	},
+	{
+		"id": "brownish-flanked-bush-warbler",
+		"name": "Brownish-flanked Bush Warbler",
+		"sci": "Horornis fortipes",
+		"family": "Bush Warblers and Allies",
+		"kind": "passage",
+		"km": 6713,
+		"where": ["TW", "CN", "HK", "CN", "TW", "HK"],
+		"pop": {
+			"dep": [111, 132, 184, 205],
+			"spring": [[74.3, 35.1], [88.2, 27.9], [109.5, 29.4]],
+			"wr": 300,
+			"br": 663
+		},
+		"spread": 31,
+		"years": 10,
+		"anchor": [120, 196],
+		"confidence": "low",
+		"flags": ["timing varies 31 days between years"]
+	},
+	{
+		"id": "black-browed-tit",
+		"name": "Black-browed Tit",
+		"sci": "Aegithalos iouschistos",
+		"family": "Long-tailed Tits",
+		"kind": "passage",
+		"km": 2719,
+		"where": ["CN", "BT", "NP", "CN", "BT", "MM"],
+		"pop": {
+			"dep": [101, 110, 344, 353],
+			"spring": [[85.8, 29.5], [91.4, 26.7], [99.8, 29.5]],
+			"wr": 300,
+			"br": 417
+		},
+		"spread": 0,
+		"years": 9,
+		"anchor": [105, 349],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "white-browed-tit-warbler",
+		"name": "White-browed Tit-Warbler",
+		"sci": "Leptopoecile sophiae",
+		"family": "Long-tailed Tits",
+		"kind": "summer",
+		"km": 2846,
+		"where": ["CN", "KG", "KZ"],
+		"pop": {
+			"dep": [163, 171, 231, 239],
+			"spring": [[93, 35.2], [85.2, 35.5], [77.3, 35.2]],
+			"wr": 1423,
+			"br": 300
+		},
+		"spread": 112,
+		"years": 5,
+		"anchor": [171, 231],
+		"confidence": "low",
+		"flags": [
+			"timing varies 112 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "eastern-orphean-warbler",
+		"name": "Eastern Orphean Warbler",
+		"sci": "Curruca crassirostris",
+		"family": "Sylviid Warblers and Allies",
+		"kind": "winter",
+		"km": 4228,
+		"where": ["IL", "TR", "GR"],
+		"pop": {
+			"dep": [39, 51, 231, 243],
+			"spring": [[74.2, 22.4], [65.9, 28.3], [56.7, 33.6]],
+			"wr": 839,
+			"br": 1145
+		},
+		"spread": 49,
+		"years": 10,
+		"anchor": [39, 243],
+		"confidence": "low",
+		"flags": ["timing varies 49 days between years"]
+	},
+	{
+		"id": "lesser-whitethroat",
+		"name": "Lesser Whitethroat",
+		"sci": "Curruca curruca",
+		"family": "Sylviid Warblers and Allies",
+		"kind": "winter",
+		"km": 8345,
+		"where": ["SE", "DK", "NO"],
+		"pop": {
+			"dep": [68, 91, 244, 267],
+			"spring": [[75.7, 23.3], [65.3, 39.9], [48.5, 54.9]],
+			"wr": 883,
+			"br": 1500
+		},
+		"spread": 20,
+		"years": 11,
+		"anchor": [68, 267],
+		"confidence": "ok",
+		"flags": []
+	},
+	{
+		"id": "asian-desert-warbler",
+		"name": "Asian Desert Warbler",
+		"sci": "Curruca nana",
+		"family": "Sylviid Warblers and Allies",
+		"kind": "winter",
+		"km": 4680,
+		"where": ["MN", "KZ", "CN"],
+		"pop": {
+			"dep": [33, 46, 285, 298],
+			"spring": [[71.7, 26.4], [68, 36.5], [63.3, 46.4]],
+			"wr": 399,
+			"br": 625
+		},
+		"spread": 42,
+		"years": 10,
+		"anchor": [33, 298],
+		"confidence": "low",
+		"flags": ["timing varies 42 days between years"]
+	},
+	{
+		"id": "spot-breasted-parrotbill",
+		"name": "Spot-breasted Parrotbill",
+		"sci": "Paradoxornis guttaticollis",
+		"family": "Parrotbills",
+		"kind": "winter",
+		"km": 1455,
+		"where": ["CN", "TH", "LA"],
+		"pop": {
+			"dep": [12, 16, 124, 128],
+			"spring": [[94.2, 26.7], [97.9, 26.5], [101.5, 26.2]],
+			"wr": 417,
+			"br": 775
+		},
+		"spread": 262,
+		"years": 6,
+		"anchor": [12, 128],
+		"confidence": "low",
+		"flags": [
+			"timing varies 262 days between years",
+			"model disagrees with India's records in 7 months"
+		]
+	},
+	{
+		"id": "whiskered-yuhina",
+		"name": "Whiskered Yuhina",
+		"sci": "Yuhina flavicollis",
+		"family": "White-eyes, Yuhinas, and Allies",
+		"kind": "passage",
+		"km": 1954,
+		"where": ["NP", "CN", "BT", "CN", "NP", "BT"],
+		"pop": {
+			"dep": [103, 109, 315, 321],
+			"spring": [[85.8, 29.5], [88.6, 26.8], [95.4, 27.1]],
+			"wr": 300,
+			"br": 977
+		},
+		"spread": 31,
+		"years": 11,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": [
+			"timing varies 31 days between years",
+			"few records at an end of the route"
+		]
+	},
+	{
+		"id": "rufous-vented-yuhina",
+		"name": "Rufous-vented Yuhina",
+		"sci": "Yuhina occipitalis",
+		"family": "White-eyes, Yuhinas, and Allies",
+		"kind": "passage",
+		"km": 2803,
+		"where": ["CN", "NP", "BT", "CN", "NP", "BT"],
+		"pop": {
+			"dep": [101, 110, 314, 323],
+			"spring": [[85.4, 29.5], [91.4, 26.7], [99.7, 27.8]],
+			"wr": 300,
+			"br": 324
+		},
+		"spread": 0,
+		"years": 10,
+		"anchor": [105, 319],
+		"confidence": "low",
+		"flags": ["few records at an end of the route"]
+	},
+	{
+		"id": "rosy-starling",
+		"name": "Rosy Starling",
+		"sci": "Pastor roseus",
+		"family": "Starlings",
+		"kind": "winter",
+		"km": 6243,
+		"where": ["NL", "SE", "TR"],
+		"pop": {
+			"dep": [100, 117, 257, 274],
+			"spring": [[75.9, 19.8], [72.6, 33.6], [68, 47.2]],
+			"wr": 919,
+			"br": 1097
+		},
+		"spread": 58,
+		"years": 11,
+		"anchor": [100, 274],
+		"confidence": "low",
+		"flags": ["timing varies 58 days between years"]
+	}
+]

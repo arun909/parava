@@ -1,6 +1,6 @@
 <script lang="ts">
 import "maplibre-gl/dist/maplibre-gl.css";
-import { onMount } from "svelte";
+import { onMount, tick, untrack } from "svelte";
 import { persist } from "@/lib/data/client";
 import { GlobeController, type Hover } from "@/lib/globe/GlobeController";
 import { GlobeState } from "@/lib/globe/state.svelte";
@@ -8,12 +8,14 @@ import { PREPARED, speciesState } from "@/lib/model";
 import MobileSheet from "./MobileSheet.svelte";
 import PathsPanel from "./PathsPanel.svelte";
 import SpeciesCard from "./SpeciesCard.svelte";
-import SpeciesList from "./SpeciesList.svelte";
+import SpeciesPicker from "./SpeciesPicker.svelte";
+import SpeciesSearch from "./SpeciesSearch.svelte";
 import Timeline from "./Timeline.svelte";
 
 const globe = new GlobeState(); // queries must be created during component init
 let el: HTMLDivElement;
 let ctl: GlobeController | undefined;
+let stage: HTMLDivElement;
 let tip = $state<Hover | null>(null);
 
 const rgb = (h: string) =>
@@ -23,13 +25,33 @@ const rgb = (h: string) =>
 		number,
 	];
 
+const fit = () => {
+	if (!ctl) return;
+	const box = stage.getBoundingClientRect();
+	const rect = (sel: string) => {
+		const e = stage.querySelector<HTMLElement>(sel);
+		return e && e.offsetParent ? e.getBoundingClientRect() : null;
+	};
+	const left = rect(":scope > .left, :scope > .card");
+	const right = rect(":scope > .paths");
+	const bar = rect(":scope > .bar");
+	ctl.fit({
+		top: 12,
+		left: left ? left.right - box.left + 16 : 12,
+		right: right ? box.right - right.left + 16 : 12,
+		bottom: bar ? box.bottom - bar.top + 8 : 8,
+	});
+};
+
 onMount(() => {
+	const ro = new ResizeObserver(fit);
+	ro.observe(stage);
+	for (const e of stage.querySelectorAll(".panel, .bar")) ro.observe(e);
 	persist();
 	ctl = new GlobeController(el, {
 		onHover: (h) => (tip = h),
 		onPick: (id) => {
-			globe.card = id;
-			globe.focus = id;
+			globe.open(id, false);
 		},
 	});
 	ctl.whenPainted(() => (globe.ready = true));
@@ -37,12 +59,33 @@ onMount(() => {
 	const id = new URLSearchParams(location.search).get("species");
 	const sp = PREPARED.find((x) => x.id === id);
 	if (sp) {
-		globe.focus = sp.id;
-		globe.card = sp.id;
+		globe.open(sp.id);
 		globe.pathMode = "focus";
 		ctl.flyTo(speciesState(sp, globe.day).pos);
 	}
-	return () => ctl?.destroy();
+	queueMicrotask(fit);
+	return () => {
+		ro.disconnect();
+		ctl?.destroy();
+	};
+});
+$effect(() => {
+	const r = globe.flyRequest;
+	const s = r && PREPARED.find((x) => x.id === r.id);
+	if (s)
+		ctl?.flyTo(
+			speciesState(
+				s,
+				untrack(() => globe.day),
+			).pos,
+		);
+});
+// re-fit when a panel appears, disappears or changes size
+$effect(() => {
+	void globe.card;
+	void globe.heat;
+	void globe.pathMode;
+	tick().then(fit);
 });
 $effect(() => ctl?.update(globe.shown, globe.day, globe.paths));
 $effect(() => {
@@ -71,7 +114,7 @@ $effect(() => {
 </script>
 
 <h1 class="sr">Bird migration globe</h1>
-<div class="stage">
+<div class="stage" bind:this={stage}>
 	<div bind:this={el} class="map" role="application" aria-label="Interactive globe. Arrow keys pan, plus and minus zoom."></div>
 	{#if tip}
 		<div class="tip" style:left="{tip.x + 14}px" style:top="{tip.y + 14}px" role="status">
@@ -81,10 +124,11 @@ $effect(() => {
 	{#if !globe.card}
 	<aside class="panel left">
 		<h2>Species</h2>
-		<SpeciesList {globe} />
+		<SpeciesPicker {globe} />
 	</aside>
 	{/if}
 	{#if globe.card}
+		<div class="panel topsearch"><SpeciesSearch {globe} /></div>
 		<div class="panel card"><SpeciesCard {globe} /></div>
 	{/if}
 	<div class="panel paths"><PathsPanel {globe} compact={!!globe.card} /></div>
@@ -105,13 +149,14 @@ $effect(() => {
 	.panel { position: absolute; background: color-mix(in srgb, var(--surface) 92%, transparent); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s3); overflow: auto; }
 	.left { top: 12px; left: 12px; bottom: 150px; width: 260px; }
 	.left h2 { font-size: 1rem; }
-	.paths { top: 12px; right: 12px; overflow: visible; }
+	.paths { top: 12px; right: 12px; width: 232px; overflow: visible; }
 	.card { top: 12px; left: 12px; bottom: 150px; width: 300px; padding: var(--s4); z-index: 5; }
 	.bar { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; flex-direction: column; gap: var(--s2); background: color-mix(in srgb, var(--surface) 92%, transparent); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s3) var(--s4); }
+	.topsearch { top: 12px; left: 50%; transform: translateX(-50%); width: 280px; z-index: 6; overflow: visible; }
 	.sheet-btn { display: none; }
 	@media (max-width: 700px) {
 		.stage :global(.maplibregl-ctrl-bottom-right) { bottom: 170px; }
-		.left, .paths, .card { display: none; }
+		.left, .paths, .card, .topsearch { display: none; }
 		.sheet-btn { display: block; align-self: center; }
 		.bar { left: 8px; right: 8px; bottom: 8px; }
 	}

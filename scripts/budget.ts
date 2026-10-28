@@ -2,7 +2,7 @@
 import { gzipSync } from "node:zlib";
 import { Glob } from "bun";
 
-const GLOBE_GZ_KB = 560; // maplibre + deck.gl + the globe island, all chunks together
+const GLOBE_GZ_KB = 600; // maplibre + deck.gl + the globe island and its 300-odd species, all chunks together
 const OTHER_GZ_KB = 60;
 
 let failed = false;
@@ -23,7 +23,7 @@ console.log(`${globeKb.toFixed(0).padStart(5)} KB gz  globe total`);
 if (globeKb > GLOBE_GZ_KB)
 	fail(`globe is ${globeKb.toFixed(0)} KB gz, budget ${GLOBE_GZ_KB}`);
 for await (const f of new Glob("dist/**/*.html").scan()) {
-	if (f.includes("globe")) continue;
+	if (f.includes("globe") || f.includes("species/index")) continue; // the globe and the searchable directory are islands
 	if ((await Bun.file(f).text()).includes("<script"))
 		fail(`${f} ships JavaScript`);
 }

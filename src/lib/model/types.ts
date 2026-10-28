@@ -37,6 +37,16 @@ export interface Species {
 	km: number;
 	fact: string;
 	pops: Population[];
+	/** Hand-modelled flyways ("curated") or routes estimated from GBIF records. */
+	source?: "curated" | "estimated";
+	/** For estimated species: how it uses India. */
+	kind?: "winter" | "summer" | "passage";
+	family?: string;
+	/** ISO country codes of the other end of its range (estimated species). */
+	where?: string[];
+	/** Estimated species: "low" when the estimate failed a quality check; `flags` says which. */
+	confidence?: "ok" | "low";
+	flags?: string[];
 }
 
 export interface Region {

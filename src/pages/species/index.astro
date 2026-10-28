@@ -1,20 +1,21 @@
 ---
+import SpeciesDirectory from "@/components/SpeciesDirectory.svelte";
 import Base from "@/layouts/Base.astro";
 import { dayOfYear, PHASE_LABEL, PREPARED, speciesState } from "@/lib/model";
 
 const today = dayOfYear();
+const rows = PREPARED.map((s) => ({
+	id: s.id,
+	name: s.name,
+	sci: s.sci,
+	family: s.family ?? "",
+	color: s.color,
+	status: PHASE_LABEL[speciesState(s, today).phase],
+	estimated: s.source === "estimated",
+}));
 ---
 
 <Base title="Species" description="Every tracked migratory species and where it is right now.">
 	<h1>Species</h1>
-	<ul class="grid" style="list-style:none;padding:0">
-		{PREPARED.map((s) => (
-			<li class="card">
-				<span class="dot" style={`background:${s.color}`}></span>
-				<a href={`/species/${s.id}/`}><strong>{s.name}</strong></a>
-				<div><i>{s.sci}</i></div>
-				<div class="mono">{PHASE_LABEL[speciesState(s, today).phase]} · {s.pops.length} pop.</div>
-			</li>
-		))}
-	</ul>
+	<SpeciesDirectory client:load rows={rows} />
 </Base>
