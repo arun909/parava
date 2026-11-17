@@ -10,7 +10,7 @@ const ebirdKey =
 	process.env.EBIRD_KEY ?? loadEnv("", process.cwd(), "EBIRD_").EBIRD_KEY ?? "";
 
 export default defineConfig({
-	site: "https://flyway.example.com", // ponytail: set the real domain at deploy
+	site: "https://transcendent-mochi-e324dc.netlify.app",
 	integrations: [svelte(), sitemap()],
 	devToolbar: { enabled: false },
 	// the map page was the globe page

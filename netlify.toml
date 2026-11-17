@@ -1,0 +1,8 @@
+# EBIRD_KEY is blanked so no eBird key ends up in the public JavaScript: visitors add their own
+[build]
+  command = "EBIRD_KEY= bun run build"
+  publish = "dist"
+
+[build.environment]
+  BUN_VERSION = "1.4.4"
+  NODE_VERSION = "22"
