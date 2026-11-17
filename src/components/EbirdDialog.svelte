@@ -54,7 +54,7 @@ function save(e: SubmitEvent) {
 </Dialog.Root>
 
 <style>
-	:global(.overlay) { position: fixed; inset: 0; background: #000a; z-index: 40; }
+	:global(.overlay) { position: fixed; inset: 0; background: rgb(33 51 40 / 0.45); z-index: 40; }
 	:global(.dialog) { position: fixed; z-index: 41; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(440px, calc(100vw - 32px)); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: var(--s5); }
 	:global(.dialog) :global([data-dialog-title]) { font-size: 1.3rem; font-weight: 700; margin-bottom: var(--s2); }
 	:global(.dialog) :global([data-dialog-close]), form button[type="button"] { background: none; border: 0; color: var(--muted); font: inherit; cursor: pointer; }
@@ -63,6 +63,6 @@ function save(e: SubmitEvent) {
 	label { display: grid; gap: var(--s1); font-size: 0.85rem; }
 	input { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: var(--s2) var(--s3); font: 0.9rem var(--mono); }
 	.row { display: flex; gap: var(--s3); align-items: center; }
-	.err { color: var(--rose); }
+	.err { color: var(--danger); }
 	:global(.trigger) { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); border-radius: 99px; padding: 2px 12px; font: inherit; cursor: pointer; }
 </style>

@@ -1,5 +1,6 @@
-import { createQueries, createQuery } from "@tanstack/svelte-query";
+import { createQueries } from "@tanstack/svelte-query";
 import { PersistedState } from "runed";
+import ebirdCodeList from "@/data/ebird-codes.json";
 import { queryClient } from "@/lib/data/client";
 import {
 	assess,
@@ -10,9 +11,10 @@ import {
 	type Sighting,
 	speciesState,
 } from "@/lib/model";
-import { ebirdCodes, fetchEbird, fetchSightings } from "@/lib/sources";
-import type { PathOptions } from "./GlobeController";
+import { fetchEbird, fetchSightings } from "@/lib/sources";
+import type { PathOptions, View } from "./GlobeController";
 
+const codes = ebirdCodeList as Record<string, string>;
 const WINDOW_DAYS = 30;
 /** Live sightings load for up to this many species at once: a hundred more would be hundreds of requests. */
 export const MAX_LIVE = 30;
@@ -42,20 +44,31 @@ export class GlobeState {
 	canUndo = $state(false);
 	/** Asks the globe to fly to a species' current position (a new `n` each time). */
 	flyRequest = $state<{ id: string; n: number } | null>(null);
-	pathMode = $state<PathOptions["mode"]>("active");
-	heat = $state<PathOptions["heat"]>("now");
+	show = $state<PathOptions["show"]>("density");
+	span = $state<PathOptions["span"]>("current");
+	/** Routes view: every route drawn as a traced line with drifting arrows, as a hovered one is, instead of the glow. */
+	traceAll = $state(false);
 	focus = $state<string | undefined>();
 	expanded = $state(false);
+	/** Text typed in the species search; null when not searching. Its results show in the Species menu. */
+	query = $state<string | null>(null);
 	paths = $derived<PathOptions>({
-		mode: this.pathMode,
+		show: this.show,
+		span: this.span,
 		focus: this.focus,
-		heat: this.heat,
+		traceAll: this.traceAll,
 	});
-	/** Your eBird key lives only in this browser and is sent only to api.ebird.org. */
+	/** Your eBird key lives only in this browser and is sent only to api.ebird.org. The .env key is the default. */
 	ebird = new PersistedState("flyway-ebird", {
 		key: import.meta.env.DEV_EBIRD_KEY ?? "",
 		regions: "IN",
 	});
+	constructor() {
+		// a key saved empty on an earlier visit must not hide the one from .env
+		const envKey = import.meta.env.DEV_EBIRD_KEY;
+		if (envKey && !this.ebird.current.key)
+			this.ebird.current = { ...this.ebird.current, key: envKey };
+	}
 	/** Your location, only for "near you" estimates; kept in this browser and never sent anywhere. */
 	home = new PersistedState<{ lon: number; lat: number } | null>(
 		"flyway-home",
@@ -74,19 +87,16 @@ export class GlobeState {
 			{ maximumAge: 864e5 },
 		);
 	}
+	/** 3D globe or flat 2D map: your last choice, else the globe. */
+	// opens on the flat map; a new key, so a 3D choice saved before the flat map became the default is not kept
+	view = new PersistedState<View>("flyway-map-view", "flat");
 	/** Draw birds seen far from their expected range as hollow rings. */
 	showAway = $state(true);
 	card = $state<string | undefined>();
 	/** Sightings wait for the map's first paint so tiles get the bandwidth first. */
 	ready = $state(false);
-	/** Enabled species; in Focus mode only the focused one, so the view is uncluttered. */
-	shown = $derived(
-		PREPARED.filter((s) =>
-			this.pathMode === "focus" && this.focus
-				? s.id === this.focus
-				: this.on.has(s.id),
-		),
-	);
+	/** Enabled species; the focused one is drawn over them, the rest dimmed. */
+	shown = $derived(PREPARED.filter((s) => this.on.has(s.id)));
 
 	/** Species whose sightings are fetched: switched on, or being looked at. */
 	active = $derived(
@@ -120,21 +130,10 @@ export class GlobeState {
 				enabled: this.ready && !!this.ebird.current.key,
 				queryFn: async (): Promise<Sighting[]> => {
 					const { key, regions } = this.ebird.current;
-					const f = globalThis.fetch.bind(globalThis);
-					const codes = await queryClient.fetchQuery({
-						queryKey: ["ebird-codes"],
-						queryFn: () =>
-							ebirdCodes(
-								f,
-								key,
-								PREPARED.map((p) => p.sci),
-							),
-						staleTime: 7 * 864e5,
-					});
 					const code = codes[s.sci];
 					if (!code) return [];
 					return fetchEbird(
-						f,
+						globalThis.fetch.bind(globalThis),
 						key,
 						regions
 							.split(",")
@@ -148,24 +147,10 @@ export class GlobeState {
 		() => queryClient,
 	);
 
-	private codes = createQuery(
-		() => ({
-			queryKey: ["ebird-codes"],
-			enabled: this.ready && !!this.ebird.current.key,
-			staleTime: 7 * 864e5,
-			queryFn: () =>
-				ebirdCodes(
-					globalThis.fetch.bind(globalThis),
-					this.ebird.current.key,
-					PREPARED.map((p) => p.sci),
-				),
-		}),
-		() => queryClient,
-	);
-	/** eBird species code (for links), known once a key is set. */
+	/** eBird species code (for links), from the build: no key needed. */
 	codeOf = (id: string) => {
 		const s = PREPARED.find((x) => x.id === id);
-		return s ? this.codes.data?.[s.sci] : undefined;
+		return s ? codes[s.sci] : undefined;
 	};
 
 	/** Flyway-filtered recent reports per species id. */
@@ -217,6 +202,12 @@ export class GlobeState {
 		this.save();
 	}
 
+	/** Close the species card: the map goes back to every species at full strength. */
+	close() {
+		this.card = undefined;
+		this.focus = undefined;
+	}
+
 	remove(id: string) {
 		this.toggle(id);
 		if (this.focus === id) {
@@ -232,6 +223,14 @@ export class GlobeState {
 		this.on = new Set(ids);
 		this.focus = undefined;
 		this.card = undefined;
+		this.save();
+	}
+
+	/** Add several species at once (a whole group); undo takes them off again. */
+	addAll(ids: string[]) {
+		this.before = this.on;
+		this.canUndo = true;
+		this.on = new Set([...this.on, ...ids]);
 		this.save();
 	}
 

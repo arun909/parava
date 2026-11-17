@@ -1,121 +1,82 @@
 <script lang="ts">
-import { presets } from "@/lib/globe/presets";
 import type { GlobeState } from "@/lib/globe/state.svelte";
 import { MAX_LIVE } from "@/lib/globe/state.svelte";
-import { dayOfYear, PHASE_LABEL, PREPARED, speciesState } from "@/lib/model";
+import { PHASE_TEXT, PREPARED, speciesState } from "@/lib/model";
 import SpeciesSearch from "./SpeciesSearch.svelte";
 
-let { globe, onpick }: { globe: GlobeState; onpick?: () => void } = $props();
+let {
+	globe,
+	onpick,
+	hint = "No species yet. Add some from the Species menu or search.",
+	inline = false,
+}: {
+	globe: GlobeState;
+	onpick?: () => void;
+	hint?: string;
+	/** Search lists its matches here, not in the Species menu (the phone's sheet). */
+	inline?: boolean;
+} = $props();
 
-let showAll = $state(false);
-
-const today = dayOfYear();
-const groups = presets(PREPARED, today);
-const byId = new Map(PREPARED.map((s) => [s.id, s]));
-const status = (id: string) => {
-	const s = byId.get(id);
-	return s ? PHASE_LABEL[speciesState(s, globe.day).phase] : "";
-};
-
-const chips = $derived(PREPARED.filter((s) => globe.on.has(s.id)));
-const visible = $derived(showAll ? chips : chips.slice(0, 12));
-
-const browse = [
-	["Hand-modelled", (s: (typeof PREPARED)[number]) => s.source !== "estimated"],
-	[
-		"Winter visitors to India",
-		(s: (typeof PREPARED)[number]) => s.kind === "winter",
-	],
-	[
-		"Summer visitors to India",
-		(s: (typeof PREPARED)[number]) => s.kind === "summer",
-	],
-	["Passage migrants", (s: (typeof PREPARED)[number]) => s.kind === "passage"],
-] as const;
-let openGroup = $state<string | null>(null);
+const added = $derived(PREPARED.filter((s) => globe.on.has(s.id)));
 </script>
 
-<SpeciesSearch {globe} {onpick} />
+<SpeciesSearch {globe} {inline} />
 
-<section aria-label="Species on the globe">
-	<h3>On the globe <span class="mono">{chips.length}</span>
-		{#if chips.length}<button type="button" class="link" onclick={() => globe.setOn([])}>clear</button>{/if}
-		{#if globe.canUndo}<button type="button" class="link" onclick={() => globe.undo()}>undo</button>{/if}
+<!-- only what is on the map; browsing for more lives in the header's Species menu -->
+<section aria-label="Species on the map">
+	<h3>On the map <span class="mono">{added.length}</span>
+		<span class="tools">
+			{#if globe.canUndo}
+				<button type="button" class="icon" aria-label="Undo" data-tip="Undo" onclick={() => globe.undo()}>
+					<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5" /><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" /></svg>
+				</button>
+			{/if}
+			{#if added.length}
+				<button type="button" class="icon del" aria-label="Clear all" data-tip="Clear all" onclick={() => globe.setOn([])}>
+					<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18" /><path d="M8 6V4h8v2" /><path d="M5.5 6 6.5 20h11l1-14" /><path d="M10 10.5v6M14 10.5v6" /></svg>
+				</button>
+			{/if}
+		</span>
 	</h3>
-	{#if chips.length > MAX_LIVE}
+	{#if added.length > MAX_LIVE}
 		<p class="hint">Live sightings load for {MAX_LIVE} or fewer species. Pick one to see its sightings.</p>
 	{/if}
-	{#if chips.length}
-		<ul class="chips">
-			{#each visible as s (s.id)}
+	{#if added.length}
+		<ul class="rows">
+			{#each added as s (s.id)}
 				<li class:focus={globe.focus === s.id}>
-					<button type="button" class="c" onclick={() => { globe.open(s.id); onpick?.(); }} title="{s.sci} · {status(s.id)}">
-						<span class="dot" style:background={s.color}></span>{s.name}
+					<button type="button" class="name" onclick={() => { globe.open(s.id); onpick?.(); }} title={s.sci}>
+						<span class="dot" style:background={s.color}></span>
+						<span class="nm">{s.name}</span>
+						<span class="st">{PHASE_TEXT[speciesState(s, globe.day).phase]}</span>
 					</button>
 					<button type="button" class="x" aria-label="Remove {s.name}" onclick={() => globe.remove(s.id)}>×</button>
 				</li>
 			{/each}
 		</ul>
-		{#if chips.length > 12}
-			<button type="button" class="link" onclick={() => (showAll = !showAll)}>{showAll ? "Show fewer" : `Show all ${chips.length}`}</button>
-		{/if}
 	{:else}
-		<p class="hint">Nothing is on. Search above, or start from a group below.</p>
+		<p class="hint">{hint}</p>
 	{/if}
 </section>
 
-<section aria-label="Groups">
-	<h3>Quick groups</h3>
-	<div class="presets">
-		{#each groups as g (g.id)}
-			<button type="button" onclick={() => globe.setOn(g.ids)}>{g.label} <span class="mono">{g.ids.length}</span></button>
-		{/each}
-	</div>
-</section>
-
-<section aria-label="Browse">
-	<h3>Browse</h3>
-	{#each browse as [label, f] (label)}
-		<details ontoggle={(e) => { if ((e.currentTarget as HTMLDetailsElement).open) openGroup = label; else if (openGroup === label) openGroup = null; }}>
-			<summary>{label}</summary>
-			{#if openGroup === label}
-				<ul class="rows">
-					{#each PREPARED.filter(f).sort((a, b) => a.name.localeCompare(b.name)) as s (s.id)}
-						<li>
-							<input type="checkbox" aria-label="Show {s.name}" checked={globe.on.has(s.id)} onchange={() => globe.toggle(s.id)} />
-							<button type="button" class="name" onclick={() => { globe.open(s.id); onpick?.(); }}>
-								<span class="dot" style:background={s.color}></span>{s.name}
-							</button>
-							<span class="mono">{status(s.id)}</span>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		</details>
-	{/each}
-</section>
-
 <style>
-	h3 { font-size: 0.7rem; margin: var(--s4) 0 var(--s2); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; display: flex; gap: var(--s2); align-items: baseline; }
-	h3 .link { margin-left: auto; }
-	h3 .link + .link { margin-left: 0; }
-	.link { background: none; border: 0; padding: 0; color: var(--link); font: 0.75rem var(--font); text-transform: none; letter-spacing: 0; cursor: pointer; text-decoration: underline; }
-	.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-	.chips li { display: flex; align-items: center; background: var(--surface-2); border: 1px solid var(--line); border-radius: 99px; }
-	.chips li.focus { border-color: var(--violet); }
-	.c { background: none; border: 0; color: var(--text); font: 0.8rem var(--font); padding: 4px 4px 4px 10px; cursor: pointer; display: flex; align-items: center; }
-	.x { background: none; border: 0; color: var(--muted); padding: 0 9px 0 4px; font-size: 1rem; cursor: pointer; }
-	.x:hover { color: var(--rose); }
+	h3 { font-size: 0.7rem; margin: var(--s2) 0 var(--s2); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; display: flex; gap: var(--s2); align-items: center; min-height: 26px; }
+	.tools { display: flex; gap: 2px; margin-left: auto; }
+	.icon { position: relative; display: grid; place-items: center; width: 28px; height: 28px; border: 0; border-radius: 7px; background: none; color: var(--muted); cursor: pointer; }
+	.icon svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+	.icon:hover, .icon:focus-visible { color: var(--text); background: var(--surface-2); }
+	.icon.del:hover, .icon.del:focus-visible { color: var(--danger); background: color-mix(in srgb, var(--danger) 8%, transparent); }
+	/* the button's name, shown on hover and keyboard focus */
+	.icon::after { content: attr(data-tip); position: absolute; top: 50%; right: calc(100% + 6px); z-index: 2; padding: 4px 8px; border-radius: 6px; background: var(--text); color: var(--surface); font: 500 0.72rem var(--font); letter-spacing: 0; text-transform: none; white-space: nowrap; pointer-events: none; opacity: 0; transform: translate(2px, -50%); transition: opacity 0.12s, transform 0.12s; }
+	.icon:hover::after, .icon:focus-visible::after { opacity: 1; transform: translate(0, -50%); }
 	.hint { color: var(--muted); font-size: 0.85rem; margin: 0; }
-	.presets { display: flex; flex-wrap: wrap; gap: 6px; }
-	.presets button { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); border-radius: 99px; padding: 4px 10px; font: 0.78rem var(--font); cursor: pointer; }
-	.presets button:hover { border-color: var(--violet); }
-	details { border-top: 1px solid var(--line); }
-	summary { padding: 8px 0; cursor: pointer; font-size: 0.85rem; }
-	.rows { list-style: none; margin: 0 0 var(--s2); padding: 0; max-height: 260px; overflow: auto; }
-	.rows li { display: flex; align-items: center; padding: 3px 0; font-size: 0.85rem; }
-	.rows input { margin: 0 var(--s2) 0 0; width: 16px; height: 16px; accent-color: var(--violet); }
-	.name { background: none; border: 0; color: var(--text); font: inherit; padding: 0; cursor: pointer; text-align: left; flex: 1; }
-	.name:hover { text-decoration: underline; }
-	.rows .mono { font-size: 0.65rem; }
+	.rows { list-style: none; margin: 0 calc(-1 * var(--s2)); padding: 0; }
+	.rows li { display: flex; align-items: center; border-radius: 8px; }
+	.rows li:hover, .rows li.focus { background: var(--surface-2); }
+	.rows li.focus { box-shadow: inset 2px 0 0 var(--accent); }
+	.name { flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--s1); background: none; border: 0; color: var(--text); font: 0.85rem var(--font); padding: 6px 4px 6px var(--s2); cursor: pointer; text-align: left; }
+	.nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	.name .st { flex: none; color: var(--muted); font-size: 0.75rem; white-space: nowrap; }
+	.x { background: none; border: 0; color: var(--muted); padding: 0 var(--s2); font-size: 1rem; cursor: pointer; }
+	.x:hover { color: var(--danger); }
 </style>

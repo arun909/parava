@@ -3,7 +3,7 @@ import Globe from "@/components/Globe.svelte";
 import Base from "@/layouts/Base.astro";
 ---
 
-<Base title="Map" bare preconnect description="Live bird migration on a map of the world."><Globe client:only="svelte">
+<Base title="Map" bare menu preconnect description="Live bird migration on a map of the world."><Globe client:only="svelte">
 		<div slot="fallback" class="space"><p class="mono">Loading the map…</p></div>
 	</Globe></Base>
 

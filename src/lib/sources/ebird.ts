@@ -3,9 +3,6 @@ import type { Sighting } from "@/lib/model";
 import { type Fetch, getJson } from "./http";
 
 const API = "https://api.ebird.org/v2";
-const Taxonomy = v.array(
-	v.object({ sciName: v.string(), speciesCode: v.string() }),
-);
 const Observations = v.array(
 	v.object({
 		lat: v.number(),
@@ -19,26 +16,6 @@ const Observations = v.array(
 
 /** eBird needs your own free API key (https://ebird.org/api/keygen); it is only ever sent to api.ebird.org. */
 const headers = (key: string) => ({ "X-eBirdApiToken": key });
-
-/** eBird species code for each scientific name, from the eBird taxonomy. */
-export async function ebirdCodes(
-	fetcher: Fetch,
-	key: string,
-	sciNames: string[],
-): Promise<Record<string, string>> {
-	const tax = await getJson(
-		fetcher,
-		`${API}/ref/taxonomy/ebird?fmt=json&cat=species&locale=en`,
-		Taxonomy,
-		{ headers: headers(key) },
-	);
-	const wanted = new Set(sciNames);
-	return Object.fromEntries(
-		tax
-			.filter((t) => wanted.has(t.sciName))
-			.map((t) => [t.sciName, t.speciesCode]),
-	);
-}
 
 /** Recent observations of one species in one region (a country or state code such as IN or IN-KL). */
 export async function ebirdRecent(

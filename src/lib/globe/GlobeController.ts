@@ -19,27 +19,35 @@ export { HEAT_RAMP };
 import { globeStyle } from "./style";
 
 type Rgb = [number, number, number];
-const SPRING: Rgb = [139, 92, 246];
-const AUTUMN: Rgb = [244, 63, 94];
+const SPRING: Rgb = [100, 132, 70]; // brand leaf, deepened to read on the light map
+const AUTUMN: Rgb = [214, 122, 34]; // brand sun
 // deck draws on top of the globe; depth testing against the tiles causes z-fighting
 const GP = {
 	parameters: { depthCompare: "always", depthWriteEnabled: false },
 } as const;
 
-// additive blending: overlapping glows add up, which is what makes a heat map
-const ADD = {
+// glows layer over each other: additive blending, which builds a heat map on a dark map, washes out to white on a light one
+const OVER = {
 	parameters: {
 		depthCompare: "always",
 		depthWriteEnabled: false,
 		blend: true,
 		blendColorOperation: "add",
 		blendColorSrcFactor: "src-alpha",
-		blendColorDstFactor: "one",
+		blendColorDstFactor: "one-minus-src-alpha",
 		blendAlphaOperation: "add",
 		blendAlphaSrcFactor: "one",
-		blendAlphaDstFactor: "one",
+		blendAlphaDstFactor: "one-minus-src-alpha",
 	},
 } as const;
+const RAD = Math.PI / 180;
+/** A canvas laid over the whole Web Mercator world. */
+const WORLD: [LonLat, LonLat, LonLat, LonLat] = [
+	[-180, 85.0511],
+	[180, 85.0511],
+	[180, -85.0511],
+	[-180, -85.0511],
+];
 const AWAY_ZOOM = 3.5; // off-path sightings appear once you zoom in this far
 // soft glow: wide faint, medium and tight cores stacked
 const GLOW: [radius: number, alpha: number][] = [
@@ -67,10 +75,27 @@ function dense(path: LonLat[], k = 4): LonLat[] {
 	if (last) out.push(last);
 	return out;
 }
-const hash = (i: number, k: number) => {
-	const x = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453;
-	return x - Math.floor(x);
-};
+/** A small chevron (">") at fraction `f` of a route, pointing along the direction of travel; `size` is in degrees. */
+function arrow(r: Parameters<typeof at>[0], f: number, size: number): LonLat[] {
+	const [lon, lat] = at(r, f);
+	const back = at(r, Math.max(0, f - 0.004));
+	const fwd = at(r, Math.min(1, f + 0.004));
+	const cos = Math.max(0.2, Math.cos((lat * Math.PI) / 180));
+	// heading in a local flat plane (east, north), then the two wings 150 degrees either side of the way ahead
+	let dx = (fwd[0] - back[0]) * cos;
+	if (Math.abs(fwd[0] - back[0]) > 180)
+		dx = (fwd[0] - back[0] - Math.sign(fwd[0] - back[0]) * 360) * cos;
+	const dy = fwd[1] - back[1];
+	const len = Math.hypot(dx, dy) || 1;
+	const h = Math.atan2(dy, dx);
+	const wing = (a: number): LonLat => [
+		lon + (Math.cos(h + a) * size) / cos,
+		lat + Math.sin(h + a) * size,
+	];
+	return [wing(Math.PI * 0.82), [lon, lat], wing(-Math.PI * 0.82)].map(
+		(p) => (len ? p : [lon, lat]) as LonLat,
+	);
+}
 
 export interface Hover {
 	x: number;
@@ -96,13 +121,19 @@ interface RouteItem extends Meta {
 	a: number;
 	w: number;
 }
-export type HeatMode = "now" | "flyways" | "off";
+/** density: where the birds are on the chosen date; routes: the routes' glow. */
+export type Show = "density" | "routes";
+export type View = "globe" | "flat";
 export interface PathOptions {
-	mode: "active" | "all" | "focus";
+	show: Show;
+	/** Which legs the routes glow along: the one being flown now, or the whole year's. */
+	span: "current" | "year";
+	/** The species whose card is open: its routes drawn crisp in its own colour, the rest dimmed. */
 	focus?: string;
-	/** now: where the birds are on the chosen date; flyways: the routes' glow; off: none. */
-	heat: HeatMode;
+	/** Draw every route as a hovered one is (a traced line with drifting arrows) instead of the glow. */
+	traceAll?: boolean;
 }
+type Sel = { s: PreparedSpecies; pop: PreparedPop; leg: 0 | 1 };
 export interface Report {
 	pos: LonLat;
 	c: Rgb;
@@ -124,6 +155,8 @@ export class GlobeController {
 	private overlay = new MapboxOverlay({ interleaved: true, layers: [] });
 	private away: Report[] = [];
 	private heat?: HeatCanvas;
+	private view: View = "globe";
+	private pad = { top: 0, right: 0, bottom: 0, left: 0 };
 	/** The viewer has moved the camera themselves: do not re-fit it behind their back. */
 	private moved = false;
 	private heatQueued = 0;
@@ -135,7 +168,7 @@ export class GlobeController {
 		{
 			species: [],
 			d: 1,
-			paths: { mode: "active", heat: "now" },
+			paths: { show: "density", span: "current" },
 		};
 
 	constructor(
@@ -146,8 +179,10 @@ export class GlobeController {
 			container,
 			style: globeStyle,
 			center: [50, 20],
-			zoom: container.clientWidth < 600 ? 0.9 : 1.8,
+			zoom: container.clientWidth < 600 ? 0.6 : 1.4,
 			maxZoom: 9,
+			// sharp enough on any screen; 3x phones would otherwise draw over twice the pixels
+			pixelRatio: Math.min(2, window.devicePixelRatio || 1),
 			attributionControl: { compact: true },
 			dragRotate: false,
 			pitchWithRotate: false,
@@ -182,12 +217,7 @@ export class GlobeController {
 			this.map.addSource("heat", {
 				type: "canvas",
 				canvas: this.heat.canvas,
-				coordinates: [
-					[-180, 85.0511],
-					[180, 85.0511],
-					[180, -85.0511],
-					[-180, -85.0511],
-				],
+				coordinates: WORLD,
 				animate: false,
 			});
 			this.map.addLayer(
@@ -201,10 +231,30 @@ export class GlobeController {
 						"raster-resampling": "linear",
 					},
 				},
-				"borders",
+				"states",
 			);
 			this.paintHeat();
 		});
+	}
+
+	/** Switch between the 3D globe and a flat 2D map. */
+	setView(view: View) {
+		if (view === this.view) return;
+		this.view = view;
+		const apply = () => {
+			this.map.setProjection({ type: view === "globe" ? "globe" : "mercator" });
+			// one world framed by the sky, not ocean repeated edge to edge
+			this.map.setRenderWorldCopies(view === "globe");
+			this.map.setTransformConstrain(view === "flat" ? this.keepWorld : null);
+			this.map.setPaintProperty(
+				"bg",
+				"background-opacity",
+				view === "globe" ? 1 : 0,
+			);
+			this.fit(this.pad);
+		};
+		if (this.map.isStyleLoaded()) apply();
+		else this.map.once("style.load", apply);
 	}
 
 	/** Fly the camera to a position (longitudes may be unwrapped past 180). */
@@ -229,89 +279,114 @@ export class GlobeController {
 		setTimeout(go, 4000);
 	}
 
-	private sel: { s: PreparedSpecies; pop: PreparedPop; leg: 0 | 1 } | null =
-		null;
+	private sel: Sel | null = null;
 	private selAt = 0;
 	private raf = 0;
 	private tick = () => {
 		this.draw();
-		this.raf = this.sel ? requestAnimationFrame(this.tick) : 0;
+		this.raf = this.moving ? requestAnimationFrame(this.tick) : 0;
 	};
-	private select(
-		sel: { s: PreparedSpecies; pop: PreparedPop; leg: 0 | 1 } | null,
-	) {
+	/** Arrows are drifting somewhere: a route is hovered, or every route is traced. */
+	private get moving() {
+		const { paths } = this.last;
+		return !!this.sel || (paths.show === "routes" && !!paths.traceAll);
+	}
+	private select(sel: Sel | null) {
 		const same =
 			sel && this.sel && sel.pop === this.sel.pop && sel.leg === this.sel.leg;
 		if (same || (!sel && !this.sel)) return;
 		this.sel = sel;
 		this.selAt = performance.now();
-		if (sel && !this.raf) this.raf = requestAnimationFrame(this.tick);
+		if (this.moving && !this.raf) this.raf = requestAnimationFrame(this.tick);
 		else if (!sel) this.draw();
 	}
 
+	/** Every route of the enabled species, on the legs the span shows, for tracing them all. */
+	private traced(): Sel[] {
+		const { species, d, paths } = this.last;
+		if (paths.show !== "routes" || !paths.traceAll) return [];
+		const out: Sel[] = [];
+		for (const s of species)
+			for (const pop of s.pops) {
+				const { phase } = popState(pop, d);
+				for (const leg of [0, 1] as const)
+					if (
+						paths.span === "year" ||
+						s.id === paths.focus ||
+						phase === (leg === 0 ? "spring" : "autumn")
+					)
+						out.push({ s, pop, leg });
+			}
+		return out;
+	}
+
 	/**
-	 * The hovered route is revealed: scattered particles converge on the path while it fades in, then bright
-	 * particles keep flowing along it in the direction of travel.
+	 * The hovered route, drawn like a flight tracker: a solid line where the flock has already flown, a fainter one still ahead,
+	 * and small arrows that drift slowly along the whole route in the direction of travel. With "Lines" on, every route is drawn so.
 	 */
 	private trace(now: number) {
-		const sel = this.sel;
-		if (!sel) return [];
-		const r = sel.leg === 0 ? sel.pop.sp : sel.pop.au;
-		const col = rgb(sel.s.color);
-		const t = Math.min(1, (now - this.selAt) / 600);
-		const e = 1 - (1 - t) ** 3;
-		const scatter = Array.from({ length: 56 }, (_, i) => {
-			const p = at(r, (i + 0.5) / 56);
-			const k = (1 - e) * 3.5;
-			return [
-				p[0] + (hash(i, 1) - 0.5) * 2 * k,
-				p[1] + (hash(i, 2) - 0.5) * 2 * k,
-			] as LonLat;
-		});
-		const flow = Array.from({ length: 30 }, (_, i) =>
-			at(r, (now / 7000 + i / 30) % 1),
-		);
+		const { focus } = this.last.paths;
+		// fades in, so the reveal is calm; with a species focused, the other traced routes step back
+		const all = this.traced().map((t) => ({
+			...t,
+			e: focus && t.s.id !== focus ? 0.35 : 1,
+			// a few arrows in the route's own colour, so a map full of routes stays readable
+			n: 5,
+			hovered: false,
+		}));
+		if (this.sel)
+			all.push({
+				...this.sel,
+				e: Math.min(1, (now - this.selAt) / 400),
+				n: 14,
+				hovered: true,
+			});
+		if (!all.length) return [];
+		// arrows are drawn in degrees, so their size follows the zoom to stay about 11 pixels long
+		const size = 2.6 * 2 ** (1.8 - this.map.getZoom());
+		const phase = (now / 14000) % 1; // the arrows advance one spacing every 14 seconds: very slow
+		type Line = { path: LonLat[]; c: Rgb; e: number; ink?: Rgb };
+		const ahead: Line[] = [];
+		const flown: Line[] = [];
+		const arrows: Line[] = [];
+		for (const t of all) {
+			const r = t.leg === 0 ? t.pop.sp : t.pop.au;
+			const c = rgb(t.s.color);
+			const st = popState(t.pop, this.last.d);
+			const active = st.route === r;
+			// traced routes are stronger than a hovered one's faint line ahead, since they stand on their own
+			ahead.push({ path: r.pts, c, e: t.hovered ? t.e : t.e * 1.6 });
+			if (active) {
+				const f = sliceTo(r, st.f);
+				if (f.length > 1) flown.push({ path: f, c, e: t.e });
+			}
+			const ink: Rgb | undefined = t.hovered ? [60, 64, 67] : undefined;
+			const sz = t.hovered ? size : size * 0.8;
+			for (let i = 0; i < t.n; i++)
+				arrows.push({ path: arrow(r, (i + phase) / t.n, sz), c, e: t.e, ink });
+			// the flock itself gets a larger arrow showing where it is heading
+			if (active && t.hovered)
+				arrows.push({ path: arrow(r, st.f, size * 1.7), c, e: t.e, ink });
+		}
+		const line = (id: string, data: Line[], a: number, w: number) =>
+			new PathLayer<Line>({
+				...GP,
+				id,
+				data,
+				getPath: (l) => l.path,
+				getColor: (l): [number, number, number, number] => [
+					...(l.ink ?? l.c),
+					Math.min(255, a * l.e),
+				],
+				getWidth: w,
+				widthUnits: "pixels",
+				capRounded: true,
+				jointRounded: true,
+			});
 		return [
-			new PathLayer<{ path: LonLat[] }>({
-				...GP,
-				id: "trace-glow",
-				data: [{ path: r.pts }],
-				getPath: (d) => d.path,
-				getColor: [...col, 28 * e],
-				getWidth: 7,
-				widthUnits: "pixels",
-				capRounded: true,
-				jointRounded: true,
-			}),
-			new PathLayer<{ path: LonLat[] }>({
-				...GP,
-				id: "trace",
-				data: [{ path: r.pts }],
-				getPath: (d) => d.path,
-				getColor: [...col, 120 * e],
-				getWidth: 1.4,
-				widthUnits: "pixels",
-				capRounded: true,
-				jointRounded: true,
-			}),
-			new ScatterplotLayer<LonLat>({
-				...ADD,
-				id: "trace-merge",
-				data: scatter,
-				getPosition: (p) => p,
-				getRadius: 1.5,
-				radiusUnits: "pixels",
-				getFillColor: [...col, 150 * (1 - e * 0.7)],
-			}),
-			new ScatterplotLayer<LonLat>({
-				...ADD,
-				id: "trace-flow",
-				data: flow,
-				getPosition: (p) => p,
-				getRadius: 2,
-				radiusUnits: "pixels",
-				getFillColor: [255, 255, 255, 130 * e],
-			}),
+			line("trace-ahead", ahead, 90, 1.4),
+			line("trace-flown", flown, 235, 2.6),
+			line("trace-arrows", arrows, 210, 1.6),
 		];
 	}
 
@@ -343,23 +418,62 @@ export class GlobeController {
 	}
 
 	/**
-	 * Keep the globe inside the part of the window the panels leave free: the padding moves its centre, and until the viewer has
-	 * moved the camera, the zoom makes it fill that space.
+	 * Keep the globe inside the part of the window the panels leave free: the padding moves its centre, and the zoom that shows
+	 * the whole world inside that space, with a margin, is as far out as the viewer can go and where the view opens.
 	 */
 	fit(pad: { top: number; right: number; bottom: number; left: number }) {
+		this.pad = pad;
 		const c = this.map.getContainer();
-		const w = c.clientWidth - pad.left - pad.right;
-		const h = c.clientHeight - pad.top - pad.bottom;
-		this.map.setPadding(pad);
-		if (this.moved || w < 100 || h < 100) return;
-		// a globe at zoom z is about 512 * 2^z / pi pixels across
-		const zoom = Math.log2((Math.PI * Math.min(w, h) * 0.94) / 512);
+		// the flat map covers the whole map area, under the header and timeline; the globe sits in the space they leave
+		const p =
+			this.view === "flat" ? { top: 0, right: 0, bottom: 0, left: 0 } : pad;
+		const w = c.clientWidth - p.left - p.right;
+		const h = c.clientHeight - p.top - p.bottom;
+		this.map.setPadding(p);
+		if (w < 100 || h < 100) return;
+		// a globe at zoom z is about 512 * 2^z / pi pixels across; the flat world is a 512 * 2^z square, as small as still covers
+		const zoom =
+			this.view === "globe"
+				? Math.log2((Math.PI * Math.min(w, h) * 0.72) / 512)
+				: Math.log2(Math.max(w, h) / 512);
+		const whole = Math.max(-1, Math.min(3, zoom));
+		this.map.setMinZoom(whole);
+		if (this.moved) return;
 		this.map.easeTo({
-			zoom: Math.max(0.6, Math.min(3, zoom)),
-			padding: pad,
+			zoom: whole,
+			// the flat map opens on the northern latitudes most flyways cross; keepWorld holds its edges to the frame
+			...(this.view === "flat" && { center: [this.map.getCenter().lng, 25] }),
+			padding: p,
 			duration: 0,
 		});
 	}
+
+	/**
+	 * The flat map's own limits: the world cannot be dragged past the edges of the map area, and is centred on an axis where it is
+	 * smaller (only for a moment, while the minimum zoom catches up with a resize).
+	 */
+	private keepWorld = (lngLat: maplibregl.LngLat, z: number) => {
+		const zoom = Math.max(z, this.map.getMinZoom());
+		const size = 512 * 2 ** zoom;
+		const c = this.map.getContainer();
+		const w = c.clientWidth;
+		const h = c.clientHeight;
+		const keep = (v: number, span: number) =>
+			span >= size
+				? size / 2
+				: Math.min(size - span / 2, Math.max(span / 2, v));
+		const lat = Math.max(-85.0511, Math.min(85.0511, lngLat.lat));
+		const merc = (1 - Math.asinh(Math.tan(lat * RAD)) / Math.PI) / 2;
+		const x = keep(((lngLat.lng + 180) / 360) * size, w) / size;
+		const y = keep(merc * size, h) / size;
+		return {
+			center: new maplibregl.LngLat(
+				x * 360 - 180,
+				Math.atan(Math.sinh(Math.PI * (1 - 2 * y))) / RAD,
+			),
+			zoom,
+		};
+	};
 
 	/** Replace the sightings shown (flyway-filtered, already coloured per species). */
 	setReports(reports: Report[], away: Report[] = []) {
@@ -390,6 +504,7 @@ export class GlobeController {
 	update(species: PreparedSpecies[], d: number, paths: PathOptions) {
 		this.last = { species, d, paths };
 		this.draw();
+		if (this.moving && !this.raf) this.raf = requestAnimationFrame(this.tick);
 		this.paintHeat();
 	}
 
@@ -399,10 +514,16 @@ export class GlobeController {
 		this.heatQueued = requestAnimationFrame(() => {
 			this.heatQueued = 0;
 			const { species, d, paths } = this.last;
-			const on = paths.heat === "now";
+			const on = paths.show === "density";
 			this.map.setLayoutProperty("heat", "visibility", on ? "visible" : "none");
 			if (!on || !this.heat) return;
-			this.heat.draw(density(species, d));
+			// a species looked at on its own: the density stays as faint context behind it
+			this.map.setPaintProperty(
+				"heat",
+				"raster-opacity",
+				paths.focus ? 0.4 : 0.95,
+			);
+			this.heat.draw(density(species, d), 0.6 + species.length * 0.022);
 			const src = this.map.getSource("heat") as
 				| maplibregl.CanvasSource
 				| undefined;
@@ -413,16 +534,15 @@ export class GlobeController {
 		});
 	}
 
-	/** Dim full routes plus a bright flown part on the leg being flown, depending on the Paths mode. */
+	/** Dim full routes plus a bright flown part on the leg being flown; the focused species gets both legs, in its own colour. */
 	private routes(
 		species: PreparedSpecies[],
 		d: number,
-		{ mode, focus }: PathOptions,
+		{ span, focus }: PathOptions,
 	) {
 		const out: RouteItem[] = [];
 		for (const s of species) {
-			if (mode === "focus" && focus && s.id !== focus) continue;
-			const own = mode === "focus" && s.id === focus ? rgb(s.color) : null;
+			const own = s.id === focus ? rgb(s.color) : null;
 			for (const p of s.pops) {
 				const st = popState(p, d);
 				const legs = [
@@ -440,7 +560,7 @@ export class GlobeController {
 					},
 				];
 				for (const { r, c, on, leg } of legs) {
-					if (mode === "active" && !on) continue;
+					if (span === "current" && !own && !on) continue;
 					const m = { s, pop: p, leg, km: r.len, c };
 					out.push({ ...m, flown: false, path: r.pts, a: on ? 80 : 70, w: 2 });
 					if (on)
@@ -461,14 +581,19 @@ export class GlobeController {
 		const { species, d, paths } = this.last;
 		const routes = this.routes(species, d, paths);
 		// full routes carry the picking; the heat map is drawn from every route, hotter where already flown
-		const heat: HeatPt[] = routes.flatMap((r) =>
-			dense(r.path).map((pos) => ({
-				pos,
-				c: r.c,
-				a: r.flown ? 1 : r.a > 75 ? 0.55 : 0.35,
-			})),
-		);
-		const focusLines = paths.mode === "focus" ? routes : [];
+		const { focus } = paths;
+		const dim = (id: string) => !!focus && id !== focus;
+		// the focused species is drawn as crisp lines, so it stays out of the glow
+		const heat: HeatPt[] = routes
+			.filter((r) => r.s.id !== focus)
+			.flatMap((r) =>
+				dense(r.path).map((pos) => ({
+					pos,
+					c: r.c,
+					a: (r.flown ? 1 : r.a > 75 ? 0.55 : 0.35) * (focus ? 0.3 : 1),
+				})),
+			);
+		const focusLines = routes.filter((r) => r.s.id === focus);
 		// a hundred coloured dots would hide the heat map: show flocks for a few species, or once zoomed in
 		const showFlocks = species.length <= 30 || this.map.getZoom() >= 4;
 		const flocks: Flock[] = (showFlocks ? species : []).flatMap((s) =>
@@ -485,10 +610,10 @@ export class GlobeController {
 		);
 		this.overlay.setProps({
 			layers: [
-				...(paths.heat === "flyways" ? GLOW : []).map(
+				...(paths.show === "routes" && !paths.traceAll ? GLOW : []).map(
 					([radius, alpha]) =>
 						new ScatterplotLayer<HeatPt>({
-							...ADD,
+							...OVER,
 							id: `heat-${radius}`,
 							data: heat,
 							getPosition: (h) => h.pos,
@@ -534,7 +659,7 @@ export class GlobeController {
 						).map(
 							([radius, alpha]) =>
 								new ScatterplotLayer<Report>({
-									...ADD,
+									...OVER,
 									id: `away-${radius}`,
 									data: this.away,
 									getPosition: (r) => r.pos,
@@ -567,9 +692,18 @@ export class GlobeController {
 					getRadius: 7,
 					radiusUnits: "pixels",
 					pickable: true,
-					getFillColor: (f): [number, number, number, number] => [...f.c, 255],
+					getFillColor: (f): [number, number, number, number] => [
+						...f.c,
+						dim(f.s.id) ? 70 : 255,
+					],
 					stroked: true,
-					getLineColor: [250, 250, 250, 255],
+					getLineColor: (f): [number, number, number, number] => [
+						250,
+						250,
+						250,
+						dim(f.s.id) ? 70 : 255,
+					],
+					updateTriggers: { getFillColor: focus, getLineColor: focus },
 					lineWidthUnits: "pixels",
 					getLineWidth: 2,
 				}),

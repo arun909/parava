@@ -1,54 +1,45 @@
 ---
+import MigrationCalendar, {
+	type YearSpecies,
+} from "@/components/MigrationCalendar.svelte";
+import type { CalEvent } from "@/components/UpcomingCalendar.svelte";
 import Base from "@/layouts/Base.astro";
 import { dayOfYear, MONTHS, MSTART, PREPARED, popState } from "@/lib/model";
 
-const today = dayOfYear();
-// per species: which month cells have the main population moving
-const rows = PREPARED.map((s) => ({
-	s,
-	// moving on any sampled day of the month (a short trip can fall between two mid-month samples)
-	months: MONTHS.map((_, m) => {
+// per species and month: is any population heading north, south, or both? Fixed by the model, so it is worked out here;
+// only "today" is left to the browser
+const species: YearSpecies[] = PREPARED.map((s) => ({
+	id: s.id,
+	name: s.name,
+	color: s.color,
+	hand: s.source !== "estimated",
+	kind: s.kind,
+	legs: MONTHS.map((_, m) => {
 		const end = MSTART[m + 1] ?? 366;
-		for (let d = MSTART[m]!; d < end; d += 4)
-			if (
-				s.pops.some((p) => ["spring", "autumn"].includes(popState(p, d).phase))
-			)
-				return true;
-		return false;
-	}),
+		let n = false;
+		let so = false;
+		// every third day, so a short trip between two samples is not missed
+		for (let d = MSTART[m]! + 1; d < end + 1; d += 3)
+			for (const p of s.pops) {
+				const ph = popState(p, d).phase;
+				if (ph === "spring") n = true;
+				if (ph === "autumn") so = true;
+			}
+		return n && so ? "b" : n ? "n" : so ? "s" : "-";
+	}).join(""),
 }));
+const events: CalEvent[] = PREPARED.flatMap((s, si) =>
+	s.pops.flatMap((p) =>
+		p.dep.map((day, k): CalEvent => [si, Math.round(day), k, p.name]),
+	),
+);
 ---
 
-<Base wide title="Calendar" description="Which months each species is on the move.">
-	<h1>Calendar</h1>
-	<p style="color:var(--muted)">Months with at least one population in flight. Today is highlighted.</p>
-	<div class="cal">
-		<table>
-			<thead>
-				<tr><th><span class="sr">Species</span></th>{MONTHS.map((m, i) => <th class:list={[{ now: today >= MSTART[i]! && today < (MSTART[i + 1] ?? 366) }]}>{m.slice(0, 3)}</th>)}</tr>
-			</thead>
-			<tbody>
-				{rows.map(({ s, months }, i) => (
-					<>
-					{(i === 0 || s.source !== rows[i - 1]?.s.source) && <tr class="group"><th colspan="13">{s.source === "estimated" ? "Estimated migrants of India" : "Hand-modelled flyways"}</th></tr>}
-					<tr>
-						<th scope="row" style="text-align:left"><a href={`/species/${s.id}/`}>{s.name}</a></th>
-						{months.map((on) => <td style={on ? `background:${s.color}` : ""}>{on ? <span class="sr">migrating</span> : null}</td>)}
-					</tr>
-					</>
-				))}
-			</tbody>
-		</table>
-	</div>
-	<style>
-		.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-		.cal { overflow: auto; height: calc(100vh - 250px); min-height: 560px; }
-		table { border-collapse: separate; border-spacing: 2px; width: 100%; height: 100%; min-width: 720px; }
-		.group th { text-align: left; padding: 14px 0 4px; color: var(--text); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
-		thead th { position: sticky; top: 0; background: var(--bg); z-index: 1; }
-		td { height: auto; min-height: 20px; border-radius: 4px; background: var(--surface); }
-		th { font-weight: 500; font-size: 0.85rem; color: var(--muted); }
-		th.now { color: var(--violet); }
-		th a { color: var(--text); text-decoration: none; white-space: nowrap; padding-right: 12px; }
-	</style>
+<Base menu bare title="Calendar" description="When each migratory bird arrives, leaves and is in the air, month by month.">
+	<h1 class="sr">Migration calendar</h1>
+	<MigrationCalendar client:load {species} {events} built={Math.floor(dayOfYear())} />
 </Base>
+
+<style>
+	.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>

@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { speciesById } from "@/lib/model";
 import {
-	ebirdCodes,
 	fetchEbird,
 	fetchSightings,
 	flywayBoxes,
@@ -192,9 +191,7 @@ describe("eBird", () => {
 						},
 					];
 		});
-		const codes = await ebirdCodes(f, "KEY", ["Pastor roseus"]);
-		expect(codes).toEqual({ "Pastor roseus": "rossta2" });
-		const out = await fetchEbird(f, "KEY", ["in-kl"], codes["Pastor roseus"]!);
+		const out = await fetchEbird(f, "KEY", ["in-kl"], "rossta2");
 		expect(out[0]).toMatchObject({
 			lon: 76.94,
 			lat: 8.52,

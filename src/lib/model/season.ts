@@ -27,6 +27,14 @@ export const PHASE_LABEL: Record<Phase, string> = {
 	wintering: "Wintering",
 };
 
+/** The same, in words for a list, where an arrow would read as a control. */
+export const PHASE_TEXT: Record<Phase, string> = {
+	spring: "Heading north",
+	autumn: "Heading south",
+	breeding: "Breeding",
+	wintering: "Wintering",
+};
+
 /** Day of year as a fraction: 1.0 is 1 January 00:00 local time. */
 export function dayOfYear(date = new Date()): number {
 	return (

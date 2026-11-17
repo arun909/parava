@@ -21,7 +21,7 @@ const today = dayOfYear();
 	<h1>{s.name}</h1>
 	<p style="max-width:60ch;color:var(--muted)">{s.fact}</p>
 	{s.source === "estimated" && <p class="mono" style="max-width:60ch">Estimated route: derived from recorded sightings, not a field study. Treat the dates and path as approximate.{s.confidence === "low" && ` Low confidence: ${s.flags?.join("; ")}.`}</p>}
-	<p><a class="btn" href={`/globe/?species=${s.id}`}>Show on globe</a></p>
+	<p><a class="btn" href={`/map/?species=${s.id}`}>Show on map</a></p>
 	<h2 style="margin-top:40px">Populations</h2>
 	<div class="grid">
 		{s.pops.map((p) => {

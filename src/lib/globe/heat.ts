@@ -1,19 +1,19 @@
 import type { Weighted } from "./density";
 
-/** The heat colour ramp, faint to hot (RGBA): also drawn as the legend. */
+/** The heat colour ramp, faint to hot (RGBA), yellow to deep red to read on the light map: also drawn as the legend. */
 export const HEAT_RAMP: [number, number, number, number][] = [
-	[59, 7, 100, 0],
-	[91, 33, 182, 120],
-	[139, 92, 246, 180],
-	[244, 63, 94, 220],
-	[251, 146, 60, 240],
-	[253, 224, 71, 250],
-	[255, 255, 235, 255],
+	[255, 237, 160, 0],
+	[255, 230, 140, 110],
+	[254, 204, 92, 165],
+	[253, 141, 60, 200],
+	[240, 59, 32, 225],
+	[200, 20, 40, 240],
+	[128, 0, 38, 250],
 ];
 
-const SIZE = 512; // a Web Mercator square over the whole world; the map smooths it when it stretches it over the globe
+const SIZE = 1024; // a Web Mercator square over the whole world; the map smooths it when it stretches it over the globe
 const EQUATOR_KM = 40075;
-const SIGMA_KM = 380; // how far one bird's presence is smeared
+const SIGMA_KM = 120; // how far one bird's presence is smeared
 const RAD = Math.PI / 180;
 // the Gaussian kernel as a lookup over squared distance in sigmas
 const STEPS = 400;
@@ -32,7 +32,8 @@ export class HeatCanvas {
 		this.canvas.width = this.canvas.height = SIZE;
 	}
 
-	draw(points: Weighted[]) {
+	/** `soft` sets how much density reads as fully hot: more species overlapping need a higher value to keep a gradient. */
+	draw(points: Weighted[], soft = 0.9) {
 		const { field } = this;
 		field.fill(0);
 		for (const p of points) {
@@ -65,12 +66,12 @@ export class HeatCanvas {
 		for (let i = 0; i < field.length; i++) {
 			const v = field[i]!;
 			const o = i * 4;
-			if (v < 0.015) {
+			if (v < 0.04) {
 				px[o + 3] = 0;
 				continue;
 			}
 			// soft saturation: a few overlapping species already read as hot, but a crowd keeps climbing
-			const t = (1 - Math.exp(-v / 0.5)) * top;
+			const t = (1 - Math.exp(-v / soft)) * top;
 			const k = Math.min(top - 1, Math.floor(t));
 			const f = t - k;
 			const a = HEAT_RAMP[k]!;

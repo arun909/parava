@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import codes from "./ebird-codes.json";
 import { SPECIES } from "./index";
 
 describe("species data", () => {
@@ -29,5 +30,11 @@ describe("species data", () => {
 			// a low-confidence estimate always says why
 			if (s.confidence === "low") expect(s.flags?.length).toBeGreaterThan(0);
 		}
+	});
+	test("nearly every species has an eBird code (run `bun scripts/ebird-codes.ts` after the species change)", () => {
+		const have = SPECIES.filter(
+			(s) => (codes as Record<string, string>)[s.sci],
+		);
+		expect(have.length / SPECIES.length).toBeGreaterThan(0.95);
 	});
 });

@@ -1,8 +1,0 @@
----
-import Globe from "@/components/Globe.svelte";
-import Base from "@/layouts/Base.astro";
----
-
-<Base title="Globe" bare preconnect description="Live bird migration on a 3D globe."><Globe client:only="svelte">
-		<p slot="fallback" class="mono" style="padding:24px">Loading the globe…</p>
-	</Globe></Base>

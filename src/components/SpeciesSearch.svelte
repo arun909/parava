@@ -1,46 +1,27 @@
 <script lang="ts">
-import { Combobox } from "bits-ui";
+import { searchSpecies } from "@/lib/globe/groups";
 import type { GlobeState } from "@/lib/globe/state.svelte";
-import { PHASE_LABEL, PREPARED, speciesState } from "@/lib/model";
+import { PREPARED } from "@/lib/model";
 
-let { globe, onpick }: { globe: GlobeState; onpick?: () => void } = $props();
+/** `inline`: list the matches under the field (the phone's sheet, which has no Species menu). */
+let { globe, inline = false }: { globe: GlobeState; inline?: boolean } =
+	$props();
 
-let q = $state("");
-let open = $state(false);
 let input = $state<HTMLInputElement | null>(null);
-
-const status = (id: string) => {
-	const s = PREPARED.find((x) => x.id === id);
-	return s ? PHASE_LABEL[speciesState(s, globe.day).phase] : "";
+// inline keeps its own text; otherwise the text is shared, so the Species menu can show the matches
+let local = $state("");
+const text = $derived(inline ? local : (globe.query ?? ""));
+const set = (v: string | null) => {
+	if (inline) local = v ?? "";
+	else globe.query = v;
 };
-
-// matches names, scientific names and families; a name that starts with the text comes first
-const results = $derived.by(() => {
-	const t = q.trim().toLowerCase();
-	if (!t) return [];
-	const hit = (s: (typeof PREPARED)[number]) =>
-		`${s.name} ${s.sci} ${s.family ?? ""}`.toLowerCase().includes(t);
-	return PREPARED.filter(hit)
-		.sort(
-			(a, b) =>
-				Number(b.name.toLowerCase().startsWith(t)) -
-					Number(a.name.toLowerCase().startsWith(t)) ||
-				a.name.localeCompare(b.name),
-		)
-		.slice(0, 8);
-});
-
-function pick(id: string) {
-	if (!id) return;
-	globe.open(id);
-	q = "";
-	open = false;
-	onpick?.();
-}
+const matches = $derived(
+	inline && local.trim() ? searchSpecies(PREPARED, local) : [],
+);
 
 function slash(e: KeyboardEvent) {
 	const t = e.target as HTMLElement;
-	if (e.key === "/" && !/^(INPUT|TEXTAREA)$/.test(t.tagName)) {
+	if (!inline && e.key === "/" && !/^(INPUT|TEXTAREA)$/.test(t.tagName)) {
 		e.preventDefault();
 		input?.focus();
 	}
@@ -49,39 +30,55 @@ function slash(e: KeyboardEvent) {
 
 <svelte:window onkeydown={slash} />
 
-<Combobox.Root type="single" bind:open bind:inputValue={q} onValueChange={pick} items={results.map((s) => ({ value: s.id, label: s.name }))}>
-	<div class="field">
-		<Combobox.Input bind:ref={input} oninput={(e) => {
-			q = e.currentTarget.value;
-			open = true;
-		}} onfocus={() => (open = true)} class="search" placeholder="Add a species…  ( / )" aria-label="Search and add a species" />
-	</div>
-	<Combobox.Portal>
-		<Combobox.Content class="results" sideOffset={6}>
-			<Combobox.Viewport>
-				{#each results as s (s.id)}
-					<Combobox.Item value={s.id} label={s.name} class="result">
-						<span class="dot" style:background={s.color}></span>
-						<span class="rn">{s.name}<small>{s.sci}</small></span>
-						<span class="st">{status(s.id)}{globe.on.has(s.id) ? " · on" : ""}</span>
-					</Combobox.Item>
-				{:else}
-					<span class="none">{q.trim() ? "No species match." : "Type a name, scientific name or family."}</span>
-				{/each}
-			</Combobox.Viewport>
-		</Combobox.Content>
-	</Combobox.Portal>
-</Combobox.Root>
+<!-- typing here opens the Species menu with the matches, so they get the menu's room and its tick boxes -->
+<div class="field" data-species-search={inline ? undefined : ""}>
+	<svg class="glass" width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+	<input
+		bind:this={input}
+		value={text}
+		oninput={(e) => set(e.currentTarget.value)}
+		onfocus={() => {
+			if (!inline) globe.query ??= "";
+		}}
+		onkeydown={(e) => {
+			// Enter adds the best match
+			const best = text.trim() && searchSpecies(PREPARED, text)[0];
+			if (e.key === "Enter" && best && !globe.on.has(best.id)) globe.toggle(best.id);
+			if (e.key === "Escape") {
+				set(null);
+				input?.blur();
+			}
+		}}
+		class="search"
+		type="search"
+		placeholder={inline ? "Search species" : "Search species  ( / )"}
+		aria-label={inline ? "Search species to add" : "Search species to add; the matches open in the Species menu"}
+		aria-controls={inline ? undefined : "species-panel"} />
+</div>
+
+{#if inline && local.trim()}
+	<ul class="matches" aria-label="Matches">
+		{#each matches as s (s.id)}
+			<li>
+				<label>
+					<input type="checkbox" checked={globe.on.has(s.id)} onchange={() => globe.toggle(s.id)} />
+					<span>{s.name}</span>
+				</label>
+			</li>
+		{:else}
+			<li class="none">No species match.</li>
+		{/each}
+	</ul>
+{/if}
 
 <style>
-	.field { margin-bottom: var(--s3); }
-	:global(.search) { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; font: inherit; }
-	:global(.results) { z-index: 60; width: var(--bits-combobox-anchor-width, 280px); max-height: 340px; overflow: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 4px; box-shadow: 0 10px 30px #000a; }
-	:global(.result) { display: flex; align-items: center; gap: var(--s2); padding: 7px 8px; border-radius: 8px; cursor: pointer; }
-	:global(.result[data-highlighted]) { background: var(--surface-2); }
-	.rn { display: grid; flex: 1; line-height: 1.2; }
-	.st { font: 0.6rem var(--mono); color: var(--muted); text-transform: uppercase; white-space: nowrap; }
-	.rn { min-width: 0; }
-	.rn small { color: var(--muted); font-style: italic; font-size: 0.7rem; }
-	.none { display: block; padding: 10px; color: var(--muted); font-size: 0.85rem; }
+	.field { position: relative; margin-bottom: var(--s3); }
+	.glass { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; pointer-events: none; }
+	.search { width: 100%; height: 34px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 0 10px 0 32px; font: 0.85rem var(--font); }
+	.search::-webkit-search-cancel-button { cursor: pointer; }
+	.search:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+	.matches { list-style: none; margin: 0 0 var(--s3); padding: 0; max-height: 260px; overflow: auto; }
+	.matches label { display: flex; align-items: center; gap: var(--s3); padding: 6px 0; font-size: 0.9rem; cursor: pointer; }
+	.matches input { width: 16px; height: 16px; margin: 0; accent-color: var(--accent-strong); }
+	.none { padding: 6px 0; color: var(--muted); font-size: 0.85rem; }
 </style>

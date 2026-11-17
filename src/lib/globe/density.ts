@@ -50,7 +50,7 @@ export function density(species: PreparedSpecies[], d: number): Weighted[] {
 				}
 			} else {
 				const km = st.phase === "breeding" ? (p.br ?? 700) : (p.wr ?? 900);
-				out.push(...disc(st.pos, km * 0.6, 12, w));
+				out.push(...disc(st.pos, km * 0.15, 12, w));
 			}
 		}
 	}
