@@ -14,7 +14,9 @@ import {
 	speciesState,
 } from "@/lib/model";
 
-let { globe }: { globe: GlobeState } = $props();
+/** `compact`: the phone's slimmer card, with a shorter activity curve. */
+let { globe, compact = false }: { globe: GlobeState; compact?: boolean } =
+	$props();
 
 const STEP = 3;
 const days = Array.from(
@@ -30,16 +32,19 @@ const PHASE_COLOR: Record<Phase, string> = {
 };
 
 // lanes: the focused species, or every shown species when expanded
+const expanded = $derived(globe.expanded && !compact);
 const lanes = $derived(
-	globe.expanded
+	expanded
 		? globe.shown
 		: globe.shown.filter((s) => s.id === globe.focus),
 );
 
 let width = $state(600);
 // one species focused: its own lane replaces the activity curve; otherwise the curve, or every lane when expanded
-const solo = $derived(!!globe.focus && !globe.expanded);
-const H = $derived(globe.expanded ? 22 + lanes.length * 16 : solo ? 38 : 50);
+const solo = $derived(!!globe.focus && !expanded);
+const H = $derived(
+	expanded ? 22 + lanes.length * 16 : solo ? 38 : compact ? 34 : 50,
+);
 const x = $derived(scaleLinear().domain([1, 365]).range([0, width]));
 
 // how many shown species have a population in flight, per sampled day
@@ -53,11 +58,11 @@ const activity = $derived(
 const curve = $derived.by(() => {
 	const y = scaleLinear()
 		.domain([0, max(activity, (a) => a.n) || 1])
-		.range([48, 20]);
+		.range([H - 2, compact ? 14 : 20]);
 	return (
 		area<{ d: number; n: number }>()
 			.x((a) => x(a.d))
-			.y0(48)
+			.y0(H - 2)
 			.y1((a) => y(a.n))
 			.curve(curveBasis)(activity) ?? ""
 	);
@@ -98,12 +103,15 @@ function key(e: KeyboardEvent) {
 </script>
 
 <div class="tl" bind:clientWidth={width}>
-	<div class="head">
+	<div class="head" class:compact>
 		<span class="date">{formatDay(globe.day)}</span>
 		<button type="button" onclick={() => (globe.day = today)} disabled={Math.round(globe.day) === Math.round(today)}>Today</button>
-		<button type="button" onclick={() => (globe.expanded = !globe.expanded)} aria-expanded={globe.expanded}>
-			{globe.expanded ? "Fewer" : "All species"}
-		</button>
+		<!-- the every-species lanes need room, so phones (the compact card) leave them out -->
+		{#if !compact}
+			<button type="button" onclick={() => (globe.expanded = !globe.expanded)} aria-expanded={globe.expanded}>
+				{globe.expanded ? "Fewer" : "All species"}
+			</button>
+		{/if}
 	</div>
 	<div class="scroll">
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -125,7 +133,7 @@ function key(e: KeyboardEvent) {
 			<line x1={x(m)} x2={x(m)} y1="12" y2={H} stroke="var(--line)" />
 			<text x={x(m) + 3} y="9" class="m">{MONTHS[i]?.slice(0, 3)}</text>
 		{/each}
-		{#if !solo && !globe.expanded}<path d={curve} fill="var(--spring)" opacity="0.4" />{/if}
+		{#if !solo && !expanded}<path d={curve} fill="var(--spring)" opacity="0.4" />{/if}
 		{#each lanes as s, i (s.id)}
 			<g transform="translate(0 {18 + i * 16})">
 				{#each segments(s.id) as seg}
@@ -144,6 +152,7 @@ function key(e: KeyboardEvent) {
 	.tl { width: 100%; min-width: 0; }
 	.scroll { max-height: 38vh; overflow: hidden auto; }
 	.head { display: flex; gap: var(--s3); align-items: center; margin-bottom: var(--s2); }
+	.head.compact { margin-bottom: 2px; }
 	.head .date { margin-right: auto; font-weight: 600; }
 	button { background: none; color: var(--muted); border: 0; padding: 2px 4px; font: inherit; font-size: 0.8rem; cursor: pointer; }
 	button:hover:not(:disabled) { color: var(--text); }

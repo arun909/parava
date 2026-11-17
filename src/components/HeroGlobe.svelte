@@ -242,18 +242,23 @@ $effect(() => {
 		const b = nearest(e);
 		const rect = canvas.getBoundingClientRect();
 		tip = b ? { x: e.clientX - rect.left, y: e.clientY - rect.top, bird: b } : null;
-		canvas.style.cursor = b ? "pointer" : "grab";
+		canvas.style.cursor = "pointer";
 		if (still) draw(0);
 	}
 	function up(e: PointerEvent) {
 		const moved = drag && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 4;
 		drag = null;
 		if (!moved) {
+			// a tap on a bird opens its page; anywhere else on the globe opens the full map
 			const b = nearest(e);
-			if (b) location.href = `/species/${b.id}/`;
+			location.href = b ? `/species/${b.id}/` : "/map/";
 		}
 	}
 	function key(e: KeyboardEvent) {
+		if (e.key === "Enter") {
+			location.href = "/map/";
+			return;
+		}
 		const step = { ArrowLeft: [-10, 0], ArrowRight: [10, 0], ArrowUp: [0, -8], ArrowDown: [0, 8] }[e.key];
 		if (!step) return;
 		e.preventDefault();
@@ -302,7 +307,8 @@ $effect(() => {
 	<canvas
 		bind:this={canvas}
 		tabindex="0"
-		aria-label="Globe of where migratory birds are today. Drag or use the arrow keys to turn it."
+		role="link"
+		aria-label="Globe of where migratory birds are today. Drag or use the arrow keys to turn it; click or press Enter to open the map."
 	></canvas>
 	{#if tip}
 		<div class="tip" style:left="{tip.x}px" style:top="{tip.y}px">
@@ -315,7 +321,7 @@ $effect(() => {
 <style>
 	.globe { position: relative; width: 100%; aspect-ratio: 1; }
 	canvas { position: absolute; inset: 0; display: block; }
-	canvas:not(.earth) { cursor: grab; touch-action: pan-y; border-radius: 50%; }
+	canvas:not(.earth) { cursor: pointer; touch-action: pan-y; border-radius: 50%; }
 	canvas:not(.earth):active { cursor: grabbing; }
 	.tip { position: absolute; transform: translate(-50%, calc(-100% - 14px)); pointer-events: none; padding: 6px 10px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: 0.8rem; line-height: 1.3; white-space: nowrap; text-align: left; }
 	.tip strong { display: block; font-weight: 600; }

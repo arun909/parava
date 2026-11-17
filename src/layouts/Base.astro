@@ -68,6 +68,7 @@ const path = Astro.url.pathname;
 			nav a[aria-current="page"] { color: #fff; background: var(--accent-strong); }
 			/* the menu variant: the pill moves to the left and the links drop down from a hamburger */
 			header.menu { justify-content: flex-start; }
+			header.menu .bar { padding: 4px; }
 			.burger { position: relative; }
 			.burger summary { list-style: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: var(--text); cursor: pointer; transition: background 0.15s; }
 			.burger summary::-webkit-details-marker { display: none; }
@@ -96,8 +97,14 @@ const path = Astro.url.pathname;
 			footer ul a:hover { color: var(--sun); }
 			@media (max-width: 720px) {
 				nav a { padding: 6px var(--s2); font-size: 0.9rem; }
-				.cols { grid-template-columns: 1fr 1fr; }
+				/* a phone footer stays a footer: tighter padding and gaps than the desktop band */
+				footer { padding: 48px 0 32px; }
+				.cols { grid-template-columns: 1fr 1fr; gap: 32px var(--s5); }
 				.cols > :first-child { grid-column: 1 / -1; }
+				footer h2 { margin-bottom: var(--s1); }
+				/* each link is a full 44px touch target (WCAG 2.5.5, Apple HIG) instead of a 22px line of text */
+				footer ul { gap: 0; }
+				footer ul a { display: flex; align-items: center; min-height: 44px; }
 			}
 			@media (max-width: 380px) {
 				.bar { gap: 0; }
@@ -115,13 +122,17 @@ const path = Astro.url.pathname;
 							<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
 						</summary>
 						<nav aria-label="Main">
+							<a href="/">Home</a>
 							{nav.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? "page" : undefined}>{label}</a>)}
 						</nav>
 					</details>
 				)}
-				<a class="brand" href="/" aria-label="Parava home">
-					<img src="/brand/parava-emblem.svg" alt="" width="40" height="40" />
-				</a>
+				{/* the menu variant is the hamburger alone: Home sits in its list instead of the logo */}
+				{!menu && (
+					<a class="brand" href="/" aria-label="Parava home">
+						<img src="/brand/parava-emblem.svg" alt="" width="40" height="40" />
+					</a>
+				)}
 				{!menu && (
 					<nav aria-label="Main">
 						{nav.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? "page" : undefined}>{label}</a>)}

@@ -12,7 +12,7 @@ export interface YearSpecies {
 </script>
 
 <script lang="ts">
-import { DropdownMenu } from "bits-ui";
+import { Dialog, DropdownMenu } from "bits-ui";
 import { onMount } from "svelte";
 import type { CalEvent } from "./UpcomingCalendar.svelte";
 
@@ -127,13 +127,64 @@ const weeks = $derived.by(() => {
 	return out;
 });
 
+// this month's past weeks fold into one row until asked for, so the list opens on what is still to come
+let showEarlier = $state(false);
+$effect(() => {
+	void month;
+	showEarlier = false;
+});
+const earlier = $derived(weeks.filter((w) => w.label.startsWith("Earlier")));
+const earlierCount = $derived(earlier.reduce((n, w) => n + w.ev.length, 0));
+
 const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
 const go = (d: number) => (month = (month + d + 12) % 12);
+// phones scroll the timetable sideways: open it with this month in view, a month of context to its left
+let sheetEl = $state<HTMLElement>();
+$effect(() => {
+	if (view !== "table" || !sheetEl) return;
+	const col = sheetEl.querySelectorAll<HTMLElement>("thead th")[thisMonth + 1];
+	const name = sheetEl.querySelector<HTMLElement>("thead .name");
+	if (col && name && sheetEl.scrollWidth > sheetEl.clientWidth)
+		sheetEl.scrollLeft = Math.max(0, col.offsetLeft - name.offsetWidth - col.offsetWidth);
+});
+
+/** Phones: the month grid opens in a pop-up from the calendar button by the month's name. */
+let picker = $state(false);
 const open = (m: number) => {
 	month = m;
 	view = "month";
+	picker = false;
 };
 </script>
+
+<!-- the twelve months with their counts: in the sidebar on wide screens, in the pop-up on phones -->
+{#snippet grid()}
+	<ol>
+		{#each year12 as c, m}
+			<li>
+				<button
+					type="button"
+					class:on={view === "month" && m === month}
+					class:now={m === thisMonth}
+					aria-current={view === "month" && m === month ? "true" : undefined}
+					aria-label="{MONTHS[m]}{m === thisMonth ? ' (this month)' : ''}: {c.any} species on the move, {c.n} heading north, {c.s} heading south"
+					onclick={() => open(m)}
+				>
+					<span class="m">{MONTHS[m]}</span>
+					<span class="spark" aria-hidden="true">
+						<i class="n" style:width="{(c.n / peak) * 100}%"></i>
+						<i class="s" style:width="{(c.s / peak) * 100}%"></i>
+					</span>
+					<strong>{c.any}</strong>
+				</button>
+			</li>
+		{/each}
+	</ol>
+	<p class="legend">
+		<span><i class="key n"></i>Heading north</span>
+		<span><i class="key s"></i>Heading south</span>
+	</p>
+{/snippet}
 
 <!-- the page's two views, in the header's free middle like the map's settings -->
 <div class="tools" role="group" aria-label="View">
@@ -143,36 +194,12 @@ const open = (m: number) => {
 
 <!-- the whole window below the header, like the map: the months down the left, the view filling the rest -->
 <div class="stage">
-	<nav class="months" aria-labelledby="months-h">
+	<nav class="months side" aria-labelledby="months-h">
 		<header>
 			<h2 id="months-h">Species on the move</h2>
 			<p class="hint">By month. Pick one for its arrivals and departures.</p>
 		</header>
-		<ol>
-			{#each year12 as c, m}
-				<li>
-					<button
-						type="button"
-						class:on={view === "month" && m === month}
-						class:now={m === thisMonth}
-						aria-current={view === "month" && m === month ? "true" : undefined}
-						aria-label="{MONTHS[m]}{m === thisMonth ? ' (this month)' : ''}: {c.any} species on the move, {c.n} heading north, {c.s} heading south"
-						onclick={() => open(m)}
-					>
-						<span class="m">{MONTHS[m]}</span>
-						<span class="spark" aria-hidden="true">
-							<i class="n" style:width="{(c.n / peak) * 100}%"></i>
-							<i class="s" style:width="{(c.s / peak) * 100}%"></i>
-						</span>
-						<strong>{c.any}</strong>
-					</button>
-				</li>
-			{/each}
-		</ol>
-		<p class="legend">
-			<span><i class="key n"></i>Heading north</span>
-			<span><i class="key s"></i>Heading south</span>
-		</p>
+		{@render grid()}
 	</nav>
 
 	<section class="panel" aria-labelledby="panel-h" aria-live="polite">
@@ -194,7 +221,20 @@ const open = (m: number) => {
 				{#if view === "month"}
 					<button type="button" class="arrow" aria-label="Previous month" onclick={() => go(-1)}>‹</button>
 					<div class="heading">
-						<h2 id="panel-h">{new Date(year, month, 1).toLocaleDateString(undefined, { month: "long" })}</h2>
+						<div class="name-row">
+							<h2 id="panel-h">{new Date(year, month, 1).toLocaleDateString(undefined, { month: "long" })}</h2>
+							<!-- phones: the months grid lives behind this button instead of above the list -->
+							<button type="button" class="cal-btn" aria-label="Pick a month" title="Pick a month" aria-haspopup="dialog" onclick={() => (picker = true)}>
+								<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+									<!-- a page with a filled ink header, binder rings, a few days as dots and today in the brand's sun -->
+									<rect class="page" x="3" y="4.5" width="18" height="16.5" rx="3.5" />
+									<path class="band" d="M3 8a3.5 3.5 0 0 1 3.5-3.5h11A3.5 3.5 0 0 1 21 8v2H3z" />
+									<path class="ring" d="M8 2.75v3.5M16 2.75v3.5" />
+									<circle class="day" cx="8" cy="14" r="1.1" /><circle class="day" cx="12" cy="14" r="1.1" /><circle class="day" cx="8" cy="17.5" r="1.1" /><circle class="day" cx="12" cy="17.5" r="1.1" />
+									<rect class="today" x="14.6" y="12.6" width="3.4" height="3.4" rx="1" />
+								</svg>
+							</button>
+						</div>
 						<span class="sub">{year12[month]!.any} species on the move</span>
 					</div>
 					<button type="button" class="arrow" aria-label="Next month" onclick={() => go(1)}>›</button>
@@ -202,6 +242,11 @@ const open = (m: number) => {
 					<div class="heading">
 						<h2 id="panel-h">Full timetable</h2>
 						<span class="sub">{shown.length} species through the year</span>
+						<!-- phones: the month sidebar and its key are hidden, so the colours are explained here -->
+						<p class="tt-key" aria-hidden="true">
+							<span><i class="key n"></i>Heading north</span>
+							<span><i class="key s"></i>Heading south</span>
+						</p>
 					</div>
 				{/if}
 			</div>
@@ -238,18 +283,26 @@ const open = (m: number) => {
 			<!-- only this part scrolls: every arrival and departure in date order, week by week -->
 			<div class="feed">
 				{#if listed.length}
+					{#if earlierCount && !showEarlier}
+						<button type="button" class="earlier" onclick={() => (showEarlier = true)}>
+							<span>Earlier this month</span>
+							<span class="n">{plural(earlierCount, "event")} <span aria-hidden="true">▾</span></span>
+						</button>
+					{/if}
 					{#each weeks as w (w.from)}
-						{#if w.ev.length}
+						{#if w.ev.length && (showEarlier || !w.label.startsWith("Earlier"))}
 							<section class="week" class:past={w.label.startsWith("Earlier")} class:current={w.label.startsWith("This week")} aria-label={w.label}>
 								<h3>{w.label}<span>{plural(w.ev.length, "event")}</span></h3>
 								<ol class="agenda">
-									{#each w.ev as [si, day, k, pop]}
+									{#each w.ev as [si, day, k, pop], j}
 										{@const s = species[si]!}
-										<li class:today={month === thisMonth && day === today}>
+										<!-- the date once per day; the marker says arriving (filled) or leaving (ring), not which species -->
+										<li class:today={month === thisMonth && day === today} class:same={j > 0 && w.ev[j - 1]![1] === day}>
 											<time datetime={dateOf(day).toISOString().slice(0, 10)}>{fmt(day, { day: "numeric", month: "short" })}</time>
-											<i class="dot" class:ring={k % 2 === 0} style:--c={s.color}></i>
+											<i class="dot" class:ring={k % 2 === 0} style:--c="var(--accent-strong)"></i>
 											<a href="/species/{s.id}/">{s.name}</a>
-											<span class="what">{WHAT[k]}</span>
+											<!-- narrow screens fold the population into this line, so a bird listed twice says which flock each is -->
+											<span class="what">{WHAT[k]}{#if s.hand}<span class="pop-inline">&nbsp;· {pop}</span>{/if}</span>
 											<span class="pop">{s.hand ? pop : "Estimated route"}</span>
 										</li>
 									{/each}
@@ -263,7 +316,7 @@ const open = (m: number) => {
 			</div>
 		{:else}
 			<!-- positioned, so the cells' hidden labels are clipped by it instead of widening the page -->
-			<div class="feed sheet">
+			<div class="feed sheet" bind:this={sheetEl}>
 				<table>
 					<thead>
 						<tr>
@@ -278,7 +331,7 @@ const open = (m: number) => {
 							<tr>
 								<th scope="row" class="name"><span class="dot" style:background={s.color}></span><a href="/species/{s.id}/">{s.name}</a></th>
 								{#each s.legs as l, i}
-									<td class={l} class:now={i === thisMonth}>{#if l !== "-"}<span class="sr">{l === "n" ? "north" : l === "s" ? "south" : "north and south"}</span>{/if}</td>
+									<td class={l} class:now={i === thisMonth} class:jl={l !== "-" && i > 0 && s.legs[i - 1] !== "-"} class:jr={l !== "-" && i < 11 && s.legs[i + 1] !== "-"}>{#if l !== "-"}<span class="sr">{l === "n" ? "north" : l === "s" ? "south" : "north and south"}</span>{/if}</td>
 								{/each}
 							</tr>
 						{:else}
@@ -291,9 +344,29 @@ const open = (m: number) => {
 	</section>
 </div>
 
+<Dialog.Root bind:open={picker}>
+	<Dialog.Portal>
+		<Dialog.Overlay class="cal-overlay" />
+		<Dialog.Content class="cal-pop">
+			<div class="months picker">
+				<header class="picker-head">
+					<div>
+						<Dialog.Title class="picker-title">Species on the move</Dialog.Title>
+						<Dialog.Description class="hint">Pick a month for its arrivals and departures.</Dialog.Description>
+					</div>
+					<Dialog.Close class="picker-close" aria-label="Close">
+						<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+					</Dialog.Close>
+				</header>
+				{@render grid()}
+			</div>
+		</Dialog.Content>
+	</Dialog.Portal>
+</Dialog.Root>
+
 <style>
 	/* north and south: the brand's leaf and sun, stepped apart in lightness so they stay distinct for colour-blind readers */
-	.stage { --north: #4e7a2c; --south: #e39a3b; }
+	.stage, .picker { --north: #4e7a2c; --south: #e39a3b; }
 	.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 	h2 { margin: 0; }
 
@@ -332,6 +405,7 @@ const open = (m: number) => {
 	.key { width: 8px; height: 8px; border-radius: 2px; }
 	.key.n { background: var(--north); }
 	.key.s { background: var(--south); }
+	.tt-key { display: none; }
 
 	/* the panel: a fixed top bar, then a feed that scrolls */
 	.panel { display: flex; flex-direction: column; overflow: hidden; container-type: inline-size; }
@@ -343,6 +417,28 @@ const open = (m: number) => {
 	.title h2 { min-width: 6.5em; font-size: 1.5rem; line-height: 1.2; }
 	.arrow { width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--text); font-size: 1.05rem; line-height: 1; cursor: pointer; }
 	.arrow:hover { border-color: var(--accent); color: var(--accent); }
+	.name-row { display: flex; align-items: center; justify-content: center; gap: 6px; }
+	/* wider screens keep the months in the sidebar, so the button only shows on phones */
+	/* a soft leaf-tinted button with a ring, lifting a touch on hover; the icon's "today" square glows in the sun colour */
+	.cal-btn { display: none; place-items: center; width: 38px; height: 38px; border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: 12px; background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 16%, var(--surface)), color-mix(in srgb, var(--accent) 6%, var(--surface))); box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 4px 10px -6px rgb(33 51 40 / 0.45); color: var(--accent-strong); cursor: pointer; transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s; }
+	.cal-btn:hover { transform: translateY(-1px) rotate(-4deg); border-color: var(--accent); box-shadow: 0 1px 0 rgb(255 255 255 / 0.6) inset, 0 8px 16px -8px rgb(33 51 40 / 0.55); }
+	.cal-btn:active { transform: translateY(0) scale(0.96); }
+	.cal-btn .page { fill: var(--surface); stroke: currentColor; stroke-width: 1.6; }
+	.cal-btn .band { fill: currentColor; }
+	.cal-btn .ring { stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+	.cal-btn .day { fill: color-mix(in srgb, currentColor 45%, transparent); }
+	.cal-btn .today { fill: var(--sun); filter: drop-shadow(0 0 1.5px color-mix(in srgb, var(--sun) 80%, transparent)); }
+
+	/* the months pop-up: the same grid as the sidebar, in a card over a dimmed page */
+	:global(.cal-overlay) { position: fixed; inset: 0; z-index: 40; background: rgb(20 30 24 / 0.35); }
+	:global(.cal-pop) { position: fixed; z-index: 41; top: 50%; left: 50%; width: min(420px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); transform: translate(-50%, -50%); outline: none; }
+	.picker { max-height: inherit; overflow: auto; }
+	.picker-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s2); padding: 0 var(--s2); }
+	.picker-head :global(.picker-title) { margin: 0; font-size: 1rem; font-weight: 600; }
+	.picker-head :global(.hint) { margin: 2px 0 var(--s3); color: var(--muted); font-size: 0.8rem; line-height: 1.4; }
+	:global(.picker-close) { display: grid; place-items: center; flex: none; width: 36px; height: 36px; margin: -6px -6px 0 0; border: 0; border-radius: 50%; background: none; color: var(--muted); cursor: pointer; }
+	:global(.picker-close svg) { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+	:global(.picker-close:hover) { color: var(--text); background: var(--surface-2); }
 
 	.actions { grid-column: 3; justify-self: end; display: flex; align-items: center; gap: var(--s2); }
 	.find { display: flex; align-items: center; gap: 6px; width: 180px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2); color: var(--muted); transition: border-color 0.15s, background 0.15s; }
@@ -359,7 +455,7 @@ const open = (m: number) => {
 	.show { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--surface-2); }
 	.show { grid-column: 1; justify-self: start; }
 	.show button { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border: 0; border-radius: 999px; background: none; color: var(--muted); font: 600 0.85rem var(--font); cursor: pointer; }
-	.show .dot { --c: var(--accent); width: 11px; height: 11px; }
+	.show .dot { --c: var(--accent-strong); width: 11px; height: 11px; }
 	.show .n { font-family: var(--font-num); font-weight: 600; color: var(--text); font-variant-numeric: lining-nums tabular-nums; }
 	.show button.on { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgb(33 51 40 / 0.15); }
 
@@ -369,6 +465,12 @@ const open = (m: number) => {
 	.week h3 span { color: var(--muted); font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 0.8rem; }
 	.week.current h3 { color: var(--link); border-bottom-color: var(--accent); }
 	.week.past ol { opacity: 0.6; }
+	/* the folded past weeks: one quiet row that opens them */
+	.earlier { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: var(--s3); padding: 10px var(--s2); border: 1px dashed var(--line); border-radius: 10px; background: none; color: var(--muted); font: 600 0.8rem var(--font); cursor: pointer; }
+	.earlier .n { font-weight: 400; }
+	.earlier:hover { color: var(--text); border-color: var(--accent); }
+	/* a repeated date is left out, so each day reads as one group */
+	.agenda li.same time { visibility: hidden; }
 	.agenda { margin: 4px 0 0; padding: 0; list-style: none; }
 	.agenda li { display: grid; grid-template-columns: 56px 14px minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.8fr); align-items: center; gap: var(--s3); padding: 8px var(--s2); border-radius: 8px; font-size: 0.9rem; }
 	.agenda li:hover { background: var(--surface-2); }
@@ -378,6 +480,7 @@ const open = (m: number) => {
 	.agenda a:hover { color: var(--link); }
 	.what, .pop { overflow: hidden; color: var(--muted); font-size: 0.85rem; text-overflow: ellipsis; white-space: nowrap; }
 	.pop { font-size: 0.8rem; }
+	.pop-inline { display: none; }
 	/* filled: arriving; ring: leaving, as on the home page */
 	.dot { display: inline-block; flex: none; width: 14px; height: 14px; border-radius: 50%; background: var(--c); }
 	.dot.ring { background: transparent; box-shadow: inset 0 0 0 2.5px var(--c); }
@@ -407,6 +510,7 @@ const open = (m: number) => {
 
 	@media (max-width: 1100px) {
 		.pop { display: none; }
+		.pop-inline { display: inline; }
 		.agenda li { grid-template-columns: 56px 14px minmax(0, 1fr) minmax(0, 1fr); }
 	}
 	/* a narrow panel has no room for a centred title beside the tools: stack them, all centred */
@@ -415,30 +519,71 @@ const open = (m: number) => {
 		.title, .actions, .show { grid-column: 1; justify-self: center; }
 		.title { grid-row: 1; }
 	}
-	/* phones and small tablets: an ordinary scrolling page, the months as a compact grid above the panel */
+	/* phones and small tablets: the panel fills the window below the header, its top bar fixed and only the list scrolling;
+	   the months move into the pop-up behind the calendar button */
 	@media (max-width: 820px) {
-		.stage { position: static; grid-template-columns: minmax(0, 1fr); padding: var(--s3) var(--s4) var(--s5); }
+		.stage { top: 60px; left: 0; right: 0; bottom: 0; grid-template-columns: minmax(0, 1fr); }
+		/* no card on a phone: the list sits straight on the page, with one hairline under the fixed top bar */
+		.panel { border: 0; border-radius: 0; box-shadow: none; background: var(--bg); }
+		.week h3 { background: var(--bg); }
+		.agenda li.today { background: color-mix(in srgb, var(--accent) 10%, var(--bg)); }
+		.side { display: none; }
+		.cal-btn { display: grid; }
 		.months ol { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: auto; gap: 4px; }
-		.months button { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 4px 6px; padding: 6px 8px; background: var(--surface-2); }
+		.months button { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 4px 6px; padding: 8px; min-height: 52px; background: var(--surface-2); }
 		.spark { grid-column: 1 / -1; grid-row: 2; }
-		.panel { overflow: visible; }
-		.feed { overflow: visible; }
-		.feed.sheet { max-height: 70vh; overflow: auto; }
-		.week h3 { top: 60px; }
+		/* the month, its switches and the search grouped in one floating card; the list scrolls flat beneath it */
+		.top { gap: var(--s2); margin: 4px 12px 0; padding: var(--s3) var(--s3) var(--s3); border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: 0 6px 18px -12px rgb(33 51 40 / 0.35); }
 		.agenda li { grid-template-columns: 52px 14px minmax(0, 1fr); row-gap: 0; }
 		.what { grid-column: 3; }
+
+		/* the timetable on a phone: the names stay put on the left while the months scroll sideways, each a comfortable
+		   column with its name; a bird's travel is a slim rounded bar on a faint line, joined across back-to-back months */
+		.tt-key { display: flex; justify-content: center; gap: var(--s3); margin: 6px 0 0; color: var(--muted); font-size: 0.75rem; }
+		.tt-key span { display: inline-flex; align-items: center; gap: 5px; }
+		.feed.sheet { padding: 0 0 var(--s4); scrollbar-width: none; overscroll-behavior: contain; }
+		.feed.sheet::-webkit-scrollbar { display: none; }
+		table { width: max-content; min-width: 100%; border-spacing: 0; }
+		.name, thead th { background: var(--bg); }
+		.name { width: 140px; min-width: 140px; max-width: 140px; padding: 0 10px 0 16px; font-size: 0.84rem; line-height: 1.2; white-space: normal; box-shadow: 8px 0 10px -10px rgb(33 51 40 / 0.45); }
+		/* the dot beside the name, and a long name on two lines rather than cut short */
+		tbody .name { display: flex; align-items: center; gap: 8px; }
+		.name .dot { flex: none; width: 8px; height: 8px; margin: 0; }
+		.name a { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
+		thead th { padding: 10px 0 8px; border-bottom: 1px solid var(--line); }
+		thead th:not(.name) { width: 46px; min-width: 46px; }
+		thead button { padding: 4px 8px; font-size: 0.78rem; }
+		tbody th, td { height: 42px; border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent); }
+		td, td.n, td.s, td.b { position: relative; background: none; }
+		td + td { border-left: 0; }
+		/* the empty track, then the travel bars over it */
+		td::before { content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-50%); background: color-mix(in srgb, var(--line) 70%, transparent); }
+		td.n::before, td.s::before, td.b::before { left: 5px; right: 5px; height: 10px; border-radius: 99px; }
+		td.n::before { background: var(--north); }
+		td.s::before { background: var(--south); }
+		td.b::before { background: linear-gradient(90deg, var(--north) 50%, var(--south) 50%); }
+		td.jl::before { left: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; }
+		td.jr::before { right: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; }
+		/* this month: a soft column of leaf behind the bars */
+		td.now { box-shadow: none; background: color-mix(in srgb, var(--accent) 8%, transparent); }
+		td.none { height: auto; }
+		td.none::before { display: none; }
 	}
 	@media (max-width: 560px) {
-		/* beside the menu pill rather than over it */
-		.tools { left: auto; right: 16px; transform: none; }
+		/* stays centred at the top like on wider screens: the menu is a lone hamburger now, so there is room beside it */
+		.tools { height: 50px; align-items: center; } /* the hamburger pill's height, so the two line up */
 		.tools button { min-width: 0; padding: 8px var(--s3); font-size: 0.88rem; }
 		.months ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-		.top { padding-inline: var(--s4); }
+		.top { padding-inline: var(--s3); }
 		.feed { padding-inline: var(--s4); }
 		.actions { justify-self: stretch; width: 100%; }
 		.find { flex: 1; width: auto; min-width: 0; }
 		.title h2 { font-size: 1.3rem; }
-		thead th span { display: none; }
+		.heading .sub { display: none; } /* the counts are on the switch below; one number is enough on a phone */
 		.name { font-size: 0.88rem; }
+	}
+	/* very narrow phones: the centred pill would reach the hamburger, so it moves to the right edge */
+	@media (max-width: 340px) {
+		.tools { left: auto; right: 12px; transform: none; }
 	}
 </style>
