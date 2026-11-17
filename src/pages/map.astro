@@ -1,0 +1,14 @@
+---
+import Globe from "@/components/Globe.svelte";
+import Base from "@/layouts/Base.astro";
+---
+
+<Base title="Map" bare preconnect description="Live bird migration on a map of the world."><Globe client:only="svelte">
+		<div slot="fallback" class="space"><p class="mono">Loading the map…</p></div>
+	</Globe></Base>
+
+<style>
+	/* the same gradient the map sits on, so nothing flashes while its script loads */
+	.space { position: fixed; inset: 0; display: grid; place-items: center; background: radial-gradient(ellipse 75% 65% at 60% 45%, color-mix(in srgb, var(--accent) 28%, var(--bg)) 0%, color-mix(in srgb, var(--accent) 12%, var(--bg)) 55%, var(--bg) 100%); }
+	.space p { color: #5f6368; font-size: 0.8rem; }
+</style>
