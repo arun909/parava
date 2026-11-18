@@ -87,9 +87,9 @@ function touchend() {
 				<SpeciesBrowse {globe} onpick={() => sheet?.scrollTo({ top: 0 })} />
 			{/if}
 			{#if changed}
-				<!-- after a change: one big tick in thumb reach, bottom left, that confirms and closes -->
+				<!-- after a change: a small tick at the bottom right that confirms and closes -->
 				<Dialog.Close class="tick" aria-label="Done: show these species on the map">
-					<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+					<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 12.5l4 4L18.5 8" /></svg>
 				</Dialog.Close>
 			{/if}
 		</Dialog.Content>
@@ -108,11 +108,11 @@ function touchend() {
 	:global(.sheet-x) { display: grid; place-items: center; width: 36px; height: 36px; margin-right: -6px; border: 0; border-radius: 50%; background: none; color: var(--muted); cursor: pointer; }
 	:global(.sheet-x svg) { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 	:global(.sheet-x:hover) { color: var(--text); background: var(--surface-2); }
-	/* the confirm tick: a large round button floating at the bottom left of the screen */
-	:global(.sheet .tick) { position: fixed; z-index: 3; left: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); display: grid; place-items: center; width: 60px; height: 60px; border: 0; border-radius: 50%; background: var(--accent-strong); color: #fff; box-shadow: 0 10px 24px -8px rgb(33 51 40 / 0.6), 0 0 0 4px var(--surface); cursor: pointer; animation: tick-in 0.22s cubic-bezier(0.3, 1.4, 0.5, 1); }
+	/* the confirm tick: small, round and soft, floating bottom right; it pops in with a little bounce */
+	:global(.sheet .tick) { position: fixed; z-index: 3; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom)); display: grid; place-items: center; width: 46px; height: 46px; border: 0; border-radius: 50%; background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 85%, #fff), var(--accent)); color: #fff; box-shadow: 0 6px 14px -6px rgb(33 51 40 / 0.5), 0 0 0 3px color-mix(in srgb, var(--accent) 18%, var(--surface)); cursor: pointer; animation: tick-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); transition: transform 0.15s; }
 	:global(.sheet .tick svg) { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-	:global(.sheet .tick:active) { transform: scale(0.94); }
-	@keyframes tick-in { from { opacity: 0; transform: scale(0.6); } }
+	:global(.sheet .tick:active) { transform: scale(0.9); }
+	@keyframes tick-in { from { opacity: 0; transform: scale(0.4) rotate(-20deg); } }
 	/* room under the list so the tick never covers its last row */
-	:global(.sheet) { padding-bottom: 96px; }
+	:global(.sheet) { padding-bottom: 80px; }
 </style>

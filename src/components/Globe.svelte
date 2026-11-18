@@ -99,6 +99,11 @@ onMount(() => {
 	ro.observe(frame);
 	for (const e of frame.querySelectorAll(".bar")) ro.observe(e);
 	persist();
+	// phones open on the routes, drawn as lines: the clearest view on a small screen
+	if (matchMedia("(max-width: 700px)").matches) {
+		globe.show = "routes";
+		globe.traceAll = true;
+	}
 	const onFull = () => (full = !!document.fullscreenElement);
 	document.addEventListener("fullscreenchange", onFull);
 	ctl = new GlobeController(el, {
@@ -283,6 +288,14 @@ $effect(() => {
 			<MapLegend {globe} />
 		</div>
 
+		{#if globe.ready && globe.shown.length === 0}
+			<!-- nothing to draw: say so, and on phones offer the way to add some -->
+			<div class="empty" role="status">
+				<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 8v5M12 16.5v.5" /></svg>
+				<span>No species selected. Add some to see them on the map.</span>
+				{#if phone}<button type="button" onclick={() => (sheetOpen = true)}>Add species</button>{/if}
+			</div>
+		{/if}
 		{#if tip}
 			<div class="tip" style:left="{tipPos.left}px" style:top="{tipPos.top}px" role="status" bind:clientWidth={tipW} bind:clientHeight={tipH}>
 				<strong>{tip.title}</strong><br />{tip.sub}<br />
@@ -302,6 +315,11 @@ $effect(() => {
 </div>
 
 <style>
+	/* the empty-map notice: a frosted pill just above the timeline */
+	.empty { position: absolute; z-index: 6; left: 50%; bottom: calc(var(--bar-h) + 14px); transform: translateX(-50%); display: flex; align-items: center; gap: 8px; width: max-content; max-width: calc(100% - 24px); padding: 8px 8px 8px 12px; border: 1px solid var(--line); border-radius: 14px; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(10px); box-shadow: var(--shadow); color: var(--text); font-size: 0.85rem; line-height: 1.3; animation: empty-in 0.25s ease-out; }
+	.empty svg { flex: none; fill: none; stroke: var(--sun); stroke-width: 2; stroke-linecap: round; }
+	.empty button { flex: none; padding: 7px 12px; border: 0; border-radius: 99px; background: var(--accent-strong); color: #fff; font: 600 0.8rem var(--font); cursor: pointer; }
+	@keyframes empty-in { from { opacity: 0; transform: translate(-50%, 6px); } }
 	.tip { position: absolute; z-index: 6; pointer-events: none; max-width: min(260px, calc(100% - 16px)); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font-size: 0.8rem; color: var(--muted); }
 	.tip strong { color: var(--text); }
 	.tip em { color: var(--link); font-style: normal; }
