@@ -129,7 +129,7 @@ const explore = [
 
 	<section class="glance" aria-labelledby="glance">
 		<h2 class="eyebrow" id="glance">At a glance</h2>
-		<ul class="stats" data-autoscroll>
+		<ul class="stats" data-follow data-fly={FLY} data-cycle={CYCLE} data-delay={BIRDS[0]!.delay}>
 			{stats.map(({ n, label }, i) => {
 				const up = i % 2 === 0;
 				return (
@@ -329,10 +329,49 @@ const explore = [
 </style>
 
 <script>
-	// on narrow screens the stats and cards rows scroll sideways; nudge them along one item at a time,
-	// looping back to the start, and stop for good once the reader scrolls or touches a row themselves
+	// on narrow screens the stats and cards rows scroll sideways; both move on their own until the reader
+	// scrolls or touches a row themselves, then stop for good
 	const narrow = matchMedia("(max-width: 820px)");
 	const calm = matchMedia("(prefers-reduced-motion: reduce)");
+
+	// the stats follow the lead bird along the wave: it stays mid-screen while it flies, and the row drifts back
+	// to the start while the birds rest. The bird's place comes from the wave's own animation clock, so they never drift apart
+	for (const row of document.querySelectorAll<HTMLElement>("[data-follow]")) {
+		const fly = Number(row.dataset.fly);
+		const cycle = Number(row.dataset.cycle);
+		const delay = Number(row.dataset.delay);
+		const clock = row.querySelector<SVGSVGElement>("svg.wave");
+		const items = [...row.children] as HTMLElement[];
+		let visible = false;
+		let stopped = false;
+		const stop = () => {
+			stopped = true;
+			row.style.scrollSnapType = "";
+		};
+		for (const e of ["pointerdown", "touchstart", "wheel", "keydown", "focusin"]) row.addEventListener(e, stop, { passive: true, once: true });
+		new IntersectionObserver(([entry]) => (visible = entry.isIntersecting), { threshold: 0.3 }).observe(row);
+		const frame = () => {
+			if (stopped) return;
+			requestAnimationFrame(frame);
+			if (!clock || !visible || !narrow.matches || calm.matches || document.hidden) return;
+			// snapping would pull the row back to a stat every frame, so it is off while the row follows the bird
+			row.style.scrollSnapType = "none";
+			const t = (clock.getCurrentTime() - delay) % cycle;
+			const piece = Math.floor(t / fly);
+			let target = 0;
+			if (t >= 0 && piece < items.length) {
+				const li = items[piece]!;
+				const birdX = li.offsetLeft + (t / fly - piece) * li.offsetWidth;
+				target = birdX - row.clientWidth / 2;
+			}
+			target = Math.max(0, Math.min(row.scrollWidth - row.clientWidth, target));
+			// ease towards the bird rather than jumping; the drift back to the start while the birds rest is slower still
+			const ease = target < row.scrollLeft - 40 ? 0.035 : 0.12;
+			row.scrollLeft += (target - row.scrollLeft) * ease;
+		};
+		requestAnimationFrame(frame);
+	}
+
 	for (const row of document.querySelectorAll<HTMLElement>("[data-autoscroll]")) {
 		let visible = false;
 		let stopped = false;
