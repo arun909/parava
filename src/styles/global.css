@@ -1,5 +1,5 @@
 @import "@fontsource-variable/outfit";
-@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/inter";
 @import "@fontsource-variable/jetbrains-mono";
 @import "@fontsource-variable/josefin-sans";
 @import "@fontsource-variable/atkinson-hyperlegible-next";
@@ -25,8 +25,8 @@
 	--font: "Outfit Variable", system-ui, sans-serif;
 	/* geometric, high-contrast caps that echo the wordmark */
 	--font-display: "Josefin Sans Variable", "Outfit Variable", sans-serif;
-	/* soft, organic serif for big figures: lining numerals that read at a glance, warmer than the UI sans */
-	--font-num: "Fraunces Variable", Georgia, serif;
+	/* figures: a clean, professional sans with even-width digits that line up in columns and read clearly at any size */
+	--font-num: "Inter Variable", "Outfit Variable", system-ui, sans-serif;
 	/* for lists of names: every letter distinct (I, l, 1), clear at small sizes */
 	--font-read: "Atkinson Hyperlegible Next Variable", "Outfit Variable", system-ui, sans-serif;
 	--mono: "JetBrains Mono Variable", ui-monospace, monospace;
