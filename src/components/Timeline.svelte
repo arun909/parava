@@ -88,7 +88,21 @@ function scrub(e: PointerEvent) {
 		Math.min(365, Math.round(x.invert(e.clientX - svg.left))),
 	);
 }
+// a hint that the strip can be dragged, until the reader first does (remembered in this browser)
+const HINT_KEY = "parava-timeline-dragged";
+let dragged = $state(true);
+try {
+	dragged = localStorage.getItem(HINT_KEY) === "1";
+} catch {}
+function used() {
+	if (dragged) return;
+	dragged = true;
+	try {
+		localStorage.setItem(HINT_KEY, "1");
+	} catch {}
+}
 function down(e: PointerEvent) {
+	used();
 	(e.currentTarget as SVGElement).setPointerCapture(e.pointerId);
 	scrub(e);
 }
@@ -105,6 +119,7 @@ function key(e: KeyboardEvent) {
 <div class="tl" bind:clientWidth={width}>
 	<div class="head" class:compact>
 		<span class="date">{formatDay(globe.day)}</span>
+		{#if !dragged}<span class="drag-hint" aria-hidden="true"><svg width="14" height="10" viewBox="0 0 14 10"><path d="M4 1 1 5l3 4M10 1l3 4-3 4M1 5h12" /></svg>Drag to change the date</span>{/if}
 		<button type="button" onclick={() => (globe.day = today)} disabled={Math.round(globe.day) === Math.round(today)}>Today</button>
 		<!-- the every-species lanes need room, so phones (the compact card) leave them out -->
 		{#if !compact}
@@ -144,6 +159,13 @@ function key(e: KeyboardEvent) {
 		{/each}
 		<line x1={x(today)} x2={x(today)} y1="12" y2={H} stroke="var(--muted)" stroke-dasharray="2 3" />
 		<line x1={x(globe.day)} x2={x(globe.day)} y1="12" y2={H} stroke="var(--text)" stroke-width="2" />
+		<!-- a round grip on the day line, so the strip reads as something to drag; it nudges side to side until first used -->
+		<g class="knob" class:nudge={!dragged} transform="translate({x(globe.day)} {Math.min(H - 9, 12 + (H - 12) / 2)})" aria-hidden="true">
+			<g class="knob-in">
+				<circle r="9" />
+				<path d="M-3 -3.5v7M0 -3.5v7M3 -3.5v7" />
+			</g>
+		</g>
 	</svg>
 </div>
 </div>
@@ -158,6 +180,12 @@ function key(e: KeyboardEvent) {
 	button:hover:not(:disabled) { color: var(--text); }
 	button:disabled { opacity: 0.4; cursor: default; }
 	svg { display: block; touch-action: none; cursor: ew-resize; overflow: visible; }
+	.knob circle { fill: var(--accent-strong); stroke: var(--surface); stroke-width: 2.5; filter: drop-shadow(0 1px 2px rgb(33 51 40 / 0.35)); }
+	.knob path { stroke: #fff; stroke-width: 1.3; stroke-linecap: round; }
+	.knob.nudge .knob-in { animation: nudge 1.8s ease-in-out infinite; }
+	@keyframes nudge { 0%, 60%, 100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } }
+	.drag-hint { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 99px; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent-strong); font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
+	.drag-hint svg { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 	.m { font: 9px var(--font); fill: var(--muted); }
 	.lane { font: 10px var(--font); fill: var(--text); pointer-events: all; cursor: pointer; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
 </style>

@@ -329,7 +329,7 @@ const open = (m: number) => {
 					<tbody>
 						{#each shown as s (s.id)}
 							<tr>
-								<th scope="row" class="name"><span class="dot" style:background={s.color}></span><a href="/species/{s.id}/">{s.name}</a></th>
+								<th scope="row" class="name"><div class="who"><span class="dot" style:background={s.color}></span><a href="/species/{s.id}/">{s.name}</a></div></th>
 								{#each s.legs as l, i}
 									<td class={l} class:now={i === thisMonth} class:jl={l !== "-" && i > 0 && s.legs[i - 1] !== "-"} class:jr={l !== "-" && i < 11 && s.legs[i + 1] !== "-"}>{#if l !== "-"}<span class="sr">{l === "n" ? "north" : l === "s" ? "south" : "north and south"}</span>{/if}</td>
 								{/each}
@@ -547,7 +547,10 @@ const open = (m: number) => {
 		.name, thead th { background: var(--bg); }
 		.name { width: 140px; min-width: 140px; max-width: 140px; padding: 0 10px 0 16px; font-size: 0.84rem; line-height: 1.2; white-space: normal; box-shadow: 8px 0 10px -10px rgb(33 51 40 / 0.45); }
 		/* the dot beside the name, and a long name on two lines rather than cut short */
-		tbody .name { display: flex; align-items: center; gap: 8px; }
+		/* the cell itself stays a table cell (so it can stick); the dot and name line up inside it */
+		.who { display: flex; align-items: center; gap: 8px; }
+		.name { position: sticky; left: 0; z-index: 2; }
+		thead .name { z-index: 4; }
 		.name .dot { flex: none; width: 8px; height: 8px; margin: 0; }
 		.name a { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
 		thead th { padding: 10px 0 8px; border-bottom: 1px solid var(--line); }
