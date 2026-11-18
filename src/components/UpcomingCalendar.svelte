@@ -231,7 +231,7 @@ function key(e: KeyboardEvent, d: Date) {
 	.row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
 	.wd { padding-bottom: 2px; color: var(--muted); font-size: 0.72rem; text-align: center; text-transform: uppercase; letter-spacing: 0.06em; }
 
-	.days button { display: grid; justify-items: center; align-content: start; gap: 3px; height: 64px; padding: 6px 2px; border: 1px solid transparent; border-radius: 10px; background: var(--surface-2); color: var(--muted); font: inherit; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+	.days button { display: grid; justify-items: center; align-content: start; gap: 3px; min-height: 64px; min-width: 0; overflow: hidden; container-type: inline-size; padding: 6px 2px; border: 1px solid transparent; border-radius: 10px; background: var(--surface-2); color: var(--muted); font: inherit; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
 	/* the next 30 days stand out from the rest of the month */
 	.days button.soon { background: var(--surface); border-color: var(--line); color: var(--text); }
 	.days button.outside { opacity: 0.4; }
@@ -239,8 +239,10 @@ function key(e: KeyboardEvent, d: Date) {
 	.days button.today { border: 2px solid var(--accent); }
 	.days button.today .n { color: var(--accent); }
 	.days button.on { background: color-mix(in srgb, var(--accent) 16%, var(--surface)); border-color: var(--accent); box-shadow: 0 6px 14px -8px rgb(33 51 40 / 0.45); }
-	.n { font-family: var(--font-num); font-size: 1.05rem; font-weight: 600; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
-	.dots { display: flex; justify-content: center; align-items: center; gap: 3px; max-width: 100%; }
+	/* the date never outgrows its tile: on a very narrow tile with large text it shrinks to fit */
+	.n { font-family: var(--font-num); font-size: min(1.05rem, 44cqi); font-weight: 600; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
+	/* the tile grows rather than letting its contents spill: the count wraps under the dots if a large text size needs it */
+	.dots { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 3px; max-width: 100%; }
 	.dgrid { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; min-width: 0; }
 	.more { flex: none; color: var(--muted); font: 600 0.62rem / 1 var(--font-num); font-variant-numeric: tabular-nums; }
 
@@ -286,7 +288,7 @@ function key(e: KeyboardEvent, d: Date) {
 	}
 	@media (max-width: 560px) {
 		.month { padding: var(--s4); }
-		.days button { height: 54px; padding: 5px 1px; border-radius: 8px; }
+		.days button { min-height: 54px; padding: 5px 1px; border-radius: 8px; }
 		.dots .dot { width: 7px; height: 7px; }
 		/* phones: the dots as a 2×2 block, the count beside it */
 		.dgrid { display: grid; grid-template-columns: repeat(2, 7px); gap: 2px; }

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Dialog } from "bits-ui";
+import { untrack } from "svelte";
 import type { GlobeState } from "@/lib/globe/state.svelte";
 import QuickGroups from "./QuickGroups.svelte";
 import SpeciesBrowse from "./SpeciesBrowse.svelte";
@@ -12,6 +13,14 @@ let {
 	open = $bindable(false),
 }: { globe: GlobeState; open?: boolean } = $props();
 let sheet = $state<HTMLElement | null>(null);
+
+// the species on the map when the sheet opened: once the set differs, a tick button appears to confirm and close
+let opened = $state("");
+const current = $derived(globe.shown.map((s) => s.id).join(","));
+$effect(() => {
+	if (open) opened = untrack(() => current);
+});
+const changed = $derived(open && current !== opened);
 
 // swipe down to close: from the header at any time, or from anywhere once the list is scrolled to its top.
 // The sheet follows the finger; a long enough pull (or a quick flick) closes it, anything less springs back.
@@ -56,8 +65,8 @@ function touchend() {
 			ontouchcancel={touchend}
 		>
 			<Dialog.Title class="sr">Species</Dialog.Title>
-			<Dialog.Description class="sr">Choose which species to show on the map. Swipe down or press Done to close.</Dialog.Description>
-			<!-- stays at the top while the list scrolls: the grab bar to swipe it away, and Done always in reach -->
+			<Dialog.Description class="sr">Choose which species to show on the map. Swipe down or press Close to close.</Dialog.Description>
+			<!-- stays at the top while the list scrolls: the grab bar to swipe it away, and a quiet close -->
 			<div class="sheet-head">
 				{#if globe.card}
 					<button type="button" class="back" onclick={() => globe.close()}>← All species</button>
@@ -65,7 +74,9 @@ function touchend() {
 					<span class="head-title">Species</span>
 				{/if}
 				<span class="grab" aria-hidden="true"></span>
-				<Dialog.Close class="done">Done</Dialog.Close>
+				<Dialog.Close class="sheet-x" aria-label="Close">
+					<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+				</Dialog.Close>
 			</div>
 			{#if globe.card}
 				<SpeciesCard {globe} />
@@ -74,6 +85,12 @@ function touchend() {
 				<div class="groups"><QuickGroups {globe} /></div>
 				<SpeciesPicker {globe} inline hint="No species yet. Search, browse below or pick a Quick group." onpick={() => sheet?.scrollTo({ top: 0 })} />
 				<SpeciesBrowse {globe} onpick={() => sheet?.scrollTo({ top: 0 })} />
+			{/if}
+			{#if changed}
+				<!-- after a change: one big tick in thumb reach, bottom left, that confirms and closes -->
+				<Dialog.Close class="tick" aria-label="Done: show these species on the map">
+					<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+				</Dialog.Close>
 			{/if}
 		</Dialog.Content>
 	</Dialog.Portal>
@@ -88,5 +105,14 @@ function touchend() {
 	.head-title { font-weight: 600; }
 	.groups { display: flex; justify-content: flex-end; margin-bottom: var(--s2); }
 	.back { background: none; border: 0; color: var(--muted); font: inherit; cursor: pointer; padding: var(--s2) 0; }
-	:global(.done) { padding: 7px 16px; border: 0; border-radius: 99px; background: var(--accent-strong); color: #fff; font: 600 0.9rem var(--font); cursor: pointer; }
+	:global(.sheet-x) { display: grid; place-items: center; width: 36px; height: 36px; margin-right: -6px; border: 0; border-radius: 50%; background: none; color: var(--muted); cursor: pointer; }
+	:global(.sheet-x svg) { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+	:global(.sheet-x:hover) { color: var(--text); background: var(--surface-2); }
+	/* the confirm tick: a large round button floating at the bottom left of the screen */
+	:global(.sheet .tick) { position: fixed; z-index: 3; left: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); display: grid; place-items: center; width: 60px; height: 60px; border: 0; border-radius: 50%; background: var(--accent-strong); color: #fff; box-shadow: 0 10px 24px -8px rgb(33 51 40 / 0.6), 0 0 0 4px var(--surface); cursor: pointer; animation: tick-in 0.22s cubic-bezier(0.3, 1.4, 0.5, 1); }
+	:global(.sheet .tick svg) { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+	:global(.sheet .tick:active) { transform: scale(0.94); }
+	@keyframes tick-in { from { opacity: 0; transform: scale(0.6); } }
+	/* room under the list so the tick never covers its last row */
+	:global(.sheet) { padding-bottom: 96px; }
 </style>
