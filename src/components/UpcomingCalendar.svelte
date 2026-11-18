@@ -162,10 +162,13 @@ function key(e: KeyboardEvent, d: Date) {
 							onkeydown={(e) => key(e, c.date)}
 						>
 							<span class="n">{c.date.getDate()}</span>
+							<!-- the dots, then the overflow count beside them on the same line (never on a line of its own) -->
 							<span class="dots" aria-hidden="true">
-								{#each c.ev.slice(0, MAX_DOTS) as e}
-									<i class="dot" class:ring={e[2] % 2 === 0} style={`--c:${species[e[0]]!.color}`}></i>
-								{/each}
+								<span class="dgrid">
+									{#each c.ev.slice(0, MAX_DOTS) as e}
+										<i class="dot" class:ring={e[2] % 2 === 0} style={`--c:${species[e[0]]!.color}`}></i>
+									{/each}
+								</span>
 								{#if c.ev.length > MAX_DOTS}<span class="more">+{c.ev.length - MAX_DOTS}</span>{/if}
 							</span>
 						</button>
@@ -237,8 +240,9 @@ function key(e: KeyboardEvent, d: Date) {
 	.days button.today .n { color: var(--accent); }
 	.days button.on { background: color-mix(in srgb, var(--accent) 16%, var(--surface)); border-color: var(--accent); box-shadow: 0 6px 14px -8px rgb(33 51 40 / 0.45); }
 	.n { font-family: var(--font-num); font-size: 1.05rem; font-weight: 600; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
-	.dots { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3px; max-width: 100%; }
-	.more { color: var(--muted); font-size: 0.66rem; line-height: 1; }
+	.dots { display: flex; justify-content: center; align-items: center; gap: 3px; max-width: 100%; }
+	.dgrid { display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; min-width: 0; }
+	.more { flex: none; color: var(--muted); font: 600 0.62rem / 1 var(--font-num); font-variant-numeric: tabular-nums; }
 
 	/* filled: arriving; ring: leaving */
 	.dot { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
@@ -283,7 +287,10 @@ function key(e: KeyboardEvent, d: Date) {
 	@media (max-width: 560px) {
 		.month { padding: var(--s4); }
 		.days button { height: 54px; padding: 5px 1px; border-radius: 8px; }
-		.dots .dot { width: 8px; height: 8px; }
+		.dots .dot { width: 7px; height: 7px; }
+		/* phones: the dots as a 2×2 block, the count beside it */
+		.dgrid { display: grid; grid-template-columns: repeat(2, 7px); gap: 2px; }
+		.more { font-size: 0.58rem; letter-spacing: -0.02em; }
 		.dots .dot.ring { box-shadow: inset 0 0 0 1.5px var(--c); }
 		.dots { gap: 2px; }
 		.wd { font-size: 0.64rem; letter-spacing: 0; }
