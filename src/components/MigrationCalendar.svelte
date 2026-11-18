@@ -127,14 +127,25 @@ const weeks = $derived.by(() => {
 	return out;
 });
 
-// this month's past weeks fold into one row until asked for, so the list opens on what is still to come
-let showEarlier = $state(false);
+/** A week's events gathered by day, so each day gets one date tile beside its birds. */
+const byDay = (ev: CalEvent[]) => {
+	const out: { day: number; ev: CalEvent[] }[] = [];
+	for (const e of ev) {
+		const last = out.at(-1);
+		if (last && last.day === e[1]) last.ev.push(e);
+		else out.push({ day: e[1], ev: [e] });
+	}
+	return out;
+};
+
+// this month opens on the current week, with the earlier weeks above it for a scroll back
+let feedEl = $state<HTMLElement>();
 $effect(() => {
-	void month;
-	showEarlier = false;
+	void listed;
+	if (view !== "month" || month !== thisMonth || !feedEl) return;
+	const cur = feedEl.querySelector<HTMLElement>(".week.current");
+	feedEl.scrollTop = cur ? cur.offsetTop : 0;
 });
-const earlier = $derived(weeks.filter((w) => w.label.startsWith("Earlier")));
-const earlierCount = $derived(earlier.reduce((n, w) => n + w.ev.length, 0));
 
 const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
 const go = (d: number) => (month = (month + d + 12) % 12);
@@ -281,24 +292,24 @@ const open = (m: number) => {
 
 		{#if view === "month"}
 			<!-- only this part scrolls: every arrival and departure in date order, week by week -->
-			<div class="feed">
+			<div class="feed" bind:this={feedEl}>
 				{#if listed.length}
-					{#if earlierCount && !showEarlier}
-						<button type="button" class="earlier" onclick={() => (showEarlier = true)}>
-							<span>Earlier this month</span>
-							<span class="n">{plural(earlierCount, "event")} <span aria-hidden="true">▾</span></span>
-						</button>
-					{/if}
 					{#each weeks as w (w.from)}
-						{#if w.ev.length && (showEarlier || !w.label.startsWith("Earlier"))}
+						{#if w.ev.length}
 							<section class="week" class:past={w.label.startsWith("Earlier")} class:current={w.label.startsWith("This week")} aria-label={w.label}>
 								<h3>{w.label}<span>{plural(w.ev.length, "event")}</span></h3>
+								{#each byDay(w.ev) as d (d.day)}
+									<!-- one day: a small date tile that stays in view while its birds scroll past, then the birds -->
+									<div class="day" class:today={month === thisMonth && d.day === today}>
+										<time class="tile-date" datetime={dateOf(d.day).toISOString().slice(0, 10)}>
+											<small>{fmt(d.day, { weekday: "short" })}</small>
+											<b>{fmt(d.day, { day: "numeric" })}</b>
+										</time>
 								<ol class="agenda">
-									{#each w.ev as [si, day, k, pop], j}
+									{#each d.ev as [si, , k, pop]}
 										{@const s = species[si]!}
-										<!-- the date once per day; the marker says arriving (filled) or leaving (ring), not which species -->
-										<li class:today={month === thisMonth && day === today} class:same={j > 0 && w.ev[j - 1]![1] === day}>
-											<time datetime={dateOf(day).toISOString().slice(0, 10)}>{fmt(day, { day: "numeric", month: "short" })}</time>
+										<!-- the marker says arriving (filled) or leaving (ring), not which species -->
+										<li>
 											<i class="dot" class:ring={k % 2 === 0} style:--c="var(--accent-strong)"></i>
 											<a href="/species/{s.id}/">{s.name}</a>
 											<!-- narrow screens fold the population into this line, so a bird listed twice says which flock each is -->
@@ -307,6 +318,8 @@ const open = (m: number) => {
 										</li>
 									{/each}
 								</ol>
+									</div>
+								{/each}
 							</section>
 						{/if}
 					{/each}
@@ -465,16 +478,18 @@ const open = (m: number) => {
 	.week h3 span { color: var(--muted); font-weight: 400; letter-spacing: 0; text-transform: none; font-size: 0.8rem; }
 	.week.current h3 { color: var(--link); border-bottom-color: var(--accent); }
 	.week.past ol { opacity: 0.6; }
-	/* the folded past weeks: one quiet row that opens them */
-	.earlier { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: var(--s3); padding: 10px var(--s2); border: 1px dashed var(--line); border-radius: 10px; background: none; color: var(--muted); font: 600 0.8rem var(--font); cursor: pointer; }
-	.earlier .n { font-weight: 400; }
-	.earlier:hover { color: var(--text); border-color: var(--accent); }
-	/* a repeated date is left out, so each day reads as one group */
-	.agenda li.same time { visibility: hidden; }
+	/* a day: its date tile on the left, sticking under the week heading while the day's birds scroll by */
+	.day { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: var(--s3); padding: 8px 0; border-bottom: 1px solid color-mix(in srgb, var(--line) 50%, transparent); }
+	.day:last-child { border-bottom: 0; }
+	.tile-date { position: sticky; top: 46px; align-self: start; display: grid; justify-items: center; gap: 1px; padding: 6px 0 7px; border-radius: 12px; background: var(--surface-2); color: var(--text); line-height: 1; }
+	.tile-date small { color: var(--muted); font-size: 0.64rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+	.tile-date b { font-family: var(--font-num); font-size: 1.25rem; font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
+	.day.today .tile-date { background: var(--accent-strong); color: #fff; }
+	.day.today .tile-date small { color: rgb(255 255 255 / 0.75); }
 	.agenda { margin: 4px 0 0; padding: 0; list-style: none; }
-	.agenda li { display: grid; grid-template-columns: 56px 14px minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.8fr); align-items: center; gap: var(--s3); padding: 8px var(--s2); border-radius: 8px; font-size: 0.9rem; }
+	.agenda { margin: 0; }
+	.agenda li { display: grid; grid-template-columns: 14px minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.8fr); align-items: center; gap: var(--s3); padding: 8px var(--s2); border-radius: 8px; font-size: 0.9rem; }
 	.agenda li:hover { background: var(--surface-2); }
-	.agenda li.today { background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
 	time { color: var(--muted); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
 	.agenda a { overflow: hidden; color: var(--text); font: 500 0.95rem var(--font-read); letter-spacing: 0.005em; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; }
 	.agenda a:hover { color: var(--link); }
@@ -511,7 +526,7 @@ const open = (m: number) => {
 	@media (max-width: 1100px) {
 		.pop { display: none; }
 		.pop-inline { display: inline; }
-		.agenda li { grid-template-columns: 56px 14px minmax(0, 1fr) minmax(0, 1fr); }
+		.agenda li { grid-template-columns: 14px minmax(0, 1fr) minmax(0, 1fr); }
 	}
 	/* a narrow panel has no room for a centred title beside the tools: stack them, all centred */
 	@container (max-width: 940px) {
@@ -526,7 +541,6 @@ const open = (m: number) => {
 		/* no card on a phone: the list sits straight on the page, with one hairline under the fixed top bar */
 		.panel { border: 0; border-radius: 0; box-shadow: none; background: var(--bg); }
 		.week h3 { background: var(--bg); }
-		.agenda li.today { background: color-mix(in srgb, var(--accent) 10%, var(--bg)); }
 		.side { display: none; }
 		.cal-btn { display: grid; }
 		.months ol { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: auto; gap: 4px; }
@@ -534,8 +548,8 @@ const open = (m: number) => {
 		.spark { grid-column: 1 / -1; grid-row: 2; }
 		/* the month, its switches and the search grouped in one floating card; the list scrolls flat beneath it */
 		.top { gap: var(--s2); margin: 4px 12px 0; padding: var(--s3) var(--s3) var(--s3); border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: 0 6px 18px -12px rgb(33 51 40 / 0.35); }
-		.agenda li { grid-template-columns: 52px 14px minmax(0, 1fr); row-gap: 0; }
-		.what { grid-column: 3; }
+		.agenda li { grid-template-columns: 14px minmax(0, 1fr); row-gap: 0; padding: 6px 4px; }
+		.what { grid-column: 2; }
 
 		/* the timetable on a phone: the names stay put on the left while the months scroll sideways, each a comfortable
 		   column with its name; a bird's travel is a slim rounded bar on a faint line, joined across back-to-back months */
@@ -580,6 +594,9 @@ const open = (m: number) => {
 		.top { padding-inline: var(--s3); }
 		.feed { padding-inline: var(--s4); }
 		.actions { justify-self: stretch; width: 100%; }
+		/* the switch spans the card like the search row below it, its three choices sharing the width */
+		.show { justify-self: stretch; width: 100%; box-sizing: border-box; }
+		.show button { flex: 1; justify-content: center; padding-inline: 6px; }
 		.find { flex: 1; width: auto; min-width: 0; }
 		.title h2 { font-size: 1.3rem; }
 		.heading .sub { display: none; } /* the counts are on the switch below; one number is enough on a phone */
